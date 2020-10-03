@@ -23,7 +23,7 @@ public class LevelEditorWindow : EditorWindow
 		var tileStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
 
 		GUI.Label(new Rect(0, 0, 50, 50), "Brush:");
-		var brushes = GameSettings.Instance.IconsForTile;
+		var brushes = GameSettings.Instance.SettingsPerType;
 		var y = 50;
 		foreach (var brush in brushes)
 		{
