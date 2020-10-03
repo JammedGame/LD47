@@ -18,15 +18,16 @@ public class LevelEditorWindow : EditorWindow
 			return;
 		}
 
-		var defaultBrushStyle = new GUIStyle(GUI.skin.button) {padding = new RectOffset(5, 5, 5, 5)};
-		var buttonStyle = new GUIStyle(GUI.skin.button) {padding = new RectOffset(0, 0, 0, 0)};
+		var defaultBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(5, 5, 5, 5)};
+		var activeBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
+		var tileStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
 
 		GUI.Label(new Rect(0, 0, 50, 50), "Brush:");
 		var brushes = Enum.GetValues(typeof(TileType));
 		var y = 50;
 		foreach (var brush in brushes)
 		{
-			var style = (TileType) brush == tileBrush ? buttonStyle : defaultBrushStyle;
+			var style = (TileType) brush == tileBrush ? activeBrushStyle : defaultBrushStyle;
 			var brushButton = GUI.Button(new Rect(0, y, 25, 25), ((TileType) brush).LoadTexture().tex, style);
 			if (brushButton) tileBrush = (TileType) brush;
 			y += 25;
@@ -38,8 +39,9 @@ public class LevelEditorWindow : EditorWindow
 		for (var i = 0; i < Data.Tiles.Length; i++)
 		{
 			var tile = Data.GetTile(i);
-			var button = GUI.Button(new Rect(100 + tile.X * 25, 50 + tile.Y * 25, 25, 25), tile.Type.LoadTexture().tex,
-				buttonStyle);
+			var button = GUI.Button(new Rect(100 + tile.X * 25, 50 + tile.Y * 25, 25, 25),
+				tile.Type.LoadTexture().tex,
+				tileStyle);
 			if (button) Data.SetTileType(i, tileBrush);
 		}
 
