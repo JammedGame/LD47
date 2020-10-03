@@ -6,10 +6,22 @@ using UnityEngine;
 [Serializable]
 public class TileTypeSettings
 {
+    public TileType TileType;
+    public TileType NextTileType;
     public Direction LeftExit;
     public Direction RightExit;
     public Direction TopExit;
     public Direction BottomExit;
+
+    public TileTypeSettings(TileType tileType, TileType nextTileType, Direction leftExit, Direction rightExit, Direction topExit, Direction bottomExit)
+    {
+        TileType = tileType;
+        NextTileType = nextTileType;
+        LeftExit = leftExit;
+        RightExit = rightExit;
+        TopExit = topExit;
+        BottomExit = bottomExit;
+    }
 
     public Direction GetExitDirection(Direction enter)
     {
@@ -22,6 +34,14 @@ public class TileTypeSettings
             default: return Direction.Undefined;
         }
     }
+}
+
+public static class TileTypeSettingsUtil
+{
+    private static readonly TileTypeSettings[] settingsPerTile = new TileTypeSettings[]
+    {
+        new TileTypeSettings(TileType.Turn, default, Direction.Bottom, default, default, Direction.Left),
+    };
 }
 
 public enum Direction
