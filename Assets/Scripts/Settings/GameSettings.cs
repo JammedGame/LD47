@@ -6,9 +6,6 @@ public class GameSettings : ScriptableObject
     [Table]
     public List<TileTypeSettings> SettingsPerType;
 
-    [Table]
-    public List<TileIconSettings> IconsForTile;
-
     public TileTypeSettings GetSettings(TileType tileType)
     {
         foreach(var type in SettingsPerType)
@@ -22,19 +19,10 @@ public class GameSettings : ScriptableObject
         return null;
     }
 
-    public (Texture, Rotation) GetTexture(TileType tileType, bool enabled = true)
+    public (Texture, Rotation) GetTexture(TileType tileType)
     {
-        foreach(var type in IconsForTile)
-        {
-            if (type.TileType == tileType)
-            {
-                return !enabled && type.IconDisabled
-                    ? (type.IconDisabled, type.Rotation)
-                    : (type.Icon, type.Rotation);
-            }
-        }
-
-        return default;
+        var (src, rotation) = tileType.GetRotation();
+        return (Resources.Load<Texture>($"Textures/{src}"), rotation);
     }
 
     static GameSettings instance;
@@ -68,25 +56,9 @@ public class GameSettings : ScriptableObject
                     };
                     SettingsPerType.Add(settings);
                 }
-
-                var iconsSettings = IconsForTile.Find(x => x.TileType == tileType);
-                if (iconsSettings == null)
-                {
-                    iconsSettings = new TileIconSettings() {
-                        TileType = tileType
-                    };
-                    IconsForTile.Add(iconsSettings);
-                }
-
-                if (src != tileType)
-                {
-                    iconsSettings.Icon = GetTexture(src, true).Item1;
-                    iconsSettings.IconDisabled = GetTexture(src, false).Item1;
-                    iconsSettings.Rotation = rotation;
-                    
-                    var srcSettings = GetSettings(src);
-                }
             }
+
+            SettingsPerType.Sort((a, b) => a.TileType.CompareTo(b.TileType));
         }
     }
 }
