@@ -53,23 +53,20 @@ public static class DirectionUtil
 {
     public static Direction Rotate(this Direction direction, Rotation rotate)
     {
-        switch((rotate, direction))
-        {
-            case (Rotation.Rotate90, Direction.Left): return Direction.Top;
-            case (Rotation.Rotate90, Direction.Top): return Direction.Right;
-            case (Rotation.Rotate90, Direction.Right): return Direction.Bottom;
-            case (Rotation.Rotate90, Direction.Bottom): return Direction.Left;
+        if (rotate == Rotation.Rotate90 && direction == Direction.Left) return Direction.Top;
+        if (rotate == Rotation.Rotate90 && direction == Direction.Top) return Direction.Right;
+        if (rotate == Rotation.Rotate90 && direction == Direction.Right) return Direction.Bottom;
+        if (rotate == Rotation.Rotate90 && direction == Direction.Bottom) return Direction.Left;
 
-            case (Rotation.Rotate180, Direction.Left): return Direction.Right;
-            case (Rotation.Rotate180, Direction.Top): return Direction.Bottom;
-            case (Rotation.Rotate180, Direction.Right): return Direction.Left;
-            case (Rotation.Rotate180, Direction.Bottom): return Direction.Top;
+        if (rotate == Rotation.Rotate180 && direction == Direction.Left) return Direction.Right;
+        if (rotate == Rotation.Rotate180 && direction == Direction.Top) return Direction.Bottom;
+        if (rotate == Rotation.Rotate180 && direction == Direction.Right) return Direction.Left;
+        if (rotate == Rotation.Rotate180 && direction == Direction.Bottom) return Direction.Top;
 
-            case (Rotation.Rotate270, Direction.Left): return Direction.Bottom;
-            case (Rotation.Rotate270, Direction.Top): return Direction.Left;
-            case (Rotation.Rotate270, Direction.Right): return Direction.Top;
-            case (Rotation.Rotate270, Direction.Bottom): return Direction.Right;
-        }
+        if (rotate == Rotation.Rotate270 && direction == Direction.Left) return Direction.Bottom;
+        if (rotate == Rotation.Rotate270 && direction == Direction.Top) return Direction.Left;
+        if (rotate == Rotation.Rotate270 && direction == Direction.Right) return Direction.Top;
+        if (rotate == Rotation.Rotate270 && direction == Direction.Bottom) return Direction.Right;
 
         return direction; // no change
     }
