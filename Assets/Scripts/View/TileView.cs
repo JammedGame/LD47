@@ -18,6 +18,6 @@ public class TileView : MonoBehaviour
 
     public void UpdateMaterial()
     {
-        meshRenderer.material.mainTexture = null;
+        meshRenderer.material.mainTexture = Tile.LoadTexture();
     }
 }
