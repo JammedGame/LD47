@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour
 
     // Private Variables
     // Minimum distance from the camera to the camera target
-
     private float zoomMin = 11.0f;
 
     // Maximum distance from the camera to the camera target
@@ -125,6 +124,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0f && distance > zoomMin)
         {
             camPos += cam.transform.forward * zoomSpeed * Time.deltaTime;
+            Debug.Log(distance);
         }
 
         // When we scroll our mouse wheel down, zoom out if the camera is not outside of the maximum distance (set by our zoomMax variable)
