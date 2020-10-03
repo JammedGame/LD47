@@ -19,8 +19,6 @@ public class Tile
 
     public Texture LoadTexture()
 	{
-        int artIndex = (int)this.tileType + ((this.enabled) ? 0 : 1);
-		string indexString = artIndex.ToString("D2");
-		return Resources.Load<Texture>($"Textures/r{(indexString)}");
+        return GameSettings.Instance.GetTexture(tileType, Enabled);
 	}
 }
