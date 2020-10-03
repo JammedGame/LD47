@@ -9,6 +9,8 @@ public class GameWorld
 
     public GameWorld(LevelData levelData)
     {
+        this.LevelData = levelData;
+
         Tiles = new Tile[levelData.Width, levelData.Height];
         for(int i = 0; i < levelData.Width; i++)
             for(int j = 0; j < levelData.Height; j++)
