@@ -47,6 +47,32 @@ public enum Rotation
 {
     Rotate0 = 0,
     Rotate90 = 1,
-    Rotatate180 = 2,
-    Rotatate270 = 3
+    Rotate180 = 2,
+    Rotate270 = 3
+}
+
+public static class DirectionUtil
+{
+    public static Direction Rotate(this Direction direction, Rotation rotate)
+    {
+        switch((rotate, direction))
+        {
+            case (Rotation.Rotate90, Direction.Left): return Direction.Top;
+            case (Rotation.Rotate90, Direction.Top): return Direction.Right;
+            case (Rotation.Rotate90, Direction.Right): return Direction.Bottom;
+            case (Rotation.Rotate90, Direction.Bottom): return Direction.Left;
+
+            case (Rotation.Rotate180, Direction.Left): return Direction.Right;
+            case (Rotation.Rotate180, Direction.Top): return Direction.Bottom;
+            case (Rotation.Rotate180, Direction.Right): return Direction.Left;
+            case (Rotation.Rotate180, Direction.Bottom): return Direction.Top;
+
+            case (Rotation.Rotate270, Direction.Left): return Direction.Bottom;
+            case (Rotation.Rotate270, Direction.Top): return Direction.Left;
+            case (Rotation.Rotate270, Direction.Right): return Direction.Top;
+            case (Rotation.Rotate270, Direction.Bottom): return Direction.Right;
+        }
+
+        return direction; // no change
+    }
 }

@@ -56,6 +56,11 @@ public class GameSettings : ScriptableObject
                     };
                     SettingsPerType.Add(settings);
                 }
+
+                if (src != tileType)
+                {
+                    var srcSettings = GetSettings(src);
+                }
             }
 
             SettingsPerType.Sort((a, b) => a.TileType.CompareTo(b.TileType));
