@@ -15,50 +15,50 @@ MonoBehaviour:
   SettingsPerType:
   - TileType: 0
     NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    LeftExit: 2
+    RightExit: 1
     TopExit: 0
     BottomExit: 0
   - TileType: 1
     NextTileType: 18
-    LeftExit: 0
+    LeftExit: 4
     RightExit: 0
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 1
   - TileType: 2
-    NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    NextTileType: 4
+    LeftExit: 2
+    RightExit: 1
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 1
   - TileType: 4
-    NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    NextTileType: 2
+    LeftExit: 2
+    RightExit: 4
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 2
   - TileType: 6
-    NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    NextTileType: 8
+    LeftExit: 2
+    RightExit: 4
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 2
   - TileType: 8
-    NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    NextTileType: 6
+    LeftExit: 2
+    RightExit: 1
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 2
   - TileType: 10
-    NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    NextTileType: 12
+    LeftExit: 4
+    RightExit: 4
     TopExit: 0
     BottomExit: 0
   - TileType: 12
-    NextTileType: 18
-    LeftExit: 0
-    RightExit: 0
+    NextTileType: 10
+    LeftExit: 4
+    RightExit: 4
     TopExit: 0
     BottomExit: 0
   - TileType: 14
