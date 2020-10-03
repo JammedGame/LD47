@@ -70,6 +70,21 @@ public static class DirectionUtil
 
         return direction; // no change
     }
+
+    public static Direction RotateCCW(this Direction direction, Rotation rotate)
+    {
+        switch(rotate)
+        {
+            default:
+                return direction;
+            case Rotation.Rotate180:
+                return Rotate(direction, rotate);
+            case Rotation.Rotate90:
+                return Rotate(direction, Rotation.Rotate270);
+            case Rotation.Rotate270:
+                return Rotate(direction, Rotation.Rotate90);
+        }
+    }    
 }
 
 public static class RotationExtensions
