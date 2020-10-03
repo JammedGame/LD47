@@ -27,16 +27,16 @@ MonoBehaviour:
     BottomExit: 1
   - TileType: 2
     NextTileType: 4
-    LeftExit: 2
+    LeftExit: 4
     RightExit: 1
     TopExit: 0
     BottomExit: 1
   - TileType: 4
     NextTileType: 2
     LeftExit: 2
-    RightExit: 4
+    RightExit: 1
     TopExit: 0
-    BottomExit: 2
+    BottomExit: 1
   - TileType: 6
     NextTileType: 8
     LeftExit: 2
@@ -54,13 +54,13 @@ MonoBehaviour:
     LeftExit: 4
     RightExit: 4
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 1
   - TileType: 12
     NextTileType: 10
     LeftExit: 4
     RightExit: 4
     TopExit: 0
-    BottomExit: 0
+    BottomExit: 2
   - TileType: 14
     NextTileType: 18
     LeftExit: 0
