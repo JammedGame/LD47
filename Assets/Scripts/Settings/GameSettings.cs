@@ -58,18 +58,33 @@ public class GameSettings : ScriptableObject
         {
             if (type is TileType tileType)
             {
-                if (tileType != TileType.Undefined && GetSettings(tileType) == null)
+                var (src, rotation) = tileType.GetRotation();
+
+                var settings = GetSettings(tileType);
+                if (settings == null)
                 {
-                    SettingsPerType.Add(new TileTypeSettings() {
+                    settings = new TileTypeSettings() {
                         TileType = tileType
-                    });
+                    };
+                    SettingsPerType.Add(settings);
                 }
 
-                if (!IconsForTile.Exists(x => x.TileType == tileType))
+                var iconsSettings = IconsForTile.Find(x => x.TileType == tileType);
+                if (iconsSettings == null)
                 {
-                    IconsForTile.Add(new TileIconSettings() {
+                    iconsSettings = new TileIconSettings() {
                         TileType = tileType
-                    });
+                    };
+                    IconsForTile.Add(iconsSettings);
+                }
+
+                if (src != tileType)
+                {
+                    iconsSettings.Icon = GetTexture(src, true).Item1;
+                    iconsSettings.IconDisabled = GetTexture(src, false).Item1;
+                    iconsSettings.Rotation = rotation;
+                    
+                    var srcSettings = GetSettings(src);
                 }
             }
         }
