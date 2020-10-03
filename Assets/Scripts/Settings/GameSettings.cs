@@ -22,19 +22,19 @@ public class GameSettings : ScriptableObject
         return null;
     }
 
-    public Texture GetTexture(TileType tileType, bool enabled = true)
+    public (Texture, Rotation) GetTexture(TileType tileType, bool enabled = true)
     {
         foreach(var type in IconsForTile)
         {
             if (type.TileType == tileType)
             {
                 return !enabled && type.IconDisabled
-                    ? type.IconDisabled
-                    : type.Icon;
+                    ? (type.IconDisabled, type.Rotation)
+                    : (type.Icon, type.Rotation);
             }
         }
 
-        return null;
+        return default;
     }
 
     static GameSettings instance;
@@ -58,18 +58,33 @@ public class GameSettings : ScriptableObject
         {
             if (type is TileType tileType)
             {
-                if (tileType != TileType.Undefined && GetSettings(tileType) == null)
+                var (src, rotation) = tileType.GetRotation();
+
+                var settings = GetSettings(tileType);
+                if (settings == null)
                 {
-                    SettingsPerType.Add(new TileTypeSettings() {
+                    settings = new TileTypeSettings() {
                         TileType = tileType
-                    });
+                    };
+                    SettingsPerType.Add(settings);
                 }
 
-                if (!IconsForTile.Exists(x => x.TileType == tileType))
+                var iconsSettings = IconsForTile.Find(x => x.TileType == tileType);
+                if (iconsSettings == null)
                 {
-                    IconsForTile.Add(new TileIconSettings() {
+                    iconsSettings = new TileIconSettings() {
                         TileType = tileType
-                    });
+                    };
+                    IconsForTile.Add(iconsSettings);
+                }
+
+                if (src != tileType)
+                {
+                    iconsSettings.Icon = GetTexture(src, true).Item1;
+                    iconsSettings.IconDisabled = GetTexture(src, false).Item1;
+                    iconsSettings.Rotation = rotation;
+                    
+                    var srcSettings = GetSettings(src);
                 }
             }
         }

@@ -2,8 +2,9 @@
 
 public enum TileType
 {
-	Undefined = 18,
-	Rail = 0,
+	Undefined = 0,
+	Rail = 18,
+	Rail_R90 = 17,
 	Turn = 1,
 	ThreewayType1_1 = 2,
 	ThreewayType1_2 = 4,
@@ -18,8 +19,18 @@ public enum TileType
 
 public static class TileTypeExtensions
 {
-	public static Texture LoadTexture(this TileType type, bool enabled = true)
+	public static (Texture tex, Rotation rotate) LoadTexture(this TileType type, bool enabled = true)
 	{
 		return GameSettings.Instance.GetTexture(type, enabled);
+	}
+
+	public static (TileType source, Rotation rotation) GetRotation(this TileType type)
+	{
+		switch (type)
+		{
+			case TileType.Rail_R90: return (TileType.Rail, Rotation.Rotate90);
+
+			default: return (type, Rotation.Rotate0);
+		}
 	}
 }
