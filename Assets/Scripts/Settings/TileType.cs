@@ -13,8 +13,7 @@ public enum TileType
 	ThreewayType3_2 = 12,
 	FourwayMerge = 14,
 	FourwayOverpass = 15,
-	FourwaySwitch = 16,
-	FourwatSwitch = 17
+	FourwaySwitch = 16
 }
 
 public static class TileTypeExtensions

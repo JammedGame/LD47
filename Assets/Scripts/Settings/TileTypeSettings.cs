@@ -13,16 +13,6 @@ public class TileTypeSettings
     public Direction TopExit;
     public Direction BottomExit;
 
-    public TileTypeSettings(TileType tileType, TileType nextTileType, Direction leftExit, Direction rightExit, Direction topExit, Direction bottomExit)
-    {
-        TileType = tileType;
-        NextTileType = nextTileType;
-        LeftExit = leftExit;
-        RightExit = rightExit;
-        TopExit = topExit;
-        BottomExit = bottomExit;
-    }
-
     public Direction GetExitDirection(Direction enter)
     {
         switch(enter)
@@ -36,12 +26,12 @@ public class TileTypeSettings
     }
 }
 
-public static class TileTypeSettingsUtil
+[Serializable]
+public class TileIconSettings
 {
-    private static readonly TileTypeSettings[] settingsPerTile = new TileTypeSettings[]
-    {
-        new TileTypeSettings(TileType.Turn, default, Direction.Bottom, default, default, Direction.Left),
-    };
+    public TileType TileType;
+    public Texture Icon;
+    public Texture IconDisabled;
 }
 
 public enum Direction
