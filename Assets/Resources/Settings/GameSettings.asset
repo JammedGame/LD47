@@ -79,40 +79,68 @@ MonoBehaviour:
     RightExit: 3
     TopExit: 2
     BottomExit: 1
+  - TileType: 17
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 18
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
   IconsForTile:
-  - TileType: 0
+  - TileType: 18
     Icon: {fileID: 2800000, guid: a80f69412d773a346bf26df6f1952718, type: 3}
     IconDisabled: {fileID: 0}
+    Rotation: 0
   - TileType: 1
     Icon: {fileID: 2800000, guid: b1bf3c22675068a7f8a37f4afa53e57b, type: 3}
     IconDisabled: {fileID: 0}
+    Rotation: 0
   - TileType: 2
     Icon: {fileID: 2800000, guid: c7b187a80f21f90ceab61add87ec41b9, type: 3}
     IconDisabled: {fileID: 2800000, guid: d958df1d0c50dc9ec8bf3ef364599b20, type: 3}
+    Rotation: 0
   - TileType: 4
     Icon: {fileID: 2800000, guid: 1e9255f3ec8c73ebf997a2e997cd7f05, type: 3}
     IconDisabled: {fileID: 2800000, guid: 7adeb76ce1c3a06c185472b08044dd5e, type: 3}
+    Rotation: 0
   - TileType: 6
     Icon: {fileID: 2800000, guid: 1cb92dcf982afab60bde19a5eef13655, type: 3}
     IconDisabled: {fileID: 2800000, guid: 01a870d33dcdaab2bb8438efa24a253b, type: 3}
+    Rotation: 0
   - TileType: 8
     Icon: {fileID: 2800000, guid: a5fe402bd81f53fc088b11b2c3a344d0, type: 3}
     IconDisabled: {fileID: 2800000, guid: 1fa7fa890f94678f68b350e50ef7cb27, type: 3}
+    Rotation: 0
   - TileType: 10
     Icon: {fileID: 2800000, guid: 4bbf72199a9145bde82d8fcae0bfa2d3, type: 3}
     IconDisabled: {fileID: 2800000, guid: 44d5e7393d78c98eca05e928ab93608e, type: 3}
+    Rotation: 0
   - TileType: 12
     Icon: {fileID: 2800000, guid: 38dc3f981716d55868c5035f370622c2, type: 3}
     IconDisabled: {fileID: 2800000, guid: 1af2aab3c4792955495213229d8ff2d1, type: 3}
+    Rotation: 0
   - TileType: 14
     Icon: {fileID: 2800000, guid: afb029773badb76bda059cd1dba824f7, type: 3}
     IconDisabled: {fileID: 0}
+    Rotation: 0
   - TileType: 15
     Icon: {fileID: 2800000, guid: 4739868988c6ea0f88407b7a1656bccc, type: 3}
     IconDisabled: {fileID: 0}
+    Rotation: 0
   - TileType: 16
     Icon: {fileID: 2800000, guid: fbcb4e017085da39ebb972c86f7005b1, type: 3}
     IconDisabled: {fileID: 2800000, guid: 761446e2cc940f7d7a4ccb76190184cf, type: 3}
-  - TileType: 18
+    Rotation: 0
+  - TileType: 0
     Icon: {fileID: 2800000, guid: e97826b0fc1ff4c6388f1049d0a95f2d, type: 3}
     IconDisabled: {fileID: 0}
+    Rotation: 0
+  - TileType: 17
+    Icon: {fileID: 0}
+    IconDisabled: {fileID: 0}
+    Rotation: 0
