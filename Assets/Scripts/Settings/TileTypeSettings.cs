@@ -1,46 +1,44 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class TileTypeSettings
 {
-    public TileType TileType;
-    public TileType NextTileType;
-    public Direction LeftExit;
-    public Direction RightExit;
-    public Direction TopExit;
-    public Direction BottomExit;
+	public TileType TileType;
+	public TileType NextTileType;
+	public Direction LeftExit;
+	public Direction RightExit;
+	public Direction TopExit;
+	public Direction BottomExit;
 
-    public Direction GetExitDirection(Direction enter)
-    {
-        switch(enter)
-        {
-            case Direction.Left: return LeftExit;
-            case Direction.Right: return RightExit;
-            case Direction.Bottom: return BottomExit;
-            case Direction.Top: return TopExit;
-            default: return Direction.Undefined;
-        }
-    }
+	public Direction GetExitDirection(Direction enter)
+	{
+		switch (enter)
+		{
+			case Direction.Left: return LeftExit;
+			case Direction.Right: return RightExit;
+			case Direction.Bottom: return BottomExit;
+			case Direction.Top: return TopExit;
+			default: return Direction.Undefined;
+		}
+	}
 }
 
 [Serializable]
 public class TileIconSettings
 {
-    public TileType TileType;
-    public Texture Icon;
-    public Rotation Rotation;
+	public TileType TileType;
+	public Texture Icon;
+	public Rotation Rotation;
 }
 
 public enum Direction
 {
-    Undefined = 0,
-    Left = 1,
-    Right = 2,
-    Top = 3,
-    Bottom = 4
+	Undefined = 0,
+	Left = 1,
+	Right = 2,
+	Top = 3,
+	Bottom = 4
 }
 
 public enum Rotation
@@ -75,4 +73,24 @@ public static class DirectionUtil
 
         return direction; // no change
     }
+}
+
+public static class RotationExtensions
+{
+	public static float ToAngle(this Rotation r)
+	{
+		switch (r)
+		{
+			case Rotation.Rotate0:
+				return 0f;
+			case Rotation.Rotate90:
+				return 90f;
+			case Rotation.Rotate180:
+				return 180f;
+			case Rotation.Rotate270:
+				return 270f;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(r), r, null);
+		}
+	}
 }
