@@ -13,13 +13,13 @@ public class LevelDataInspector : Editor
 
 	public override void OnInspectorGUI()
 	{
-		base.OnInspectorGUI();
-
-		if (GUILayout.Button("Edit Tiles"))
+		if (GUILayout.Button("Tile Editor"))
 		{
 			var window = EditorWindow.GetWindow<LevelEditorWindow>(levelData.name);
 			window.Data = levelData;
 			window.Show();
 		}
+
+		base.OnInspectorGUI();
 	}
 }
