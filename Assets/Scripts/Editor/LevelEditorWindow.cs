@@ -12,7 +12,11 @@ public class LevelEditorWindow : EditorWindow
 
 	public void OnGUI()
 	{
-		if (Data == null) Close();
+		if (Data == null)
+		{
+			Close();
+			return;
+		}
 
 		var defaultBrushStyle = new GUIStyle(GUI.skin.button) {padding = new RectOffset(5, 5, 5, 5)};
 		var buttonStyle = new GUIStyle(GUI.skin.button) {padding = new RectOffset(0, 0, 0, 0)};
@@ -29,9 +33,8 @@ public class LevelEditorWindow : EditorWindow
 		}
 
 		GUI.Label(new Rect(100, 0, 50, 50), "Level:");
-		scrollPos = EditorGUILayout.BeginScrollView(scrollPos,
-			GUILayout.Width(50 * Data.Width),
-			GUILayout.Height(50 * Data.Height));
+		scrollPos = GUI.BeginScrollView(new Rect(100, 50, 800, 600), scrollPos,
+			new Rect(100, 50, 25 * (1 + Data.Width), 25 * (1 + Data.Height)));
 		for (var i = 0; i < Data.Tiles.Length; i++)
 		{
 			var tile = Data.GetTile(i);
@@ -40,6 +43,6 @@ public class LevelEditorWindow : EditorWindow
 			if (button) Data.SetTileType(i, tileBrush);
 		}
 
-		EditorGUILayout.EndScrollView();
+		GUI.EndScrollView();
 	}
 }
