@@ -18,9 +18,8 @@ public enum TileType
 
 public static class TileTypeExtensions
 {
-	public static Texture LoadTexture(this TileType type)
+	public static Texture LoadTexture(this TileType type, bool enabled = true)
 	{
-		string indexString = ((int)type).ToString("D2");
-		return Resources.Load<Texture>($"Textures/r{(indexString)}");
+		return GameSettings.Instance.GetTexture(type, enabled);
 	}
 }

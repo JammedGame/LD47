@@ -37,6 +37,18 @@ public class GameSettings : ScriptableObject
         return null;
     }
 
+    static GameSettings instance;
+
+    public static GameSettings Instance
+    {
+        get
+        {
+            if (instance) return instance;
+            instance = Resources.Load<GameSettings>("Settings/GameSettings");
+            return instance;
+        }
+    }
+
     void OnValidate()
     {
         if (SettingsPerType == null)
