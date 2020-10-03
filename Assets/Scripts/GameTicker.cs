@@ -6,6 +6,7 @@ public class GameTicker : MonoBehaviour
     private LevelData levelData;
     private GameWorld gameWorld;
     private ViewController viewController;
+    private CameraController cameraController;
 
     public GameWorld GameWorld => gameWorld;
 
@@ -13,6 +14,7 @@ public class GameTicker : MonoBehaviour
     {
         gameWorld = new GameWorld(levelData);
         viewController = new ViewController(gameWorld);
+        cameraController = new CameraController(gameWorld);
     }
 
     void Update()
