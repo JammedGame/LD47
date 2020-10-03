@@ -9,29 +9,32 @@ public class LevelDataInspector : Editor
 	private void OnEnable()
 	{
 		levelData = target as LevelData;
-		SceneView.duringSceneGui += DuringSceneGUI;
+		// SceneView.duringSceneGui += DuringSceneGUI;
 	}
 
-	private void OnDisable()
-	{
-		SceneView.duringSceneGui -= DuringSceneGUI;
-	}
+	// private void OnDisable()
+	// {
+	// 	SceneView.duringSceneGui -= DuringSceneGUI;
+	// }
 
-	private void DuringSceneGUI(SceneView sceneView)
-	{
-		for (var i = 0; i < levelData.Tiles.Length; i++)
-		{
-			var tileData = levelData.GetTile(i);
-			Graphics.DrawTexture(new Rect(tileData.X, tileData.Y, 1, 1), tileData.Type.LoadTexture());
-		}
-	}
+	// private void DuringSceneGUI(SceneView sceneView)
+	// {
+	// 	for (var i = 0; i < levelData.Tiles.Length; i++)
+	// 	{
+	// 		var tileData = levelData.GetTile(i);
+	// 		Graphics.DrawTexture(new Rect(tileData.X, -tileData.Y, 1, 1), tileData.Type.LoadTexture());
+	// 	}
+	// }
 
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
 
-		if (GUILayout.Button("CAO"))
+		if (GUILayout.Button("Edit Tiles"))
 		{
+			var window = EditorWindow.GetWindow<LevelEditorWindow>(levelData.name);
+			window.Data = levelData;
+			window.Show();
 		}
 	}
 }
