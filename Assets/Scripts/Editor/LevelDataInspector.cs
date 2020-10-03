@@ -22,7 +22,7 @@ public class LevelDataInspector : Editor
 		for (var i = 0; i < levelData.Tiles.Length; i++)
 		{
 			var tileData = levelData.GetTile(i);
-			Graphics.DrawTexture(new Rect(tileData.X, tileData.Y, 1, 1), tileData.Type.LoadTexture());
+			Graphics.DrawTexture(new Rect(tileData.X, -tileData.Y, 1, 1), tileData.Type.LoadTexture());
 		}
 	}
 
