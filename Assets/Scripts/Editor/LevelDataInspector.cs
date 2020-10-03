@@ -9,16 +9,21 @@ public class LevelDataInspector : Editor
 	private void OnEnable()
 	{
 		levelData = target as LevelData;
+		SceneView.duringSceneGui += DuringSceneGUI;
 	}
 
-	private void OnSceneGUI()
+	private void OnDisable()
+	{
+		SceneView.duringSceneGui -= DuringSceneGUI;
+	}
+
+	private void DuringSceneGUI(SceneView sceneView)
 	{
 		for (var i = 0; i < levelData.Tiles.Length; i++)
 		{
 			var tileData = levelData.GetTile(i);
+			Graphics.DrawTexture(new Rect(tileData.X, tileData.Y, 1, 1), tileData.Type.LoadTexture());
 		}
-
-		// Gizmos.DrawGUITexture()
 	}
 
 	public override void OnInspectorGUI()
