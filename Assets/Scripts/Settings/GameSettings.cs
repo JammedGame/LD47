@@ -60,6 +60,11 @@ public class GameSettings : ScriptableObject
                 if (src != tileType)
                 {
                     var srcSettings = GetSettings(src);
+
+                    settings.LeftExit =  srcSettings.GetExitDirection(Direction.Left.RotateCCW(rotation)).Rotate(rotation);
+                    settings.RightExit =  srcSettings.GetExitDirection(Direction.Right.RotateCCW(rotation)).Rotate(rotation);
+                    settings.TopExit =  srcSettings.GetExitDirection(Direction.Top.RotateCCW(rotation)).Rotate(rotation);
+                    settings.BottomExit =  srcSettings.GetExitDirection(Direction.Bottom.RotateCCW(rotation)).Rotate(rotation);
                 }
             }
 
