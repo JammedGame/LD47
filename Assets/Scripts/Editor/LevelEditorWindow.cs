@@ -27,7 +27,7 @@ public class LevelEditorWindow : EditorWindow
 		foreach (var brush in brushes)
 		{
 			var style = (TileType) brush == tileBrush ? buttonStyle : defaultBrushStyle;
-			var brushButton = GUI.Button(new Rect(0, y, 25, 25), ((TileType) brush).LoadTexture(), style);
+			var brushButton = GUI.Button(new Rect(0, y, 25, 25), ((TileType) brush).LoadTexture().tex, style);
 			if (brushButton) tileBrush = (TileType) brush;
 			y += 25;
 		}
@@ -38,7 +38,7 @@ public class LevelEditorWindow : EditorWindow
 		for (var i = 0; i < Data.Tiles.Length; i++)
 		{
 			var tile = Data.GetTile(i);
-			var button = GUI.Button(new Rect(100 + tile.X * 25, 50 + tile.Y * 25, 25, 25), tile.Type.LoadTexture(),
+			var button = GUI.Button(new Rect(100 + tile.X * 25, 50 + tile.Y * 25, 25, 25), tile.Type.LoadTexture().tex,
 				buttonStyle);
 			if (button) Data.SetTileType(i, tileBrush);
 		}

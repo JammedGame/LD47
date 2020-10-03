@@ -22,19 +22,19 @@ public class GameSettings : ScriptableObject
         return null;
     }
 
-    public Texture GetTexture(TileType tileType, bool enabled = true)
+    public (Texture, Rotation) GetTexture(TileType tileType, bool enabled = true)
     {
         foreach(var type in IconsForTile)
         {
             if (type.TileType == tileType)
             {
                 return !enabled && type.IconDisabled
-                    ? type.IconDisabled
-                    : type.Icon;
+                    ? (type.IconDisabled, type.Rotation)
+                    : (type.Icon, type.Rotation);
             }
         }
 
-        return null;
+        return default;
     }
 
     static GameSettings instance;

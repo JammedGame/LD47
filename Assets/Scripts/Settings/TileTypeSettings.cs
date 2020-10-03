@@ -32,6 +32,7 @@ public class TileIconSettings
     public TileType TileType;
     public Texture Icon;
     public Texture IconDisabled;
+    public Rotation Rotation;
 }
 
 public enum Direction

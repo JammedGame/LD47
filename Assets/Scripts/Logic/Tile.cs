@@ -17,7 +17,7 @@ public class Tile
         this.enabled = true;
     }
 
-    public Texture LoadTexture()
+    public (Texture texture, Rotation rotation) LoadTexture()
 	{
         return GameSettings.Instance.GetTexture(tileType, Enabled);
 	}

@@ -18,6 +18,7 @@ public class TileView : MonoBehaviour
 
     public void UpdateMaterial()
     {
-        meshRenderer.material.mainTexture = Tile.LoadTexture();
+        var (tex, rotation) = Tile.LoadTexture();
+        meshRenderer.material.mainTexture = tex;
     }
 }
