@@ -36,8 +36,10 @@ public enum TileType
 	ThreewayType2_2_R270,
 	ThreewayType3_1_R270,
 	ThreewayType3_2_R270,
-	Station = 200,
-	Station_R90
+	Terminus = 200,
+	Terminus_R90,
+	CargoStation,
+	CargoStation_R90
 }
 
 public static class TileTypeExtensions
@@ -78,7 +80,8 @@ public static class TileTypeExtensions
 			case TileType.ThreewayType3_1_R270: return (TileType.ThreewayType3_1, Rotation.Rotate270);
 			case TileType.ThreewayType3_2_R270: return (TileType.ThreewayType3_2, Rotation.Rotate270);
 
-			case TileType.Station_R90: return (TileType.Station, Rotation.Rotate90);
+			case TileType.Terminus_R90: return (TileType.Terminus, Rotation.Rotate90);
+			case TileType.CargoStation_R90: return (TileType.CargoStation, Rotation.Rotate90);
 
 			default: return (type, Rotation.Rotate0);
 		}

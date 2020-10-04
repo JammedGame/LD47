@@ -23,33 +23,39 @@ MonoBehaviour:
   TrainSpawns:
   - X: 1
     Y: 0
-    Direction: 2
+    Direction: 1
     Type: 2
     Color: 1
     InitialCars: 0
-  - X: 1
-    Y: 2
-    Direction: 1
-    Type: 1
-    Color: 2
-    InitialCars: 1
   CargoSpawns:
-  - X: 2
-    Y: 1
-    SpawnsAtSeconds: 3
-    DespawnsAfterSeconds: 0
-    Type: 0
-    Color: 1
   - X: 2
     Y: 1
     SpawnsAtSeconds: 6
     DespawnsAfterSeconds: 0
     Type: 1
-    Color: 2
+    Color: 1
   - X: 2
     Y: 1
     SpawnsAtSeconds: 9
     DespawnsAfterSeconds: 0
-    Type: 0
-    Color: 2
-  Tiles: 16000000c8000000030000000200000000000000c9000000150000000100000014000000
+    Type: 1
+    Color: 1
+  - X: 2
+    Y: 1
+    SpawnsAtSeconds: 12
+    DespawnsAfterSeconds: 0
+    Type: 1
+    Color: 1
+  - X: 2
+    Y: 1
+    SpawnsAtSeconds: 15
+    DespawnsAfterSeconds: 0
+    Type: 1
+    Color: 1
+  - X: 2
+    Y: 1
+    SpawnsAtSeconds: 18
+    DespawnsAfterSeconds: 0
+    Type: 1
+    Color: 1
+  Tiles: 16000000c8000000030000000200000000000000cb000000150000000100000014000000

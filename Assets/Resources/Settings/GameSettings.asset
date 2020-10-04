@@ -229,6 +229,18 @@ MonoBehaviour:
     RightExit: 0
     TopExit: 4
     BottomExit: 3
+  - TileType: 202
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 203
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
   SettingsPerTrainType:
   - Type: 1
     Icon: {fileID: 2800000, guid: e97826b0fc1ff4c6388f1049d0a95f2d, type: 3}
