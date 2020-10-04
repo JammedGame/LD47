@@ -134,13 +134,13 @@ MonoBehaviour:
     TopExit: 4
     BottomExit: 3
   - TileType: 104
-    NextTileType: 111
+    NextTileType: 105
     LeftExit: 3
     RightExit: 0
     TopExit: 1
     BottomExit: 1
   - TileType: 105
-    NextTileType: 110
+    NextTileType: 104
     LeftExit: 4
     RightExit: 0
     TopExit: 1
