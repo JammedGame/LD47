@@ -39,7 +39,38 @@ public enum TileType
 	Terminus = 200,
 	Terminus_R90,
 	CargoStation,
-	CargoStation_R90
+	CargoStation_R90,
+	Station = 200,
+	Station_R90,
+	River00,
+	River01,
+	River02,
+	River03,
+	River04,
+	River05,
+	River06,
+	River07,
+	River08,
+	River09,
+	River10,
+	River11,
+	River12,
+	Park1,
+	Park1_R180,
+	Park2,
+	Park2_R180,
+	House1,
+	House2,
+	House3,
+	House4,
+	BigBuilding1_1,
+	BigBuilding1_2,
+	BigBuilding1_3,
+	BigBuilding1_4,
+	BigBuilding2_1,
+	BigBuilding2_2,
+	BigBuilding2_3,
+	BigBuilding2_4
 }
 
 public static class TileTypeExtensions
@@ -82,6 +113,9 @@ public static class TileTypeExtensions
 
 			case TileType.Terminus_R90: return (TileType.Terminus, Rotation.Rotate90);
 			case TileType.CargoStation_R90: return (TileType.CargoStation, Rotation.Rotate90);
+
+			case TileType.Park1_R180: return (TileType.Park1, Rotation.Rotate180);
+			case TileType.Park2_R180: return (TileType.Park2, Rotation.Rotate180);
 
 			default: return (type, Rotation.Rotate0);
 		}
