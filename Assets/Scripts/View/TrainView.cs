@@ -10,11 +10,11 @@ public class TrainView : MonoBehaviour
 		var trainViewPrefab = Resources.Load<TrainView>("Prefabs/TrainView");
 		var trainView = GameObject.Instantiate(trainViewPrefab);
 		trainView.train = train;
-		trainView.Update();
+		trainView.UpdateView();
 		return trainView;
 	}
 
-	public void Update()
+	public void UpdateView()
 	{
 		var lastTilePos = train.LastTile.GetPosition3D();
 		var newTilePos = train.Tile.GetPosition3D();

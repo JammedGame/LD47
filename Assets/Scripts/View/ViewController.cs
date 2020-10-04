@@ -28,7 +28,7 @@ public class ViewController
 	{
 		foreach(var trainView in allTrainViews)
 		{
-			trainView.Update();
+			trainView.UpdateView();
 		}
 	}
 }
