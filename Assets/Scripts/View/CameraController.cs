@@ -111,6 +111,7 @@ public class CameraController : MonoBehaviour
              targetZoom = Mathf.Clamp (targetZoom, zoomMin, zoomMax);
         }
 
+        // smoooooooth scroll like jazz
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, 0.2f);
     }
 
