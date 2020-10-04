@@ -19,6 +19,9 @@ public class GameTicker : MonoBehaviour
         viewController = new ViewController(gameWorld);
         inputController = new InputController(viewController, Camera.main);
         cameraController.Initialize(levelData);
+
+        var background = FindObjectOfType<BackgroundController>();
+        background.Init(levelData);
     }
 
     void Update()
