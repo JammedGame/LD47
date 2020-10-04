@@ -16,6 +16,8 @@ public class TrainView : MonoBehaviour
 
 	public void Update()
 	{
-		transform.position = train.Tile.GetPosition3D();
+		var lastTilePos = train.LastTile.GetPosition3D();
+		var newTilePos = train.Tile.GetPosition3D();
+		transform.position = Vector3.Lerp(lastTilePos, newTilePos, train.ProgressToTile);
 	}
 }

@@ -5,17 +5,23 @@ public class Train
 {
 	private readonly GameWorld world;
 	private Tile tile;
+	private Tile lastTile;
 	private Direction direction;
+	private float progressToTile;
 
 	public Train(GameWorld world, TrainSpawn trainSpawn)
 	{
 		this.world = world;
 		this.tile = world.GetTile(trainSpawn.X, trainSpawn.Y) ?? throw new Exception($"Train at invalid position: [{trainSpawn.X}, {trainSpawn.Y}]");
+		this.lastTile = tile;
+		this.progressToTile = 1f;
 		this.direction = trainSpawn.Direction;
 	}
 
 	public Direction Direction => direction;
 	public GameWorld World => world;
+	public float ProgressToTile => progressToTile;
+	public Tile LastTile => lastTile;
 
 	public Tile Tile
 	{
@@ -29,20 +35,20 @@ public class Train
 
 			if (tile != value)
 			{
+				lastTile = tile;
 				tile = value;
-				// something something.
 			}
 		}
 	}
 
 	public void Tick(float dT)
 	{
-		dummyTimer += dT;
-		if (dummyTimer > 1f)
+		if (progressToTile >= 1f)
 		{
 			GoToNextTile();
-			dummyTimer -= 1f;
+			progressToTile -= 1f;
 		}
+		progressToTile += dT;
 	}
 
 	private void GoToNextTile()
@@ -50,8 +56,6 @@ public class Train
 		var nextTile = tile.GetAdjecentTile(direction);
 		var nextDirection = nextTile.GetExitDirectionFrom(direction.Opposite());
 		this.direction = nextDirection;
-		this.tile = nextTile;
+		Tile = nextTile;
 	}
-
-	float dummyTimer;
 }
