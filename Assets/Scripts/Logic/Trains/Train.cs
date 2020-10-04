@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Train
 {
+	public const float collisionRadius = 0.7f;
 	private readonly GameWorld world;
 	private Tile tile;
 	private Direction direction;
@@ -35,6 +36,11 @@ public class Train
 		return positionHistory.Get(index);
 	}
 
+	public PositionState GetLocmotiveOrWagonState(int index) // 0 locomotive, rest wagons
+	{
+		return GetSnapshotFromHistory(index * 60);
+	}
+
 	public Direction Direction => direction;
 	public Direction TileEnterDirection => tileEnterDirection;
 	public GameWorld World => world;
@@ -44,6 +50,12 @@ public class Train
 
 	public void Tick(float dT)
 	{
+		// check collsion
+		if (GetDistToNearestCollider(GetSnapshot()) < collisionRadius)
+		{
+			return;
+		}
+
 		// check if entered a new tile
 		progressInsideTile += dT;
 		if (progressInsideTile >= 1f)
@@ -62,6 +74,29 @@ public class Train
 		positionHistory.Add(GetSnapshot());
 	}
 
+	public float GetDistToNearestCollider(PositionState state)
+	{
+		var trainPos = GetSnapshot().GetPosition();
+		var minDist = float.MaxValue;
+		foreach(var train in world.AllTrains)
+		{
+			if (train == this) continue;
+
+			for(int i = 0; i < 2; i++)
+			{
+				var posSnap = train.GetLocmotiveOrWagonState(i);
+				var colliderPos = posSnap.GetPosition();
+				var dist = Vector3.Distance(trainPos, colliderPos);
+				if (dist < minDist)
+				{
+					minDist = dist;
+				}
+			}
+		}
+
+		return minDist;
+	}
+
 	private bool EnterNextTile()
 	{
 		var nextTile = tile.GetAdjecentTile(direction);
@@ -77,12 +112,6 @@ public class Train
 
     private bool CanEnterTile(Tile nextTile)
     {
-		foreach(var train in world.AllTrains)
-		{
-			if (train != this && train.positionHistory.OccupiesTile(nextTile, 40))
-				return false;
-		}
-
 		return true;
     }
 }
