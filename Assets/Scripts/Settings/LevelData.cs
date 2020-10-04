@@ -17,6 +17,7 @@ public class LevelData : ScriptableObject
 	public int DefeatAfterCargoDespawned;
 	[Table] public List<TrainSpawn> TrainSpawns;
 	[Table] public List<CargoSpawn> CargoSpawns;
+	[Table] public List<LevelText> LevelTexts;
 	public TileType[] Tiles;
 
 	public TileData GetTile(int index)
@@ -31,6 +32,16 @@ public class LevelData : ScriptableObject
 	{
 		Tiles[index] = type;
 	}
+}
+
+[Serializable]
+public struct LevelText
+{
+	public int X;
+	public int Y;
+	public float Width;
+	public float Height;
+	public string Text;
 }
 
 public struct TileData

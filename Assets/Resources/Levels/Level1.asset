@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c90c8ef9ae41ee9a5ebfd3f8370ef, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
+  InitialCameraPan: {x: 0, y: 0, z: 0}
+  InitialCameraZoom: 5
   Width: 3
   Height: 3
   VictoryAfterSeconds: 0
@@ -53,4 +55,10 @@ MonoBehaviour:
     SpawnsAtSeconds: 15
     DespawnsAfterSeconds: 0
     Color: 1
+  LevelTexts:
+  - X: 0
+    Y: 0
+    Width: 2
+    Height: 2
+    Text: Hello World!
   Tiles: 16000000c8000000030000000200000000000000cb000000150000000100000014000000

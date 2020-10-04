@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ViewController
@@ -26,6 +27,16 @@ public class ViewController
 
 		foreach (var train in gameWorld.AllTrains)
 			allTrainViews.Add(TrainView.CreateView(train));
+
+		var levelTextPrefab = Resources.Load<TextMeshPro>("Prefabs/LevelText");
+		foreach (var levelText in levelData.LevelTexts)
+		{
+			var levelTextInstance =
+				Object.Instantiate(levelTextPrefab, TileViewUtil.GetPosition3D(levelText.X, levelText.Y),
+					Quaternion.identity);
+			levelTextInstance.text = levelText.Text;
+			levelTextInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(levelText.Width, levelText.Height);
+		}
 	}
 
 	private LevelData levelData => gameWorld.LevelData;
@@ -52,6 +63,11 @@ public static class TileViewUtil
 	public static Vector3 GetPosition3D(this Tile tile)
 	{
 		return new Vector3(tile.X, -tile.Y, 0);
+	}
+
+	public static Vector3 GetPosition3D(int x, int y)
+	{
+		return new Vector3(x, -y, 0);
 	}
 
 	public static Vector3 GetPosition3D(this Tile tile, Direction direction)
