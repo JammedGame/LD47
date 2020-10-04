@@ -23,6 +23,11 @@ public class LevelEditorWindow : EditorWindow
 
 	public LevelData Data { get; set; }
 
+	private void OnEnable()
+	{
+		Undo.undoRedoPerformed += Repaint;
+	}
+
 	public void OnGUI()
 	{
 		if (Data == null)
@@ -106,6 +111,7 @@ public class LevelEditorWindow : EditorWindow
 				}
 				else
 				{
+					Undo.RegisterCompleteObjectUndo(Data, "Set Tile Type");
 					Data.SetTileType(i, TileBrush);
 					EditorUtility.SetDirty(Data);
 				}
