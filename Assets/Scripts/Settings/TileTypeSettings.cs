@@ -87,6 +87,23 @@ public static class DirectionUtil
                 return Rotate(direction, Rotation.Rotate90);
         }
     }
+
+	public static float ToAngle(this Direction r)
+	{
+		switch (r)
+		{
+			case Direction.Top:
+				return 0f;
+			case Direction.Left:
+				return 90;
+			case Direction.Bottom:
+				return 180f;
+			case Direction.Right:
+				return 270f;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(r), r, null);
+		}
+	}
 }
 
 public static class RotationExtensions

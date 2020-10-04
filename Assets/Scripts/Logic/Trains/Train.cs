@@ -50,19 +50,18 @@ public class Train
 		progressInsideTile += dT;
 		if (progressInsideTile >= 1f)
 		{
-			GoToNextTile();
+			EnterNextTile();
 			progressInsideTile -= 1f;
 		}
 	}
 
-	private void GoToNextTile()
+	private void EnterNextTile()
 	{
 		var nextTile = tile.GetAdjecentTile(direction);
-		var nextDirection = nextTile.GetExitDirectionFrom(direction.Opposite());
 
 		// update state.
 		this.tileEnterDirection = direction.Opposite();
-		this.direction = nextDirection;
+		this.direction = nextTile.GetExitDirectionFrom(tileEnterDirection);
 		this.tile = nextTile;
 	}
 }
