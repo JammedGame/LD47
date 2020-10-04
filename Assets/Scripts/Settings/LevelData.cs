@@ -62,7 +62,7 @@ public enum TrainType
 	Undefined = 0,
 	Slow = 1,
 	Fast = 2,
-	FastButLikeEvenMoreFasterYouKnow = 3
+	ExtraSlow = 3
 }
 
 public static class TrainTypeExtensions
@@ -107,12 +107,5 @@ public struct CargoSpawn
 	public int Y;
 	public float SpawnsAtSeconds;
 	public float DespawnsAfterSeconds;
-	public CargoType Type;
 	public TrainColor Color;
-}
-
-public enum CargoType
-{
-	Default = 0,
-	NewCar = 1
 }

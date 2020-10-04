@@ -501,7 +501,7 @@ MonoBehaviour:
     DefaultSpeed: 2
     DefaultInitialCars: 0
   - Type: 3
-    DefaultSpeed: 2.5
+    DefaultSpeed: 0.2
     DefaultInitialCars: 0
   SettingsPerTrainColor:
   - TrainColor: 1

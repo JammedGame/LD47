@@ -15,11 +15,13 @@ public class Train
 	private TrainColor color;
 	private int cars;
 	private float speed;
+	private readonly List<float> scheduledCars = new List<float>();
 
 	public TrainType Type => type;
 	public TrainColor Color => color;
 	public int Cars => cars;
 	public float Speed => speed;
+	public int TicksBetweenCars => (int) (60f / Speed);
 
 	public PositionState GetSnapshot() => new PositionState()
 	{
@@ -51,7 +53,7 @@ public class Train
 
 	public PositionState GetLocmotiveOrWagonState(int index) // 0 locomotive, rest wagons
 	{
-		return GetSnapshotFromHistory(index * 60);
+		return GetSnapshotFromHistory(index * TicksBetweenCars);
 	}
 
 	public Direction Direction => direction;
@@ -85,6 +87,17 @@ public class Train
 		}
 
 		positionHistory.Add(GetSnapshot());
+
+		if (scheduledCars.Count > 0)
+		{
+			scheduledCars[0] -= dT;
+			if (scheduledCars[0] <= 0)
+			{
+				if (scheduledCars.Count > 1) scheduledCars[1] += scheduledCars[0];
+				scheduledCars.RemoveAt(0);
+				cars++;
+			}
+		}
 	}
 
 	public float GetDistToNearestCollider(PositionState state)
@@ -99,7 +112,7 @@ public class Train
 			for(int i = 0; i < train.cars + 1; i++)
 			{
 				if (train == this && i == 0) continue;
-				if (train == this && positionHistory.Count < 60) continue;
+				if (train == this && positionHistory.Count < TicksBetweenCars) continue;
 
 				var posSnap = train.GetLocmotiveOrWagonState(i);
 				var colliderPos = posSnap.GetPosition();
@@ -128,7 +141,23 @@ public class Train
 		this.tileEnterDirection = direction.Opposite();
 		this.direction = nextTile.GetExitDirectionFrom(tileEnterDirection);
 		this.tile = nextTile;
+
+		for (var i = nextTile.Cargoes.Count - 1; i >= 0; i--)
+		{
+			var cargo = nextTile.Cargoes[i];
+			if (cargo.Color == Color)
+			{
+				ScheduleNewCar();
+				nextTile.Cargoes.RemoveAt(i);
+			}
+		}
+
 		return true;
+	}
+
+	private void ScheduleNewCar()
+	{
+		scheduledCars.Add(1f / Speed);
 	}
 
     private bool CanEnterTile(Tile nextTile)

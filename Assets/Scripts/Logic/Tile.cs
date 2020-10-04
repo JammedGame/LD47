@@ -60,6 +60,11 @@ public class Tile
 
 	public void Tick(float dT)
 	{
-		foreach (var cargo in Cargoes) cargo.Tick(dT);
+		for (var i = Cargoes.Count - 1; i >= 0; i--)
+		{
+			var cargo = Cargoes[i];
+			cargo.Tick(dT);
+			if (cargo.IsDespawned) Cargoes.RemoveAt(i);
+		}
 	}
 }
