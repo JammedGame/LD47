@@ -23,8 +23,8 @@ public class GameWorld
                 tiles[i, j] = new Tile(this, i, j, levelData.Tiles[i + j * levelData.Width]);
             }
 
-        var train = new Train(this, 1, 0, Direction.Left);
-        allTrains.Add(train);
+        foreach(var trainSpawn in levelData.TrainSpawns)
+            allTrains.Add(new Train(this, trainSpawn));
     }
 
 	public Tile GetTile(int x, int y)

@@ -23,13 +23,13 @@ MonoBehaviour:
   TrainSpawns:
   - X: 0
     Y: 0
-    Rotation: 0
+    Direction: 1
     Type: 2
     Color: 1
     InitialCars: 0
   - X: 1
     Y: 1
-    Rotation: 1
+    Direction: 4
     Type: 1
     Color: 2
     InitialCars: 1
@@ -52,4 +52,4 @@ MonoBehaviour:
     DespawnsAfterSeconds: 0
     Type: 0
     Color: 2
-  Tiles: 160000000100000003000000020000000000000002000000150000000100000014000000
+  Tiles: 16000000c8000000030000000200000000000000c9000000150000000100000014000000

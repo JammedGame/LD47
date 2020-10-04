@@ -6,6 +6,7 @@ public class GameTicker : MonoBehaviour
     private LevelData levelData;
     private GameWorld gameWorld;
     private ViewController viewController;
+    private InputController inputController;
 
     public GameWorld GameWorld => gameWorld;
 
@@ -13,10 +14,12 @@ public class GameTicker : MonoBehaviour
     {
         gameWorld = new GameWorld(levelData);
         viewController = new ViewController(gameWorld);
+        inputController = new InputController(viewController, Camera.main);
     }
 
     void Update()
     {
+        inputController.ProcessInput();
         gameWorld.Tick(1f / 60f);
         viewController.Render();
     }

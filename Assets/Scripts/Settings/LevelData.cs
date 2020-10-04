@@ -43,7 +43,7 @@ public struct TrainSpawn
 {
 	public int X;
 	public int Y;
-	public Rotation Rotation;
+	public Direction Direction;
 	public TrainType Type;
 	public TrainColor Color;
 	public int InitialCars;
