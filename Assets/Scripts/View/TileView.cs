@@ -44,6 +44,9 @@ public class TileView : MonoBehaviour
 	private void UpdateCargo()
 	{
 		var cargoCount = Tile.Cargoes.Count;
+		if (cargoCount == 0) return;
+
+		textMesh.gameObject.SetActive(true);
 		textMesh.text = new string('•', cargoCount);
 		for (var i = 0; i < cargoCount; i++)
 		{
