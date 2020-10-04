@@ -14,7 +14,7 @@ public class ViewController
 		tile2View = new TileView[levelData.Width, levelData.Height];
 		for (var i = 0; i < levelData.Width; i++)
 		for (var j = 0; j < levelData.Height; j++)
-			tile2View[i, j] = TileView.CreateView(gameWorld.Tiles[i, j], tileViewPrefab);
+			tile2View[i, j] = TileView.CreateView(gameWorld.GetTile(i, j), tileViewPrefab);
 	}
 
 	private LevelData levelData => gameWorld.LevelData;

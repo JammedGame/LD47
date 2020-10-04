@@ -51,6 +51,8 @@ public enum Rotation
 
 public static class DirectionUtil
 {
+	public static Direction Opposite(this Direction direction) => direction.Rotate(Rotation.Rotate180);
+
     public static Direction Rotate(this Direction direction, Rotation rotate)
     {
         if (rotate == Rotation.Rotate90 && direction == Direction.Left) return Direction.Top;
@@ -84,7 +86,7 @@ public static class DirectionUtil
             case Rotation.Rotate270:
                 return Rotate(direction, Rotation.Rotate90);
         }
-    }    
+    }
 }
 
 public static class RotationExtensions

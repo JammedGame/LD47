@@ -17,7 +17,7 @@ public class GameTicker : MonoBehaviour
 
     void Update()
     {
-        gameWorld.Tick();
+        gameWorld.Tick(1f / 60f);
         viewController.Render();
     }
 }

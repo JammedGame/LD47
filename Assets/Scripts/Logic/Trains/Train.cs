@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Train
@@ -6,10 +7,11 @@ public class Train
 	private Tile tile;
 	private Direction direction;
 
-	public Train(GameWorld world, int x, int y)
+	public Train(GameWorld world, int x, int y, Direction direction)
 	{
 		this.world = world;
-		this.tile = world.Tiles[x, y];
+		this.tile = world.GetTile(x, y) ?? throw new Exception($"Train at invalid position: [{x}, {y}]");
+		this.direction = direction;
 	}
 
 	public Direction Direction => direction;
@@ -33,8 +35,23 @@ public class Train
 		}
 	}
 
-	public void Tick()
+	public void Tick(float dT)
 	{
-
+		dummyTimer += dT;
+		if (dummyTimer > 1f)
+		{
+			GoToNextTile();
+			dummyTimer -= 1f;
+		}
 	}
+
+	private void GoToNextTile()
+	{
+		var nextTile = tile.GetAdjecentTile(direction);
+		var nextDirection = nextTile.GetExitDirectionFrom(direction.Opposite());
+		this.direction = nextDirection;
+		this.tile = nextTile;
+	}
+
+	float dummyTimer;
 }
