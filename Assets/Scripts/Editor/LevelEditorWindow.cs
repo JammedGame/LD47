@@ -36,9 +36,21 @@ public class LevelEditorWindow : EditorWindow
 			return;
 		}
 
-		var defaultBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(7, 7, 7, 7)};
-		var activeBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
-		var tileStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
+		var defaultBrushStyle = new GUIStyle(GUI.skin.box)
+		{
+			padding = new RectOffset(3, 3, 3, 3)
+		};
+		var activeBrushStyle = new GUIStyle(GUI.skin.box)
+		{
+			padding = new RectOffset(3, 3, 3, 3), normal = new GUIStyleState
+			{
+				background = Resources.Load<Texture2D>("Textures/EditorButtonBorder")
+			}
+		};
+		var tileStyle = new GUIStyle(GUI.skin.box)
+		{
+			padding = new RectOffset(0, 0, 0, 0)
+		};
 		var x = 0;
 		var y = 0;
 
@@ -100,11 +112,11 @@ public class LevelEditorWindow : EditorWindow
 		GUI.Label(new Rect(x, y, 50, 25), "Level:");
 		y += 25;
 		scrollPos = GUI.BeginScrollView(new Rect(x, y, 800, 600), scrollPos,
-			new Rect(x, y, 25 * (1 + Data.Width), 25 * (1 + Data.Height)));
+			new Rect(x, y, 50 * (1 + Data.Width), 50 * (1 + Data.Height)));
 		for (var i = 0; i < Data.Tiles.Length; i++)
 		{
 			var tile = Data.GetTile(i);
-			var buttonPos = new Rect(x + tile.X * 25, y + tile.Y * 25, 25, 25);
+			var buttonPos = new Rect(x + tile.X * 50, y + tile.Y * 50, 50, 50);
 			var (tex, rotate, overlay) = tile.Type.LoadTexture();
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), buttonPos.center);
 			var button = GUI.Button(buttonPos, tex, tileStyle);
