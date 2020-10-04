@@ -106,24 +106,28 @@ public class CameraController : MonoBehaviour
              cam.orthographicSize -= scroll * zoomSpeed;
              cam.orthographicSize = Mathf.Clamp (cam.orthographicSize, zoomMin, zoomMax);
         }
-
-        cam.orthographicSize = Mathf.MoveTowards (Camera.main.orthographicSize, cam.orthographicSize, zoomSpeed * Time.deltaTime);
     }
 
 
     public void Drag()
     {
         Vector3 pos = transform.position;
+        var newMousePos = Input.mousePosition;
+        var mouseDelta = newMousePos - lastMousePos;
 
-        if (Input.GetMouseButton(2))
+        var dragSpeed = cam.orthographicSize * 2 / Screen.height;
+
+        if (Input.GetMouseButton(2) || Input.GetMouseButton(1))
         {
-            pos -= new Vector3(Input.GetAxis("Mouse X") * dragSpeed * Time.deltaTime, Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime, 0);
+            pos -= mouseDelta * dragSpeed;
         }
 
         ClampXY(pos);
 
         transform.position = pos;
+        lastMousePos = newMousePos;
     }
+    Vector3 lastMousePos;
 
     private void ClampXY(Vector3 pos)
     {
