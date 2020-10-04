@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class CameraController : MonoBehaviour
 
     // How quickly the camera moves
     public float panSpeed = 20f;
-    
+
     //How far can camera pan
     public Vector2 panLimit;
 
@@ -21,6 +22,11 @@ public class CameraController : MonoBehaviour
 
     // The minimum distance of the mouse cursor from the screen edge required to pan the camera
     public float borderWidth = 10f;
+
+    public void Initialize(LevelData levelData)
+    {
+        panLimit = new Vector2(levelData.Width, levelData.Height);
+    }
 
     // Boolean to control if moving the mouse within the borderWidth distance will pan the camera
     public bool edgeScrolling = true;
@@ -41,7 +47,7 @@ public class CameraController : MonoBehaviour
     private readonly GameWorld gameWorld;
     private LevelData levelData => gameWorld.LevelData;
 
-    void Movement()
+    public void Movement()
     {
         // Local variable to hold the camera target's position during each frame
         Vector3 pos = transform.position;
@@ -90,33 +96,14 @@ public class CameraController : MonoBehaviour
             pos -= right * panSpeed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y, panLimit.y);
+        pos.x = Mathf.Clamp(pos.x, 0, panLimit.x + Screen.width/2);
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y - Screen.height/2, 0);
 
         // Setting the camera target's position to the modified pos variable
         transform.position = pos;
     }
 
-    void Rotation()
-    {
-        // If Mouse Button 1 is pressed, (the secondary (usually right) mouse button)
-        if (Input.GetMouseButton(1))
-        {
-            // Our mouseX variable gets set to the X position of the mouse multiplied by the rotation speed added to it.
-            mouseX += Input.GetAxis("Mouse X") * rotSpeed;
-
-            // Our mouseX variable gets set to the Y position of the mouse multiplied by the rotation speed added to it.
-            mouseY -= Input.GetAxis("Mouse Y") * rotSpeed;
-
-            // Clamp the minimum and maximum angle of how far the camera can look up and down.
-            mouseY = Mathf.Clamp(mouseY, -30, 45);
-
-            // Set the rotation of the camera target along the X axis (pitch) to mouseY (up & down) & Y axis (yaw) to mouseX (left & right), the Z axis (roll) is always set to 0 as we do not want the camera to roll.
-            transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-        }
-    }
-
-    void Zoom()
+    public void Zoom()
     {
         // Local variable to temporarily store our camera's position
         Vector3 camPos = cam.transform.position;
@@ -141,11 +128,12 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void Drag()
+    public void Drag()
     {
         Vector3 pos = transform.position;
 
-        if(Input.GetMouseButton(2)) {
+        if (Input.GetMouseButton(2))
+        {
             pos -= new Vector3(Input.GetAxis("Mouse X") * dragSpeed * Time.deltaTime, Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime, 0);
         }
 
@@ -153,6 +141,13 @@ public class CameraController : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, -panLimit.y, panLimit.y);
 
         transform.position = pos;
+    }
+
+    public void CameraUpdate() 
+    {
+        Movement();
+        Drag();
+        Zoom();
     }
 
     // Start is called before the first frame update
@@ -164,9 +159,5 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        // Rotation();
-        Zoom();
-        Drag();
     }
 }
