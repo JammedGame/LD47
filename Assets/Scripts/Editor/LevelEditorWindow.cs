@@ -1,14 +1,13 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
 public class LevelEditorWindow : EditorWindow
 {
-	private Vector2 brushScrollPos;
-	[NonSerialized] public LevelData Data;
+	private Vector2 brushScrollPos = Vector2.zero;
 	private Vector2 scrollPos = Vector2.zero;
-
 	private TileType tileBrush;
+
+	public LevelData Data { get; set; }
 
 	public void OnGUI()
 	{
@@ -18,13 +17,15 @@ public class LevelEditorWindow : EditorWindow
 			return;
 		}
 
-		var defaultBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(5, 5, 5, 5)};
+		var defaultBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(3, 3, 3, 3)};
 		var activeBrushStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
 		var tileStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
 
 		GUI.Label(new Rect(0, 0, 50, 50), "Brush:");
 		var brushes = GameSettings.Instance.SettingsPerType;
 		var y = 50;
+		brushScrollPos = GUI.BeginScrollView(new Rect(0, y, 50, 600), brushScrollPos,
+			new Rect(0, y, 50, 25 * (1 + brushes.Count)));
 		foreach (var brush in brushes)
 		{
 			var style = brush.TileType == tileBrush ? activeBrushStyle : defaultBrushStyle;
@@ -37,6 +38,8 @@ public class LevelEditorWindow : EditorWindow
 			GUI.matrix = Matrix4x4.identity;
 			y += 25;
 		}
+
+		GUI.EndScrollView();
 
 		GUI.Label(new Rect(100, 0, 50, 50), "Level:");
 		scrollPos = GUI.BeginScrollView(new Rect(100, 50, 800, 600), scrollPos,
