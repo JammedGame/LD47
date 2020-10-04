@@ -23,13 +23,18 @@ public class LevelEditorWindow : EditorWindow
 		var tileStyle = new GUIStyle(GUI.skin.box) {padding = new RectOffset(0, 0, 0, 0)};
 
 		GUI.Label(new Rect(0, 0, 50, 50), "Brush:");
-		var brushes = Enum.GetValues(typeof(TileType));
+		var brushes = GameSettings.Instance.SettingsPerType;
 		var y = 50;
 		foreach (var brush in brushes)
 		{
-			var style = (TileType) brush == tileBrush ? activeBrushStyle : defaultBrushStyle;
-			var brushButton = GUI.Button(new Rect(0, y, 25, 25), ((TileType) brush).LoadTexture().tex, style);
-			if (brushButton) tileBrush = (TileType) brush;
+			var style = brush.TileType == tileBrush ? activeBrushStyle : defaultBrushStyle;
+			var brushPos = new Rect(0, y, 25, 25);
+			var (tex, rotate) = brush.TileType.LoadTexture();
+			GUIUtility.RotateAroundPivot(rotate.ToAngle(), brushPos.center);
+			var brushButton = GUI.Button(brushPos, tex, style);
+			if (brushButton) tileBrush = brush.TileType;
+
+			GUI.matrix = Matrix4x4.identity;
 			y += 25;
 		}
 
@@ -39,10 +44,17 @@ public class LevelEditorWindow : EditorWindow
 		for (var i = 0; i < Data.Tiles.Length; i++)
 		{
 			var tile = Data.GetTile(i);
-			var button = GUI.Button(new Rect(100 + tile.X * 25, 50 + tile.Y * 25, 25, 25),
-				tile.Type.LoadTexture().tex,
-				tileStyle);
-			if (button) Data.SetTileType(i, tileBrush);
+			var buttonPos = new Rect(100 + tile.X * 25, 50 + tile.Y * 25, 25, 25);
+			var (tex, rotate) = tile.Type.LoadTexture();
+			GUIUtility.RotateAroundPivot(rotate.ToAngle(), buttonPos.center);
+			var button = GUI.Button(buttonPos, tex, tileStyle);
+			if (button)
+			{
+				Data.SetTileType(i, tileBrush);
+				EditorUtility.SetDirty(Data);
+			}
+
+			GUI.matrix = Matrix4x4.identity;
 		}
 
 		GUI.EndScrollView();

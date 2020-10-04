@@ -105,5 +105,6 @@ Assets/NewGame/Settings/Economy/Simulation*
 /Tools/BuildSystem/default.properties
 /testResults/EditorTestResults.xml
 /BuiltBundlesAndRaws/*
+Packages/packages-lock.json
 
 Videos/
