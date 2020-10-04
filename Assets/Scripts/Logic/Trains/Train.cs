@@ -97,7 +97,7 @@ public class Train
 		{
 			if (train == this) continue;
 
-			for(int i = 0; i < cars + 1; i++)
+			for(int i = 0; i < train.cars + 1; i++)
 			{
 				var posSnap = train.GetLocmotiveOrWagonState(i);
 				var colliderPos = posSnap.GetPosition();
