@@ -71,7 +71,7 @@ public enum TileType
 	BigBuilding2_4,
 	Bridge,
 	Bridge_R90,
-	FourwayOverpass_R90
+	FourwayOverpass_R90,
 	FourwayMerge_R90 = 300,
 	FourwayMerge_R180,
 	FourwayMerge_R270,
