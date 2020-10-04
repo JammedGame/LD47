@@ -4,7 +4,7 @@ using UnityEngine;
 public class LevelEditorWindow : EditorWindow
 {
 	private Vector2 brushScrollPos = Vector2.zero;
-	private bool magnifierActive;
+	private bool magnifierActive = true;
 	private Vector2 magnifierPos;
 	private bool pipetteActive;
 	private Vector2 scrollPos = Vector2.zero;
@@ -62,7 +62,7 @@ public class LevelEditorWindow : EditorWindow
 		var brushes = GameSettings.Instance.SettingsPerType;
 		GUI.Label(new Rect(x, y, 50, 25), "Brush:");
 		y += 25;
-		brushScrollPos = GUI.BeginScrollView(new Rect(x, y, 50, 600), brushScrollPos,
+		brushScrollPos = GUI.BeginScrollView(new Rect(x, y, 75, 600), brushScrollPos,
 			new Rect(x, y, 50, 25 * (1 + brushes.Count)));
 		foreach (var brush in brushes)
 		{
