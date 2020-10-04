@@ -16,8 +16,7 @@ public class TrainView : MonoBehaviour
 		var trainViewPrefab = Resources.Load<TrainView>("Prefabs/TrainView");
 		var trainView = Instantiate(trainViewPrefab);
 		trainView.train = train;
-		// todo jole
-		// trainView.iconRenderer.material.mainTexture = train.Type.LoadLocomotiveTexture();
+		trainView.iconRenderer.material.mainTexture = train.Color.LoadLocomotiveTexture();
 		trainView.carsVisible = -1;
 		trainView.UpdateView();
 		return trainView;
