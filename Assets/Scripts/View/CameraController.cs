@@ -117,7 +117,7 @@ public class CameraController : MonoBehaviour
 
         var dragSpeed = cam.orthographicSize * 2 / Screen.height;
 
-        if (Input.GetMouseButton(2) || Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
         {
             pos -= mouseDelta * dragSpeed;
         }
