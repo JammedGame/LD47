@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c90c8ef9ae41ee9a5ebfd3f8370ef, type: 3}
   m_Name: MisaTestLevel
   m_EditorClassIdentifier: 
+  InitialCameraPan: {x: 8, y: -3.2, z: 0}
+  InitialCameraZoom: 3.8
   Width: 20
   Height: 20
   VictoryAfterSeconds: 0
