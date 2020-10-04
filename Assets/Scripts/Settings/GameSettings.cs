@@ -20,10 +20,10 @@ public class GameSettings : ScriptableObject
         return null;
     }
 
-    public (Texture, Rotation) GetTexture(TileType tileType)
+    public (Texture texture, Rotation rotation1, Texture overlayTexture) GetTexture(TileType tileType)
     {
         var (src, rotation) = tileType.GetRotation();
-        return (Resources.Load<Texture>($"Textures/{src}"), rotation);
+        return (Resources.Load<Texture>($"Textures/{src}"), rotation, Resources.Load<Texture>($"Textures/{src}Overlay"));
     }
 
     static GameSettings instance;

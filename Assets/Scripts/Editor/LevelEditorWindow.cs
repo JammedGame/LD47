@@ -75,7 +75,7 @@ public class LevelEditorWindow : EditorWindow
 				? activeBrushStyle
 				: defaultBrushStyle;
 			var brushPos = new Rect(x, y, 25, 25);
-			var (tex, rotate) = brush.TileType.LoadTexture();
+			var (tex, rotate, overlay) = brush.TileType.LoadTexture();
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), brushPos.center);
 			var brushButton = GUI.Button(brushPos, tex, style);
 			if (brushButton) TileBrush = brush.TileType;
@@ -96,7 +96,7 @@ public class LevelEditorWindow : EditorWindow
 		{
 			var tile = Data.GetTile(i);
 			var buttonPos = new Rect(x + tile.X * 25, y + tile.Y * 25, 25, 25);
-			var (tex, rotate) = tile.Type.LoadTexture();
+			var (tex, rotate, overlay) = tile.Type.LoadTexture();
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), buttonPos.center);
 			var button = GUI.Button(buttonPos, tex, tileStyle);
 			if (button)

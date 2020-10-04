@@ -68,12 +68,14 @@ public enum TileType
 	BigBuilding2_1,
 	BigBuilding2_2,
 	BigBuilding2_3,
-	BigBuilding2_4
+	BigBuilding2_4,
+	Bridge,
+	Bridge_R90,
 }
 
 public static class TileTypeExtensions
 {
-	public static (Texture tex, Rotation rotate) LoadTexture(this TileType type)
+	public static (Texture tex, Rotation rotate, Texture overlay) LoadTexture(this TileType type)
 	{
 		return GameSettings.Instance.GetTexture(type);
 	}
@@ -115,6 +117,8 @@ public static class TileTypeExtensions
 
 			case TileType.Park1_R180: return (TileType.Park1, Rotation.Rotate180);
 			case TileType.Park2_R180: return (TileType.Park2, Rotation.Rotate180);
+
+			case TileType.Bridge_R90: return (TileType.Bridge, Rotation.Rotate90);
 
 			default: return (type, Rotation.Rotate0);
 		}

@@ -53,7 +53,7 @@ public class Tile
 		return pos;
 	}
 
-	public (Texture texture, Rotation rotation) LoadTexture()
+	public (Texture texture, Rotation rotation, Texture overlay) LoadTexture()
 	{
 		return GameSettings.Instance.GetTexture(TileType);
 	}
