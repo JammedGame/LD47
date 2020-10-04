@@ -7,11 +7,11 @@ public class Train
 	private Tile tile;
 	private Direction direction;
 
-	public Train(GameWorld world, int x, int y, Direction direction)
+	public Train(GameWorld world, TrainSpawn trainSpawn)
 	{
 		this.world = world;
-		this.tile = world.GetTile(x, y) ?? throw new Exception($"Train at invalid position: [{x}, {y}]");
-		this.direction = direction;
+		this.tile = world.GetTile(trainSpawn.X, trainSpawn.Y) ?? throw new Exception($"Train at invalid position: [{trainSpawn.X}, {trainSpawn.Y}]");
+		this.direction = trainSpawn.Direction;
 	}
 
 	public Direction Direction => direction;
