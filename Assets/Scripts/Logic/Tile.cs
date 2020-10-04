@@ -7,10 +7,9 @@ public class Tile
     private TileType tileType;
     private readonly GameWorld world;
     private TileTypeSettings tileTypeSettings => GameSettings.Instance.GetSettings(tileType);
-    private bool enabled;
+
 
     public TileType TileType => tileType;
-    public bool Enabled => enabled;
 
     public Tile GetAdjecentTile(Direction direction)
     {
@@ -43,7 +42,6 @@ public class Tile
         this.tileType = type;
         this.X = x;
         this.Y = y;
-        this.enabled = true;
     }
 
     public Vector3 GetCorner(Direction enterDirection, Direction exitDirection)
