@@ -10,11 +10,8 @@ public class CameraController : MonoBehaviour
     //How far can camera pan
     public Vector2 panLimit;
 
-    // How quickly the camera rotates
-    public float rotSpeed = 10f;
-
     // How quickly the camera zooms
-    public float zoomSpeed = 50f;
+    public float zoomSpeed = 2f;
 
     // How quickly the camera drags
     public float dragSpeed = 20f;
@@ -35,10 +32,10 @@ public class CameraController : MonoBehaviour
 
     // Private Variables
     // Minimum distance from the camera to the camera target
-    private float zoomMin = 10.0f;
+    private float zoomMin = 1.0f;
 
     // Maximum distance from the camera to the camera target
-    private float zoomMax = 25.0f;
+    private float zoomMax = 10.0f;
 
     // Floats to hold reference to the mouse position, no values to be assigned yet
     private float mouseX, mouseY;
@@ -95,8 +92,8 @@ public class CameraController : MonoBehaviour
             pos -= right * panSpeed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, 0, panLimit.x + Screen.width/2);
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y - Screen.height/2, 0);
+        pos.x = Mathf.Clamp(pos.x, 0, panLimit.x + Screen.width / 2);
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y - Screen.height / 2, 0);
 
         // Setting the camera target's position to the modified pos variable
         transform.position = pos;
@@ -104,26 +101,15 @@ public class CameraController : MonoBehaviour
 
     public void Zoom()
     {
-        // Local variable to temporarily store our camera's position
-        Vector3 camPos = cam.transform.position;
-
-        // Local variable to store the distance of the camera from the camera_target
-        float distance = Vector3.Distance(transform.position, cam.transform.position);
-
         // When we scroll our mouse wheel up, zoom in if the camera is not within the minimum distance (set by our zoomMin variable)
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f && distance > zoomMin)
+        float scroll = Input.GetAxis ("Mouse ScrollWheel");
+        if (scroll != 0.0f)
         {
-            camPos += cam.transform.forward * zoomSpeed * Time.deltaTime;
+             cam.orthographicSize -= scroll * zoomSpeed;
+             cam.orthographicSize = Mathf.Clamp (cam.orthographicSize, zoomMin, zoomMax);
         }
 
-        // When we scroll our mouse wheel down, zoom out if the camera is not outside of the maximum distance (set by our zoomMax variable)
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f && distance < zoomMax)
-        {
-            camPos -= cam.transform.forward * zoomSpeed * Time.deltaTime;
-        }
-
-        // Set the camera's position to the position of the temporary variable
-        cam.transform.position = camPos;
+        cam.orthographicSize = Mathf.MoveTowards (Camera.main.orthographicSize, cam.orthographicSize, zoomSpeed * Time.deltaTime);
     }
 
 
@@ -142,7 +128,7 @@ public class CameraController : MonoBehaviour
         transform.position = pos;
     }
 
-    public void CameraUpdate() 
+    public void CameraUpdate()
     {
         Movement();
         Drag();
