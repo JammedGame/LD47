@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class TrainView : MonoBehaviour
 {
-	[SerializeField] private GameObject carPrefab;
 	[SerializeField] private Transform lokomotiva;
 	[SerializeField] private int vagoniTestOffset = 10;
 	[SerializeField] private MeshRenderer iconRenderer;
-	[SerializeField] private float carOffsetY = -0.9f;
-
-	private Train train;
 	private readonly List<TrainView> vagoni = new List<TrainView>();
 	private int carsVisible;
+	private Train train;
 
 	internal static TrainView CreateView(Train train)
 	{
@@ -31,9 +28,8 @@ public class TrainView : MonoBehaviour
 
 		while (train.Cars > vagoni.Count)
 		{
-			var newCarObject = Instantiate(carPrefab, transform);
-			vagoni.Add(newCarObject.GetComponent<TrainView>());
-			newCarObject.transform.Translate(0f, vagoni.Count * carOffsetY, 0f);
+			var newCarObject = Instantiate(Resources.Load<TrainView>("Prefabs/CarView"), transform);
+			vagoni.Add(newCarObject);
 		}
 
 		if (train.Cars != carsVisible)
