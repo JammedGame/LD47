@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class ViewController
 {
+	private readonly List<TrainView> allTrainViews = new List<TrainView>();
 	private readonly GameWorld gameWorld;
 	private readonly TileView[,] tile2View;
+	private readonly List<TileView> tilesToUpdate = new List<TileView>();
 	private readonly TileView tileViewPrefab;
-	private readonly List<TrainView> allTrainViews = new List<TrainView>();
-	private LevelData levelData => gameWorld.LevelData;
 
 	public ViewController(GameWorld gameWorld)
 	{
@@ -17,18 +17,24 @@ public class ViewController
 		tile2View = new TileView[levelData.Width, levelData.Height];
 		for (var i = 0; i < levelData.Width; i++)
 		for (var j = 0; j < levelData.Height; j++)
-			tile2View[i, j] = TileView.CreateView(gameWorld.GetTile(i, j), tileViewPrefab);
+		{
+			var tile = gameWorld.GetTile(i, j);
+			var tileView = TileView.CreateView(tile, tileViewPrefab);
+			tile2View[i, j] = tileView;
+			if (tile.TileType != TileType.Undefined) tilesToUpdate.Add(tileView);
+		}
 
-		foreach(var train in gameWorld.AllTrains)
+		foreach (var train in gameWorld.AllTrains)
 			allTrainViews.Add(TrainView.CreateView(train));
 	}
 
+	private LevelData levelData => gameWorld.LevelData;
+
 	public void Render()
 	{
-		foreach(var trainView in allTrainViews)
-		{
-			trainView.UpdateView();
-		}
+		foreach (var trainView in allTrainViews) trainView.UpdateView();
+
+		foreach (var tileView in tilesToUpdate) tileView.UpdateView();
 	}
 
 	public TileView GetTileView(Vector3 pos)
@@ -50,7 +56,7 @@ public static class TileViewUtil
 
 	public static Vector3 GetPosition3D(this Tile tile, Direction direction)
 	{
-		switch(direction)
+		switch (direction)
 		{
 			case Direction.Left: return new Vector3(tile.X - 0.5f, -tile.Y, 0);
 			case Direction.Right: return new Vector3(tile.X + 0.5f, -tile.Y, 0);

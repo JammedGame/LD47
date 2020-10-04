@@ -21,33 +21,33 @@ MonoBehaviour:
   DefaultCargoDespawnAfterSeconds: 0
   DefeatAfterCargoDespawned: 0
   TrainSpawns:
-  - X: 0
+  - X: 1
     Y: 0
-    Direction: 1
+    Direction: 2
     Type: 2
     Color: 1
     InitialCars: 0
   - X: 1
-    Y: 1
-    Direction: 4
+    Y: 2
+    Direction: 1
     Type: 1
     Color: 2
     InitialCars: 1
   CargoSpawns:
   - X: 2
-    Y: 2
+    Y: 1
     SpawnsAtSeconds: 3
     DespawnsAfterSeconds: 0
     Type: 0
     Color: 1
   - X: 2
-    Y: 2
+    Y: 1
     SpawnsAtSeconds: 6
     DespawnsAfterSeconds: 0
     Type: 1
     Color: 2
   - X: 2
-    Y: 2
+    Y: 1
     SpawnsAtSeconds: 9
     DespawnsAfterSeconds: 0
     Type: 0

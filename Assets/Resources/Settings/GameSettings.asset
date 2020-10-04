@@ -244,10 +244,10 @@ MonoBehaviour:
     DefaultInitialCars: 0
   SettingsPerTrainColor:
   - TrainColor: 1
-    Color: {r: 0, g: 1, b: 1, a: 0}
+    Color: {r: 0, g: 1, b: 1, a: 1}
   - TrainColor: 2
-    Color: {r: 1, g: 0, b: 1, a: 0}
+    Color: {r: 1, g: 0, b: 1, a: 1}
   - TrainColor: 3
-    Color: {r: 1, g: 1, b: 0, a: 0}
+    Color: {r: 1, g: 1, b: 0, a: 1}
   - TrainColor: 4
-    Color: {r: 0.9056604, g: 0.5874395, b: 0.34603062, a: 0}
+    Color: {r: 0.9056604, g: 0.5874395, b: 0.34603062, a: 1}
