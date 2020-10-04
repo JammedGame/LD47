@@ -7,6 +7,7 @@ public class ViewController
 	private readonly TileView[,] tile2View;
 	private readonly TileView tileViewPrefab;
 	private readonly List<TrainView> allTrainViews = new List<TrainView>();
+	private LevelData levelData => gameWorld.LevelData;
 
 	public ViewController(GameWorld gameWorld)
 	{
@@ -22,14 +23,21 @@ public class ViewController
 			allTrainViews.Add(TrainView.CreateView(train));
 	}
 
-	private LevelData levelData => gameWorld.LevelData;
-
 	public void Render()
 	{
 		foreach(var trainView in allTrainViews)
 		{
 			trainView.UpdateView();
 		}
+	}
+
+	public TileView GetTileView(Vector3 pos)
+	{
+		var x = Mathf.RoundToInt(pos.x);
+		var y = Mathf.RoundToInt(-pos.y);
+		if (x < 0 || x >= levelData.Width) return null;
+		if (y < 0 || y >= levelData.Height) return null;
+		return tile2View[x, y];
 	}
 }
 

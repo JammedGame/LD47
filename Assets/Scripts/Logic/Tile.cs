@@ -6,7 +6,7 @@ public class Tile
     public readonly int X, Y;
     private TileType tileType;
     private readonly GameWorld world;
-    private readonly TileTypeSettings tileTypeSettings;
+    private TileTypeSettings tileTypeSettings => GameSettings.Instance.GetSettings(tileType);
     private bool enabled;
 
     public TileType TileType => tileType;
@@ -24,6 +24,14 @@ public class Tile
         }
     }
 
+	public void OnClicked()
+	{
+        if (tileTypeSettings.NextTileType != TileType.Undefined)
+        {
+            tileType = tileTypeSettings.NextTileType;
+        }
+	}
+
 	public Direction GetExitDirectionFrom(Direction enterDirection)
 	{
         return tileTypeSettings.GetExitDirection(enterDirection);
@@ -36,7 +44,6 @@ public class Tile
         this.X = x;
         this.Y = y;
         this.enabled = true;
-        this.tileTypeSettings = GameSettings.Instance.GetSettings(tileType);
     }
 
     public (Texture texture, Rotation rotation) LoadTexture()
