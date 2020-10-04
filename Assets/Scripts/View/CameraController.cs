@@ -85,15 +85,13 @@ public class CameraController : MonoBehaviour
             pos += right * panSpeed * Time.deltaTime;
         }
 
-
         // Move the camera (camera_target) Left relative to current rotation if "A" is pressed or if the mouse moves within the borderWidth distance from the left edge of the screen
         if (!Input.GetMouseButton(2) && (Input.GetKey("a") || edgeScrolling == true && Input.mousePosition.x <= borderWidth))
         {
             pos -= right * panSpeed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, 0, panLimit.x + Screen.width / 2);
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y - Screen.height / 2, 0);
+        ClampXY(pos);
 
         // Setting the camera target's position to the modified pos variable
         transform.position = pos;
@@ -122,10 +120,15 @@ public class CameraController : MonoBehaviour
             pos -= new Vector3(Input.GetAxis("Mouse X") * dragSpeed * Time.deltaTime, Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime, 0);
         }
 
-        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y, panLimit.y);
+        ClampXY(pos);
 
         transform.position = pos;
+    }
+
+    private void ClampXY(Vector3 pos)
+    {
+        pos.x = Mathf.Clamp(pos.x, 0, panLimit.x + Screen.width / 2);
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y - Screen.height / 2, 0);
     }
 
     public void CameraUpdate()
