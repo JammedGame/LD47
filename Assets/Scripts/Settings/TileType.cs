@@ -75,7 +75,13 @@ public enum TileType
 	FourwayMerge_R90 = 300,
 	FourwayMerge_R180,
 	FourwayMerge_R270,
-	FourwaySwitch_R90
+	FourwaySwitch_R90,
+	Station,
+	Station_R90,
+	StationTunnel,
+	StationTunnel_R90,
+	StationTunnel_R180,
+	StationTunnel_R270,
 }
 
 public static class TileTypeExtensions
@@ -94,6 +100,10 @@ public static class TileTypeExtensions
 			case TileType.Turn_R90: return (TileType.Turn, Rotation.Rotate90);
 			case TileType.Turn_R180: return (TileType.Turn, Rotation.Rotate180);
 			case TileType.Turn_R270: return (TileType.Turn, Rotation.Rotate270);
+
+			case TileType.StationTunnel_R90: return (TileType.StationTunnel, Rotation.Rotate90);
+			case TileType.StationTunnel_R180: return (TileType.StationTunnel, Rotation.Rotate180);
+			case TileType.StationTunnel_R270: return (TileType.StationTunnel, Rotation.Rotate270);
 
 			case TileType.ThreewayType1_1_R90: return (TileType.ThreewayType1_1, Rotation.Rotate90);
 			case TileType.ThreewayType1_2_R90: return (TileType.ThreewayType1_2, Rotation.Rotate90);
@@ -131,6 +141,8 @@ public static class TileTypeExtensions
 			case TileType.FourwayMerge_R270: return (TileType.FourwayMerge, Rotation.Rotate270);
 
 			case TileType.FourwaySwitch_R90: return (TileType.FourwaySwitch, Rotation.Rotate90);
+
+			case TileType.Station_R90: return (TileType.Station, Rotation.Rotate90);
 
 			default: return (type, Rotation.Rotate0);
 		}

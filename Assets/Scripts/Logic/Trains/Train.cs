@@ -178,20 +178,20 @@ public struct PositionState
 	public bool IsOverpass()
 	{
 		var tile = Tile;
-		if (tile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Left || ExitDirection == Direction.Left)) return true;
-		if (tile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Top || ExitDirection == Direction.Top)) return true;
+		if (tile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Left || ExitDirection == Direction.Left)) return true;
+		if (tile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Top || ExitDirection == Direction.Top)) return true;
 
 		//if (ProgressInTile < 0.5f)
 		{
 			var previousTile = Tile.GetAdjecentTile(EnterDirection);
-			if (previousTile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Left || EnterDirection == Direction.Left)) return true;
-			if (previousTile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Top || EnterDirection == Direction.Top)) return true;
+			if (previousTile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Left || EnterDirection == Direction.Left)) return true;
+			if (previousTile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Top || EnterDirection == Direction.Top)) return true;
 		}
 		//else
 		{
 			var nextTile = Tile.GetAdjecentTile(ExitDirection);
-			if (nextTile.TileType == TileType.FourwayOverpass && (ExitDirection == Direction.Left || ExitDirection == Direction.Right)) return true;
-			if (nextTile.TileType == TileType.FourwayOverpass_R90 && (ExitDirection == Direction.Top || ExitDirection == Direction.Bottom)) return true;
+			if (nextTile.TileType == TileType.FourwayOverpass_R90 && (ExitDirection == Direction.Left || ExitDirection == Direction.Right)) return true;
+			if (nextTile.TileType == TileType.FourwayOverpass && (ExitDirection == Direction.Top || ExitDirection == Direction.Bottom)) return true;
 		}
 
 		return false;

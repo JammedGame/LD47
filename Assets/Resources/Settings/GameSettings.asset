@@ -427,6 +427,12 @@ MonoBehaviour:
     RightExit: 0
     TopExit: 4
     BottomExit: 3
+  - TileType: 235
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 4
+    BottomExit: 3
   - TileType: 300
     NextTileType: 0
     LeftExit: 2
@@ -451,6 +457,42 @@ MonoBehaviour:
     RightExit: 4
     TopExit: 1
     BottomExit: 2
+  - TileType: 304
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 305
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
+  - TileType: 306
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 307
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
+  - TileType: 308
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 309
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
   SettingsPerTrainType:
   - Type: 1
     DefaultSpeed: 1
