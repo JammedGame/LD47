@@ -13,7 +13,7 @@ public class Train
 
 	public PositionState GetSnapshot() => new PositionState()
 	{
-		Direction = direction,
+		ExitDirection = direction,
 		EnterDirection = tileEnterDirection,
 		Tile = tile,
 		ProgressInTile = progressInsideTile
@@ -27,6 +27,12 @@ public class Train
 		this.direction = trainSpawn.Direction;
 		this.tileEnterDirection = direction.Opposite();
 		this.positionHistory = new PositionStateHistory(200, GetSnapshot());
+	}
+
+	public PositionState GetSnapshotFromHistory(int i)
+	{
+		var index = Mathf.Min(i, positionHistory.Count - 1);
+		return positionHistory.Get(index);
 	}
 
 	public Direction Direction => direction;
@@ -65,8 +71,8 @@ public struct PositionState
 {
 	public Tile Tile;
 	public float ProgressInTile;
-	public Direction Direction;
 	public Direction EnterDirection;
+	public Direction ExitDirection;
 }
 
 public class PositionStateHistory
@@ -89,6 +95,9 @@ public class PositionStateHistory
 
 	public void Add(PositionState state)
 	{
+		if (state.Tile == null)
+			throw new NullReferenceException();
+
 		buffer[currentIndex] = state;
 		currentIndex++;
 		if (currentSize < bufferSize) { currentSize++; }
@@ -100,12 +109,12 @@ public class PositionStateHistory
 		}
 	}
 
-	public PositionState GetIndex(int ticksAgo)
+	public PositionState Get(int ticksAgo)
 	{
 		if (ticksAgo >= currentSize)
 			throw new IndexOutOfRangeException();
 
-		var index = currentIndex - ticksAgo;
+		var index = currentIndex - 1 - ticksAgo;
 		if (index < 0)
 			index += bufferSize;
 		return buffer[index];

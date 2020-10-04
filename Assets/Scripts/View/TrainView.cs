@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class TrainView : MonoBehaviour
 {
+	[SerializeField] private Transform[] vagoni;
+	[SerializeField] private int vagoniTestOffset = 10;
+
 	private Train train;
 
 	internal static TrainView CreateView(Train train)
@@ -16,8 +19,21 @@ public class TrainView : MonoBehaviour
 
 	public void UpdateView()
 	{
-		var tileEnterPos = train.Tile.GetPosition3D(train.TileEnterDirection);
-		var tileExitPos = train.Tile.GetPosition3D(train.Direction);
-		transform.position = Vector3.Lerp(tileEnterPos, tileExitPos, train.ProgressInsideTile);
+		UpdateTransform(transform, train.GetSnapshot());
+
+		for (int i = 0; i < vagoni.Length; i++)
+		{
+			UpdateTransform(vagoni[i], train.GetSnapshotFromHistory((i + 1) * vagoniTestOffset));
+		}
+	}
+
+	public void UpdateTransform(Transform transform, PositionState state)
+	{
+		if (state.Tile == null)
+			throw new NullReferenceException();
+
+		var tileEnterPos = state.Tile.GetPosition3D(state.EnterDirection);
+		var tileExitPos = state.Tile.GetPosition3D(state.ExitDirection);
+		transform.position = Vector3.Lerp(tileEnterPos, tileExitPos, state.ProgressInTile);
 	}
 }
