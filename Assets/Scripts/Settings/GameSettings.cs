@@ -6,6 +6,7 @@ public class GameSettings : ScriptableObject
     [Table] public List<TileTypeSettings> SettingsPerType;
     [Table] public List<TrainTypeSettings> SettingsPerTrainType;
     [Table] public List<TrainColorSettings> SettingsPerTrainColor;
+    public List<LevelData> AllLevels;
 
     public TileTypeSettings GetSettings(TileType tileType)
     {
