@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panSpeed: 10
-  panLimit: {x: 0, y: 0}
+  panLimit: {x: 30, y: 30}
   rotSpeed: 10
   zoomSpeed: 50
   dragSpeed: 20
