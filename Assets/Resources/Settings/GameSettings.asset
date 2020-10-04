@@ -109,6 +109,114 @@ MonoBehaviour:
     RightExit: 4
     TopExit: 0
     BottomExit: 2
+  - TileType: 100
+    NextTileType: 101
+    LeftExit: 3
+    RightExit: 0
+    TopExit: 1
+    BottomExit: 3
+  - TileType: 101
+    NextTileType: 100
+    LeftExit: 3
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
+  - TileType: 102
+    NextTileType: 103
+    LeftExit: 4
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 1
+  - TileType: 103
+    NextTileType: 102
+    LeftExit: 4
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
+  - TileType: 104
+    NextTileType: 111
+    LeftExit: 3
+    RightExit: 0
+    TopExit: 1
+    BottomExit: 1
+  - TileType: 105
+    NextTileType: 110
+    LeftExit: 4
+    RightExit: 0
+    TopExit: 1
+    BottomExit: 1
+  - TileType: 106
+    NextTileType: 107
+    LeftExit: 2
+    RightExit: 3
+    TopExit: 2
+    BottomExit: 0
+  - TileType: 107
+    NextTileType: 106
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 2
+    BottomExit: 0
+  - TileType: 108
+    NextTileType: 109
+    LeftExit: 3
+    RightExit: 1
+    TopExit: 1
+    BottomExit: 0
+  - TileType: 109
+    NextTileType: 108
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 1
+    BottomExit: 0
+  - TileType: 110
+    NextTileType: 111
+    LeftExit: 3
+    RightExit: 3
+    TopExit: 2
+    BottomExit: 0
+  - TileType: 111
+    NextTileType: 110
+    LeftExit: 3
+    RightExit: 3
+    TopExit: 1
+    BottomExit: 0
+  - TileType: 112
+    NextTileType: 113
+    LeftExit: 0
+    RightExit: 4
+    TopExit: 4
+    BottomExit: 2
+  - TileType: 113
+    NextTileType: 112
+    LeftExit: 0
+    RightExit: 4
+    TopExit: 4
+    BottomExit: 3
+  - TileType: 114
+    NextTileType: 115
+    LeftExit: 0
+    RightExit: 3
+    TopExit: 2
+    BottomExit: 3
+  - TileType: 115
+    NextTileType: 114
+    LeftExit: 0
+    RightExit: 3
+    TopExit: 4
+    BottomExit: 3
+  - TileType: 116
+    NextTileType: 117
+    LeftExit: 0
+    RightExit: 4
+    TopExit: 2
+    BottomExit: 2
+  - TileType: 117
+    NextTileType: 116
+    LeftExit: 0
+    RightExit: 3
+    TopExit: 2
+    BottomExit: 2
   SettingsPerTrainType:
   - Type: 1
     Icon: {fileID: 2800000, guid: e97826b0fc1ff4c6388f1049d0a95f2d, type: 3}
