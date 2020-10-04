@@ -22,6 +22,8 @@ public class CameraController : MonoBehaviour
     public void Initialize(LevelData levelData)
     {
         panLimit = new Vector2(levelData.Width, levelData.Height);
+        transform.position = levelData.InitialCameraPan;
+        cam.orthographicSize = levelData.InitialCameraZoom;
     }
 
     // Boolean to control if moving the mouse within the borderWidth distance will pan the camera

@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class LevelData : ScriptableObject
 {
+	public Vector3 InitialCameraPan;
+	public float InitialCameraZoom = 5f;
 	public int Width = 10;
 	public int Height = 10;
 	public float VictoryAfterSeconds;
