@@ -93,6 +93,7 @@ public class Train
 		var trainPos = snap.GetPosition();
 		var direction = snap.GetDirection();
 		var minDist = float.MaxValue;
+		var isOverpass = snap.IsOverpass();
 		foreach(var train in world.AllTrains)
 		{
 			for(int i = 0; i < train.cars + 1; i++)
@@ -107,7 +108,7 @@ public class Train
 					continue;
 
 				var dist = Vector3.Distance(trainPos, colliderPos);
-				if (dist < minDist)
+				if (dist < minDist && posSnap.IsOverpass() == isOverpass)
 				{
 					minDist = dist;
 				}
