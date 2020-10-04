@@ -95,10 +95,11 @@ public class Train
 		var minDist = float.MaxValue;
 		foreach(var train in world.AllTrains)
 		{
-			if (train == this) continue;
-
 			for(int i = 0; i < train.cars + 1; i++)
 			{
+				if (train == this && i == 0) continue;
+				if (train == this && positionHistory.Count < 60) continue;
+
 				var posSnap = train.GetLocmotiveOrWagonState(i);
 				var colliderPos = posSnap.GetPosition();
 				var dirToCollider = colliderPos - trainPos;
