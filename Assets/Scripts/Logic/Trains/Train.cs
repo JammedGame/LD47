@@ -214,7 +214,7 @@ public struct PositionState
 		{
 			var previousTile = Tile.GetAdjecentTile(EnterDirection);
 			if (previousTile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Left || EnterDirection == Direction.Left)) return true;
-			if (previousTile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Top || EnterDirection == Direction.Top)) return true;
+			if (previousTile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Top || EnterDirection == Direction.Bottom)) return true;
 		}
 		//else
 		{
