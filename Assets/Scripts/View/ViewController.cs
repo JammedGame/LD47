@@ -39,4 +39,17 @@ public static class TileViewUtil
 	{
 		return new Vector3(tile.X, -tile.Y, 0);
 	}
+
+	public static Vector3 GetPosition3D(this Tile tile, Direction direction)
+	{
+		switch(direction)
+		{
+			case Direction.Left: return new Vector3(tile.X - 0.5f, -tile.Y, 0);
+			case Direction.Right: return new Vector3(tile.X + 0.5f, -tile.Y, 0);
+			case Direction.Top: return new Vector3(tile.X, -tile.Y + 0.5f, 0);
+			case Direction.Bottom: return new Vector3(tile.X, -tile.Y - 0.5f, 0);
+			default:
+				return new Vector3(tile.X, -tile.Y, 0);
+		}
+	}
 }
