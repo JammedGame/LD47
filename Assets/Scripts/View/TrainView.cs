@@ -4,6 +4,7 @@ using UnityEngine;
 public class TrainView : MonoBehaviour
 {
 	[SerializeField] private Transform[] vagoni;
+	[SerializeField] private Transform lokomotiva;
 	[SerializeField] private int vagoniTestOffset = 10;
 
 	private Train train;
@@ -19,7 +20,7 @@ public class TrainView : MonoBehaviour
 
 	public void UpdateView()
 	{
-		UpdateTransform(transform, train.GetSnapshot());
+		UpdateTransform(lokomotiva, train.GetSnapshot());
 
 		for (int i = 0; i < vagoni.Length; i++)
 		{
@@ -27,7 +28,7 @@ public class TrainView : MonoBehaviour
 		}
 	}
 
-	public void UpdateTransform(Transform transform, PositionState state)
+	public static void UpdateTransform(Transform transform, PositionState state)
 	{
 		if (state.Tile == null)
 			throw new NullReferenceException();
@@ -35,5 +36,9 @@ public class TrainView : MonoBehaviour
 		var tileEnterPos = state.Tile.GetPosition3D(state.EnterDirection);
 		var tileExitPos = state.Tile.GetPosition3D(state.ExitDirection);
 		transform.position = Vector3.Lerp(tileEnterPos, tileExitPos, state.ProgressInTile);
+
+		var enterRotation = Quaternion.Euler(0, 0, state.EnterDirection.Opposite().ToAngle());
+		var exitRotation = Quaternion.Euler(0, 0, state.ExitDirection.ToAngle());
+		transform.rotation = Quaternion.Slerp(enterRotation, exitRotation, state.ProgressInTile);
 	}
 }
