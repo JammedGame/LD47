@@ -36,6 +36,8 @@ public enum TileType
 	ThreewayType2_2_R270,
 	ThreewayType3_1_R270,
 	ThreewayType3_2_R270,
+	Station = 200,
+	Station_R90
 }
 
 public static class TileTypeExtensions
@@ -47,13 +49,13 @@ public static class TileTypeExtensions
 
 	public static (TileType source, Rotation rotation) GetRotation(this TileType type)
 	{
-		switch(type)
+		switch (type)
 		{
-			case TileType.Rail_R90: return(TileType.Rail, Rotation.Rotate90);
+			case TileType.Rail_R90: return (TileType.Rail, Rotation.Rotate90);
 
-			case TileType.Turn_R90: return(TileType.Turn, Rotation.Rotate90);
-			case TileType.Turn_R180: return(TileType.Turn, Rotation.Rotate180);
-			case TileType.Turn_R270: return(TileType.Turn, Rotation.Rotate270);
+			case TileType.Turn_R90: return (TileType.Turn, Rotation.Rotate90);
+			case TileType.Turn_R180: return (TileType.Turn, Rotation.Rotate180);
+			case TileType.Turn_R270: return (TileType.Turn, Rotation.Rotate270);
 
 			case TileType.ThreewayType1_1_R90: return (TileType.ThreewayType1_1, Rotation.Rotate90);
 			case TileType.ThreewayType1_2_R90: return (TileType.ThreewayType1_2, Rotation.Rotate90);
@@ -76,8 +78,9 @@ public static class TileTypeExtensions
 			case TileType.ThreewayType3_1_R270: return (TileType.ThreewayType3_1, Rotation.Rotate270);
 			case TileType.ThreewayType3_2_R270: return (TileType.ThreewayType3_2, Rotation.Rotate270);
 
+			case TileType.Station_R90: return (TileType.Station, Rotation.Rotate90);
 
-			default: return(type, Rotation.Rotate0);
+			default: return (type, Rotation.Rotate0);
 		}
 	}
 }
