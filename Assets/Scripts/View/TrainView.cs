@@ -52,7 +52,8 @@ public class TrainView : MonoBehaviour
 		}
 
 		for (var i = 0; i < vagoni.Count; i++)
-			UpdateTransform(vagoni[i].transform, train.GetSnapshotFromHistory((i + 1) * vagoniTestOffset));
+			UpdateTransform(vagoni[i].transform,
+				train.GetSnapshotFromHistory((int) ((i + 1) * vagoniTestOffset / train.Speed)));
 	}
 
 	public static void UpdateTransform(Transform transform, PositionState state)
