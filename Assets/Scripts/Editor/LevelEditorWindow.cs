@@ -96,13 +96,13 @@ public class LevelEditorWindow : EditorWindow
 			var button = GUI.Button(buttonPos, tex, tileStyle);
 			if (button)
 			{
-				if (magnifierActive)
-				{
-					magnifierPos = new Vector2(tile.X, tile.Y);
-				}
-				else if (pipetteActive || Event.current.alt)
+				if (pipetteActive || Event.current.alt)
 				{
 					TileBrush = tile.Type;
+				}
+				else if (magnifierActive)
+				{
+					magnifierPos = new Vector2(tile.X, tile.Y);
 				}
 				else
 				{
