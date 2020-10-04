@@ -71,6 +71,7 @@ public enum TileType
 	BigBuilding2_4,
 	Bridge,
 	Bridge_R90,
+	FourwayOverpass_R90
 }
 
 public static class TileTypeExtensions
@@ -119,6 +120,7 @@ public static class TileTypeExtensions
 			case TileType.Park2_R180: return (TileType.Park2, Rotation.Rotate180);
 
 			case TileType.Bridge_R90: return (TileType.Bridge, Rotation.Rotate90);
+			case TileType.FourwayOverpass_R90: return (TileType.FourwayOverpass, Rotation.Rotate90);
 
 			default: return (type, Rotation.Rotate0);
 		}
