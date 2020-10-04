@@ -241,28 +241,204 @@ MonoBehaviour:
     RightExit: 0
     TopExit: 4
     BottomExit: 3
+  - TileType: 204
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 205
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 206
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 207
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 208
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 209
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 210
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 211
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 212
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 213
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 214
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 215
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 216
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 217
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 218
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 219
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 220
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 221
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 222
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 223
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 224
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 225
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 226
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 227
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 228
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 229
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 230
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 231
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 232
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
   SettingsPerTrainType:
   - Type: 1
-    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
-    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
     DefaultSpeed: 1
     DefaultInitialCars: 0
   - Type: 2
-    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
-    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
     DefaultSpeed: 2
     DefaultInitialCars: 0
   - Type: 3
-    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
-    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
     DefaultSpeed: 2.5
     DefaultInitialCars: 0
   SettingsPerTrainColor:
   - TrainColor: 1
     Color: {r: 0, g: 1, b: 1, a: 1}
+    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
+    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
   - TrainColor: 2
     Color: {r: 1, g: 0, b: 1, a: 1}
+    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
+    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
   - TrainColor: 3
     Color: {r: 1, g: 1, b: 0, a: 1}
+    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
+    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
   - TrainColor: 4
     Color: {r: 0.9056604, g: 0.5874395, b: 0.34603062, a: 1}
+    LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
+    CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}

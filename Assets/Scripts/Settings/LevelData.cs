@@ -71,11 +71,6 @@ public static class TrainTypeExtensions
 	{
 		return GameSettings.Instance.SettingsPerTrainType.Find(s => s.Type == trainType)?.DefaultSpeed ?? 1f;
 	}
-
-	public static Texture LoadLocomotiveTexture(this TrainType trainType)
-	{
-		return GameSettings.Instance.SettingsPerTrainType.Find(s => s.Type == trainType)?.LocomotiveIcon;
-	}
 }
 
 public enum TrainColor
@@ -92,6 +87,16 @@ public static class TrainColorExtensions
 	public static Color ToColor(this TrainColor trainColor)
 	{
 		return GameSettings.Instance.SettingsPerTrainColor.Find(s => s.TrainColor == trainColor)?.Color ?? Color.black;
+	}
+
+	public static Texture LoadLocomotiveTexture(this TrainColor trainColor)
+	{
+		return GameSettings.Instance.SettingsPerTrainColor.Find(s => s.TrainColor == trainColor)?.LocomotiveIcon;
+	}
+
+	public static Texture LoadCarTexture(this TrainColor trainColor)
+	{
+		return GameSettings.Instance.SettingsPerTrainColor.Find(s => s.TrainColor == trainColor)?.CarIcon;
 	}
 }
 
