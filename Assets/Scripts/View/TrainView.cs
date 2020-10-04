@@ -49,8 +49,12 @@ public class TrainView : MonoBehaviour
 
 		transform.position = state.GetPosition();
 
-		var enterRotation = Quaternion.Euler(0, 0, state.EnterDirection.Opposite().ToAngle());
-		var exitRotation = Quaternion.Euler(0, 0, state.ExitDirection.ToAngle());
-		transform.rotation = Quaternion.Slerp(enterRotation, exitRotation, state.ProgressInTile);
+
+		transform.rotation = Quaternion.Euler(0, 0, state.GetAngle());
+		// return new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
+
+		// var enterRotation = Quaternion.Euler(0, 0, state.EnterDirection.Opposite().ToAngle());
+		// var exitRotation = Quaternion.Euler(0, 0, state.ExitDirection.ToAngle());
+		// transform.rotation = Quaternion.Slerp(enterRotation, exitRotation, state.ProgressInTile);
 	}
 }

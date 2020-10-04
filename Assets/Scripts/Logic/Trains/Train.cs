@@ -136,7 +136,7 @@ public struct PositionState
 	public Direction EnterDirection;
 	public Direction ExitDirection;
 
-    internal Vector3 GetPosition()
+    public Vector3 GetPosition()
     {
 		var tileEnterPos = Tile.GetPosition3D(EnterDirection);
 		var tileExitPos = Tile.GetPosition3D(ExitDirection);
@@ -152,6 +152,21 @@ public struct PositionState
 			var exitPosDir = tileExitPos - cornerPos;
 			return cornerPos + Vector3.Slerp(enterPosDir, exitPosDir, ProgressInTile).normalized * 0.5f;
 		}
+    }
+
+	public Vector2 GetDirection()
+	{
+		var enterAngle = EnterDirection.Opposite().ToAngle();
+		var exitRotation = ExitDirection.ToAngle();
+		var angle = Mathf.Lerp(enterAngle, exitRotation, ProgressInTile) / 180f * Mathf.PI;
+		return new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
+	}
+
+    internal float GetAngle()
+    {
+		var enterAngle = EnterDirection.Opposite().ToAngle();
+		var exitRotation = ExitDirection.ToAngle();
+		return Mathf.LerpAngle(enterAngle, exitRotation, ProgressInTile);
     }
 }
 
