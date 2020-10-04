@@ -25,9 +25,16 @@ public class TileView : MonoBehaviour
 
 	public void UpdateMaterialAndRotation()
 	{
+		if (Tile.TileType == TileType.Undefined)
+		{
+			meshRenderer.enabled = false;
+			return;
+		}
+
 		var (tex, rotation) = Tile.LoadTexture();
 		meshRenderer.material.mainTexture = tex;
 		meshRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, -rotation.ToAngle());
+		meshRenderer.enabled = true;
 	}
 
 	private void UpdateCargo()
