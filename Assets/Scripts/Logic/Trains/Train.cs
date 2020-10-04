@@ -11,6 +11,15 @@ public class Train
 	private Direction tileEnterDirection;
 	private float progressInsideTile;
 	private readonly PositionStateHistory positionHistory;
+	private TrainType type;
+	private TrainColor color;
+	private int cars;
+	private float speed;
+
+	public TrainType Type => type;
+	public TrainColor Color => color;
+	public int Cars => cars;
+	public float Speed => speed;
 
 	public PositionState GetSnapshot() => new PositionState()
 	{
@@ -28,6 +37,10 @@ public class Train
 		this.direction = trainSpawn.Direction;
 		this.tileEnterDirection = direction.Opposite();
 		this.positionHistory = new PositionStateHistory(200, GetSnapshot());
+		this.type = trainSpawn.Type;
+		this.color = trainSpawn.Color;
+		this.cars = trainSpawn.GetInitialCars();
+		this.speed = trainSpawn.Type.GetSpeed();
 	}
 
 	public PositionState GetSnapshotFromHistory(int i)
@@ -57,7 +70,7 @@ public class Train
 		}
 
 		// check if entered a new tile
-		progressInsideTile += dT;
+		progressInsideTile += dT * speed;
 		if (progressInsideTile >= 1f)
 		{
 			if (EnterNextTile())

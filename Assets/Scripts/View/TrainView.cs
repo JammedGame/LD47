@@ -6,14 +6,19 @@ public class TrainView : MonoBehaviour
 	[SerializeField] private Transform[] vagoni;
 	[SerializeField] private Transform lokomotiva;
 	[SerializeField] private int vagoniTestOffset = 10;
+	[SerializeField] private MeshRenderer iconRenderer;
+	private int carsVisible;
 
 	private Train train;
 
 	internal static TrainView CreateView(Train train)
 	{
 		var trainViewPrefab = Resources.Load<TrainView>("Prefabs/TrainView");
-		var trainView = GameObject.Instantiate(trainViewPrefab);
+		var trainView = Instantiate(trainViewPrefab);
 		trainView.train = train;
+		// todo jole
+		// trainView.iconRenderer.material.mainTexture = train.Type.LoadLocomotiveTexture();
+		trainView.carsVisible = -1;
 		trainView.UpdateView();
 		return trainView;
 	}
@@ -22,9 +27,18 @@ public class TrainView : MonoBehaviour
 	{
 		UpdateTransform(lokomotiva, train.GetSnapshot());
 
-		for (int i = 0; i < vagoni.Length; i++)
-		{
+		for (var i = 0; i < vagoni.Length; i++)
 			UpdateTransform(vagoni[i], train.GetSnapshotFromHistory((i + 1) * vagoniTestOffset));
+
+		if (train.Cars != carsVisible)
+		{
+			for (var i = 0; i < vagoni.Length; i++)
+			{
+				var car = vagoni[i];
+				car.gameObject.SetActive(i < train.Cars);
+			}
+
+			carsVisible = train.Cars;
 		}
 	}
 

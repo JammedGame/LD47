@@ -33,7 +33,7 @@ public class TileView : MonoBehaviour
 	private void UpdateCargo()
 	{
 		var cargoCount = Tile.Cargoes.Count;
-		textMesh.text = new string('!', cargoCount);
+		textMesh.text = new string('•', cargoCount);
 		for (var i = 0; i < cargoCount; i++)
 		{
 			var color = Tile.Cargoes[i].Color.ToColor();
