@@ -357,7 +357,7 @@ MonoBehaviour:
   zoomSpeed: 2
   dragSpeed: 20
   borderWidth: 10
-  edgeScrolling: 1
+  edgeScrolling: 0
   cam: {fileID: 1005831069830488377}
 --- !u!1 &1005831070219289883
 GameObject:
