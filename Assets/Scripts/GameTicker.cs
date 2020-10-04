@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameTicker : MonoBehaviour
 {
@@ -26,5 +27,10 @@ public class GameTicker : MonoBehaviour
         gameWorld.Tick(1f / 60f);
         viewController.Render();
         cameraController.CameraUpdate();
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene("LevelScene");
+        }
     }
 }
