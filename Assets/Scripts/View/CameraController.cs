@@ -6,12 +6,18 @@ public class CameraController : MonoBehaviour
 
     // How quickly the camera moves
     public float panSpeed = 20f;
+    
+    //How far can camera pan
+    public Vector2 panLimit;
 
     // How quickly the camera rotates
     public float rotSpeed = 10f;
 
     // How quickly the camera zooms
     public float zoomSpeed = 50f;
+
+    // How quickly the camera drags
+    public float dragSpeed = 20f;
 
     // The minimum distance of the mouse cursor from the screen edge required to pan the camera
     public float borderWidth = 10f;
@@ -60,29 +66,32 @@ public class CameraController : MonoBehaviour
         right.Normalize();
 
         // Move the camera (camera_target) Forward relative to current rotation if "W" is pressed or if the mouse moves within the borderWidth distance from the top edge of the screen
-        if (Input.GetKey("w") || edgeScrolling == true && Input.mousePosition.y >= Screen.height - borderWidth)
+        if (!Input.GetMouseButton(2) && (Input.GetKey("w") || edgeScrolling == true && Input.mousePosition.y >= Screen.height - borderWidth))
         {
             pos += up * panSpeed * Time.deltaTime;
         }
 
         // Move the camera (camera_target) Backward relative to current rotation if "S" is pressed or if the mouse moves within the borderWidth distance from the bottom edge of the screen
-        if (Input.GetKey("s") || edgeScrolling == true && Input.mousePosition.y <= borderWidth)
+        if (!Input.GetMouseButton(2) && (Input.GetKey("s") || edgeScrolling == true && Input.mousePosition.y <= borderWidth))
         {
             pos -= up * panSpeed * Time.deltaTime;
         }
 
         // Move the camera (camera_target) Right relative to current rotation if "D" is pressed or if the mouse moves within the borderWidth distance from the right edge of the screen
-        if (Input.GetKey("d") || edgeScrolling == true && Input.mousePosition.x >= Screen.width - borderWidth)
+        if (!Input.GetMouseButton(2) && (Input.GetKey("d") || edgeScrolling == true && Input.mousePosition.x >= Screen.width - borderWidth))
         {
             pos += right * panSpeed * Time.deltaTime;
         }
 
 
         // Move the camera (camera_target) Left relative to current rotation if "A" is pressed or if the mouse moves within the borderWidth distance from the left edge of the screen
-        if (Input.GetKey("a") || edgeScrolling == true && Input.mousePosition.x <= borderWidth)
+        if (!Input.GetMouseButton(2) && (Input.GetKey("a") || edgeScrolling == true && Input.mousePosition.x <= borderWidth))
         {
             pos -= right * panSpeed * Time.deltaTime;
         }
+
+        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y, panLimit.y);
 
         // Setting the camera target's position to the modified pos variable
         transform.position = pos;
@@ -131,6 +140,21 @@ public class CameraController : MonoBehaviour
         cam.transform.position = camPos;
     }
 
+
+    void Drag()
+    {
+        Vector3 pos = transform.position;
+
+        if(Input.GetMouseButton(2)) {
+            pos -= new Vector3(Input.GetAxis("Mouse X") * dragSpeed * Time.deltaTime, Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime, 0);
+        }
+
+        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y, panLimit.y);
+
+        transform.position = pos;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,5 +167,6 @@ public class CameraController : MonoBehaviour
         Movement();
         // Rotation();
         Zoom();
+        Drag();
     }
 }
