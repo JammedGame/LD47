@@ -29,8 +29,8 @@ MonoBehaviour:
     NextTileType: 0
     LeftExit: 0
     RightExit: 0
-    TopExit: 0
-    BottomExit: 0
+    TopExit: 4
+    BottomExit: 3
   - TileType: 3
     NextTileType: 0
     LeftExit: 4
@@ -91,3 +91,55 @@ MonoBehaviour:
     RightExit: 3
     TopExit: 2
     BottomExit: 1
+  - TileType: 17
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 18
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 20
+    NextTileType: 0
+    LeftExit: 3
+    RightExit: 0
+    TopExit: 1
+    BottomExit: 0
+  - TileType: 21
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 3
+    TopExit: 2
+    BottomExit: 0
+  - TileType: 22
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 4
+    TopExit: 0
+    BottomExit: 2
+  SettingsPerTrainType:
+  - Type: 1
+    Icon: {fileID: 2800000, guid: e97826b0fc1ff4c6388f1049d0a95f2d, type: 3}
+    DefaultSpeed: 1
+    DefaultInitialCars: 0
+  - Type: 2
+    Icon: {fileID: 2800000, guid: e97826b0fc1ff4c6388f1049d0a95f2d, type: 3}
+    DefaultSpeed: 2
+    DefaultInitialCars: 0
+  - Type: 3
+    Icon: {fileID: 2800000, guid: e97826b0fc1ff4c6388f1049d0a95f2d, type: 3}
+    DefaultSpeed: 2.5
+    DefaultInitialCars: 0
+  SettingsPerTrainColor:
+  - TrainColor: 1
+    Color: {r: 0, g: 1, b: 1, a: 0}
+  - TrainColor: 2
+    Color: {r: 1, g: 0, b: 1, a: 0}
+  - TrainColor: 3
+    Color: {r: 1, g: 1, b: 0, a: 0}
+  - TrainColor: 4
+    Color: {r: 0.9056604, g: 0.5874395, b: 0.34603062, a: 0}
