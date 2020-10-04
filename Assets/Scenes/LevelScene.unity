@@ -341,8 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panSpeed: 10
   panLimit: {x: 0, y: 0}
-  rotSpeed: 10
-  zoomSpeed: 50
+  zoomSpeed: 2
   dragSpeed: 20
   borderWidth: 10
   edgeScrolling: 1
