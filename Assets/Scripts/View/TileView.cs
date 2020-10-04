@@ -19,6 +19,6 @@ public class TileView : MonoBehaviour
 	{
 		var (tex, rotation) = Tile.LoadTexture();
 		meshRenderer.material.mainTexture = tex;
-		transform.localRotation = Quaternion.AngleAxis(rotation.ToAngle(), Vector3.back);
+		transform.localRotation = Quaternion.Euler(0f, 0f, -rotation.ToAngle());
 	}
 }
