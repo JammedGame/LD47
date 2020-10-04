@@ -46,6 +46,16 @@ public class Tile
         this.enabled = true;
     }
 
+    public Vector3 GetCorner(Direction enterDirection, Direction exitDirection)
+    {
+        var pos = this.GetPosition3D();
+        if (enterDirection == Direction.Left || exitDirection == Direction.Left) pos.x -= 0.5f;
+        if (enterDirection == Direction.Right || exitDirection == Direction.Right) pos.x += 0.5f;
+        if (enterDirection == Direction.Top || exitDirection == Direction.Top) pos.y += 0.5f;
+        if (enterDirection == Direction.Bottom || exitDirection == Direction.Bottom) pos.y -= 0.5f;
+        return pos;
+    }
+
     public (Texture texture, Rotation rotation) LoadTexture()
 	{
         return GameSettings.Instance.GetTexture(tileType);

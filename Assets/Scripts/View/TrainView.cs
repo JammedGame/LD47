@@ -35,7 +35,18 @@ public class TrainView : MonoBehaviour
 
 		var tileEnterPos = state.Tile.GetPosition3D(state.EnterDirection);
 		var tileExitPos = state.Tile.GetPosition3D(state.ExitDirection);
-		transform.position = Vector3.Lerp(tileEnterPos, tileExitPos, state.ProgressInTile);
+
+		if (state.EnterDirection == state.ExitDirection.Opposite())
+		{
+			transform.position = Vector3.Lerp(tileEnterPos, tileExitPos, state.ProgressInTile);
+		}
+		else
+		{
+			var cornerPos = state.Tile.GetCorner(state.EnterDirection, state.ExitDirection);
+			var enterPosDir = tileEnterPos - cornerPos;
+			var exitPosDir = tileExitPos - cornerPos;
+			transform.position = cornerPos + Vector3.Slerp(enterPosDir, exitPosDir, state.ProgressInTile).normalized * 0.5f;
+		}
 
 		var enterRotation = Quaternion.Euler(0, 0, state.EnterDirection.Opposite().ToAngle());
 		var exitRotation = Quaternion.Euler(0, 0, state.ExitDirection.ToAngle());
