@@ -33,6 +33,7 @@ public class LevelEditorWindow : EditorWindow
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), brushPos.center);
 			var brushButton = GUI.Button(brushPos, tex, style);
 			if (brushButton) tileBrush = brush.TileType;
+
 			GUI.matrix = Matrix4x4.identity;
 			y += 25;
 		}
@@ -47,7 +48,12 @@ public class LevelEditorWindow : EditorWindow
 			var (tex, rotate) = tile.Type.LoadTexture();
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), buttonPos.center);
 			var button = GUI.Button(buttonPos, tex, tileStyle);
-			if (button) Data.SetTileType(i, tileBrush);
+			if (button)
+			{
+				Data.SetTileType(i, tileBrush);
+				EditorUtility.SetDirty(Data);
+			}
+
 			GUI.matrix = Matrix4x4.identity;
 		}
 
