@@ -4,6 +4,7 @@ using UnityEngine;
 public class TileView : MonoBehaviour
 {
 	[SerializeField] private MeshRenderer meshRenderer;
+	[SerializeField] private MeshRenderer overlayMeshRenderer;
 	[SerializeField] private TextMeshPro textMesh;
 
 	public Tile Tile { get; private set; }
@@ -31,8 +32,11 @@ public class TileView : MonoBehaviour
 			return;
 		}
 
-		var (tex, rotation) = Tile.LoadTexture();
+		var (tex, rotation, overlay) = Tile.LoadTexture();
+		meshRenderer.enabled = tex;
+		overlayMeshRenderer.enabled = overlay;
 		meshRenderer.material.mainTexture = tex;
+		overlayMeshRenderer.material.mainTexture = overlay;
 		meshRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, -rotation.ToAngle());
 		meshRenderer.enabled = true;
 	}

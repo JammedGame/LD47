@@ -415,6 +415,18 @@ MonoBehaviour:
     RightExit: 0
     TopExit: 0
     BottomExit: 0
+  - TileType: 233
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 0
+    BottomExit: 0
+  - TileType: 234
+    NextTileType: 0
+    LeftExit: 0
+    RightExit: 0
+    TopExit: 4
+    BottomExit: 3
   SettingsPerTrainType:
   - Type: 1
     DefaultSpeed: 1

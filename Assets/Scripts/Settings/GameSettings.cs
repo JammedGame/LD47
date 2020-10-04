@@ -20,11 +20,18 @@ public class GameSettings : ScriptableObject
         return null;
     }
 
-    public (Texture, Rotation) GetTexture(TileType tileType)
+    public (Texture texture, Rotation rotation1, Texture overlayTexture) GetTexture(TileType tileType)
     {
-        var (src, rotation) = tileType.GetRotation();
-        return (Resources.Load<Texture>($"Textures/{src}"), rotation);
+        if (!cache.TryGetValue((int)tileType, out var result))
+        {
+            var (src, rotation) = tileType.GetRotation();
+            result = (Resources.Load<Texture>($"Textures/{src}"), rotation, Resources.Load<Texture>($"Textures/{src}Overlay"));
+        }
+        return result;
     }
+
+    Dictionary<int, (Texture texture, Rotation rotation1, Texture overlayTexture)> cache =
+        new Dictionary<int, (Texture texture, Rotation rotation1, Texture overlayTexture)>();
 
     static GameSettings instance;
 
