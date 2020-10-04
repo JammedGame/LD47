@@ -62,5 +62,9 @@ public class TrainView : MonoBehaviour
 
 		transform.position = state.GetPosition();
 		transform.rotation = Quaternion.Euler(0, 0, state.GetAngle());
+
+		var isOverpass = state.IsOverpass();
+		var meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
+		meshRenderer.sortingOrder = isOverpass ? 100 : 0;
 	}
 }
