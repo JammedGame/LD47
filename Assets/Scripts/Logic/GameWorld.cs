@@ -10,6 +10,8 @@ public class GameWorld
     readonly Tile[,] tiles;
     readonly List<Train> allTrains = new List<Train>();
 
+    public List<Train> AllTrains => allTrains;
+
     public GameWorld(LevelData levelData)
     {
         this.LevelData = levelData;
