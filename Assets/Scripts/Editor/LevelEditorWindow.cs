@@ -51,7 +51,7 @@ public class LevelEditorWindow : EditorWindow
 		x = 0;
 		y += 25;
 		var pipette = GUI.Button(new Rect(x, y, 25, 25), Resources.Load<Texture>("Textures/Pipette"),
-			pipetteActive ? activeBrushStyle : defaultBrushStyle);
+			pipetteActive || Event.current.alt ? activeBrushStyle : defaultBrushStyle);
 		if (pipette)
 		{
 			magnifierActive = false;
@@ -100,7 +100,7 @@ public class LevelEditorWindow : EditorWindow
 				{
 					magnifierPos = new Vector2(tile.X, tile.Y);
 				}
-				else if (pipetteActive)
+				else if (pipetteActive || Event.current.alt)
 				{
 					TileBrush = tile.Type;
 				}
