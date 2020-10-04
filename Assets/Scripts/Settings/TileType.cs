@@ -40,8 +40,6 @@ public enum TileType
 	Terminus_R90,
 	CargoStation,
 	CargoStation_R90,
-	Station = 200,
-	Station_R90,
 	River00,
 	River01,
 	River02,
