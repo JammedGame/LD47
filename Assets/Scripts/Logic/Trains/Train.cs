@@ -44,26 +44,47 @@ public class Train
 
 	public void Tick(float dT)
 	{
-		positionHistory.Add(GetSnapshot());
-
 		// check if entered a new tile
 		progressInsideTile += dT;
 		if (progressInsideTile >= 1f)
 		{
-			EnterNextTile();
-			progressInsideTile -= 1f;
+			if (EnterNextTile())
+			{
+				progressInsideTile -= 1f;
+			}
+			else
+			{
+				progressInsideTile = 1f;
+				return; // skips snapshot 
+			}
 		}
+
+		positionHistory.Add(GetSnapshot());
 	}
 
-	private void EnterNextTile()
+	private bool EnterNextTile()
 	{
 		var nextTile = tile.GetAdjecentTile(direction);
+		if (!CanEnterTile(nextTile))
+			return false;
 
 		// update state.
 		this.tileEnterDirection = direction.Opposite();
 		this.direction = nextTile.GetExitDirectionFrom(tileEnterDirection);
 		this.tile = nextTile;
+		return true;
 	}
+
+    private bool CanEnterTile(Tile nextTile)
+    {
+		foreach(var train in world.AllTrains)
+		{
+			if (train != this && train.positionHistory.OccupiesTile(nextTile, 40))
+				return false;
+		}
+
+		return true;
+    }
 }
 
 public struct PositionState
@@ -72,6 +93,24 @@ public struct PositionState
 	public float ProgressInTile;
 	public Direction EnterDirection;
 	public Direction ExitDirection;
+
+    internal Vector3 GetPosition()
+    {
+		var tileEnterPos = Tile.GetPosition3D(EnterDirection);
+		var tileExitPos = Tile.GetPosition3D(ExitDirection);
+
+		if (EnterDirection == ExitDirection.Opposite())
+		{
+			return Vector3.Lerp(tileEnterPos, tileExitPos, ProgressInTile);
+		}
+		else
+		{
+			var cornerPos = Tile.GetCorner(EnterDirection, ExitDirection);
+			var enterPosDir = tileEnterPos - cornerPos;
+			var exitPosDir = tileExitPos - cornerPos;
+			return cornerPos + Vector3.Slerp(enterPosDir, exitPosDir, ProgressInTile).normalized * 0.5f;
+		}
+    }
 }
 
 public class PositionStateHistory
@@ -118,4 +157,21 @@ public class PositionStateHistory
 			index += bufferSize;
 		return buffer[index];
 	}
+
+    public bool OccupiesTile(Tile nextTile, int v)
+    {
+		var current = currentIndex;
+		for(int i = 0; i < v; i++)
+		{
+			if (buffer[current].Tile == nextTile)
+				return true;
+
+			if (current == 0)
+				current = bufferSize - 1;
+			else
+				current--;
+		}
+
+		return false;
+    }
 }
