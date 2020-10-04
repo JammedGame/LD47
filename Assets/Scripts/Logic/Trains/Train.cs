@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Train
 {
-	public const float collisionRadius = 0.7f;
+	public const float collisionRadius = 0.75f;
 	private readonly GameWorld world;
 	private Tile tile;
 	private Direction direction;
@@ -89,7 +89,9 @@ public class Train
 
 	public float GetDistToNearestCollider(PositionState state)
 	{
-		var trainPos = GetSnapshot().GetPosition();
+		var snap = GetSnapshot();
+		var trainPos = snap.GetPosition();
+		var direction = snap.GetDirection();
 		var minDist = float.MaxValue;
 		foreach(var train in world.AllTrains)
 		{
@@ -99,6 +101,10 @@ public class Train
 			{
 				var posSnap = train.GetLocmotiveOrWagonState(i);
 				var colliderPos = posSnap.GetPosition();
+				var dirToCollider = colliderPos - trainPos;
+				if (Vector3.Dot(dirToCollider, direction) < 0)
+					continue;
+
 				var dist = Vector3.Distance(trainPos, colliderPos);
 				if (dist < minDist)
 				{
@@ -156,10 +162,8 @@ public struct PositionState
 
 	public Vector2 GetDirection()
 	{
-		var enterAngle = EnterDirection.Opposite().ToAngle();
-		var exitRotation = ExitDirection.ToAngle();
-		var angle = Mathf.Lerp(enterAngle, exitRotation, ProgressInTile) / 180f * Mathf.PI;
-		return new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
+		var angle = GetAngle() / 180f * Mathf.PI;
+		return new Vector3(-Mathf.Sin(angle), Mathf.Cos(angle), 0);
 	}
 
     internal float GetAngle()
