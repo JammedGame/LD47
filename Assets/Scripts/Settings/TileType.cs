@@ -110,6 +110,7 @@ public static class TileTypeExtensions
 			case TileType.ThreewayType3_2_R270: return (TileType.ThreewayType3_2, Rotation.Rotate270);
 
 			case TileType.Terminus_R90: return (TileType.Terminus, Rotation.Rotate90);
+
 			case TileType.CargoStation_R90: return (TileType.CargoStation, Rotation.Rotate90);
 
 			case TileType.Park1_R180: return (TileType.Park1, Rotation.Rotate180);

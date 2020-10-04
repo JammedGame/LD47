@@ -95,6 +95,7 @@ MonoBehaviour:
   vagoni: []
   lokomotiva: {fileID: 0}
   vagoniTestOffset: 10
+  iconRenderer: {fileID: 0}
 --- !u!1 &5522107217067764756
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   - {fileID: 0}
   lokomotiva: {fileID: 0}
   vagoniTestOffset: 10
+  iconRenderer: {fileID: 0}
 --- !u!1 &8585328734559262053
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,3 +244,4 @@ MonoBehaviour:
   - {fileID: 3757928668961387219}
   lokomotiva: {fileID: 6138891462423412451}
   vagoniTestOffset: 55
+  iconRenderer: {fileID: 2358200197139561351}

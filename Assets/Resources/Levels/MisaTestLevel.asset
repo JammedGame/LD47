@@ -24,19 +24,19 @@ MonoBehaviour:
   - X: 6
     Y: 1
     Direction: 1
-    Type: 0
+    Type: 1
     Color: 0
     InitialCars: 0
   - X: 6
     Y: 2
     Direction: 2
-    Type: 0
+    Type: 1
     Color: 0
     InitialCars: 0
   - X: 8
     Y: 2
     Direction: 2
-    Type: 0
+    Type: 1
     Color: 0
     InitialCars: 0
   CargoSpawns: []

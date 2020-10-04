@@ -39,23 +39,23 @@ MonoBehaviour:
     SpawnsAtSeconds: 9
     DespawnsAfterSeconds: 0
     Type: 1
-    Color: 1
+    Color: 2
   - X: 2
     Y: 1
     SpawnsAtSeconds: 12
     DespawnsAfterSeconds: 0
     Type: 1
-    Color: 1
+    Color: 3
   - X: 2
     Y: 1
     SpawnsAtSeconds: 15
     DespawnsAfterSeconds: 0
     Type: 1
-    Color: 1
+    Color: 4
   - X: 2
     Y: 1
     SpawnsAtSeconds: 18
     DespawnsAfterSeconds: 0
     Type: 1
-    Color: 1
+    Color: 4
   Tiles: 16000000c8000000030000000200000000000000cb000000150000000100000014000000

@@ -47,6 +47,14 @@ public struct TrainSpawn
 	public TrainType Type;
 	public TrainColor Color;
 	public int InitialCars;
+
+	public int GetInitialCars()
+	{
+		if (InitialCars > 0) return InitialCars;
+
+		var type = Type;
+		return GameSettings.Instance.SettingsPerTrainType.Find(s => s.Type == type)?.DefaultInitialCars ?? 0;
+	}
 }
 
 public enum TrainType
@@ -57,6 +65,19 @@ public enum TrainType
 	FastButLikeEvenMoreFasterYouKnow = 3
 }
 
+public static class TrainTypeExtensions
+{
+	public static float GetSpeed(this TrainType trainType)
+	{
+		return GameSettings.Instance.SettingsPerTrainType.Find(s => s.Type == trainType)?.DefaultSpeed ?? 1f;
+	}
+
+	public static Texture LoadLocomotiveTexture(this TrainType trainType)
+	{
+		return GameSettings.Instance.SettingsPerTrainType.Find(s => s.Type == trainType)?.LocomotiveIcon;
+	}
+}
+
 public enum TrainColor
 {
 	Undefined = 0,
@@ -64,6 +85,14 @@ public enum TrainColor
 	Magenta = 2,
 	Yellow = 3,
 	BioShockSepiaAesthetic = 4
+}
+
+public static class TrainColorExtensions
+{
+	public static Color ToColor(this TrainColor trainColor)
+	{
+		return GameSettings.Instance.SettingsPerTrainColor.Find(s => s.TrainColor == trainColor)?.Color ?? Color.black;
+	}
 }
 
 [Serializable]
