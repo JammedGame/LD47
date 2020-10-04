@@ -14,4 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 3
   Height: 3
+  VictoryAfterSeconds: 0
+  VictoryAfterCargoCollected: 3
+  DefeatAfterSeconds: 0
+  DefeatAfterCargoOverflow: 3
+  DefaultCargoDespawnAfterSeconds: 0
+  DefeatAfterCargoDespawned: 0
+  TrainSpawns:
+  - X: 0
+    Y: 0
+    Rotation: 0
+    Type: 2
+    Color: 1
+    InitialCars: 0
+  - X: 1
+    Y: 1
+    Rotation: 1
+    Type: 1
+    Color: 2
+    InitialCars: 1
+  CargoSpawns:
+  - X: 2
+    Y: 2
+    SpawnsAtSeconds: 3
+    DespawnsAfterSeconds: 0
+    Type: 0
+    Color: 1
+  - X: 2
+    Y: 2
+    SpawnsAtSeconds: 6
+    DespawnsAfterSeconds: 0
+    Type: 1
+    Color: 2
+  - X: 2
+    Y: 2
+    SpawnsAtSeconds: 9
+    DespawnsAfterSeconds: 0
+    Type: 0
+    Color: 2
   Tiles: 160000000100000003000000020000000000000002000000150000000100000014000000
