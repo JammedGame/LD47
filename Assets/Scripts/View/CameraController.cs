@@ -19,11 +19,13 @@ public class CameraController : MonoBehaviour
     // The minimum distance of the mouse cursor from the screen edge required to pan the camera
     public float borderWidth = 10f;
 
+    private float targetZoom;
+
     public void Initialize(LevelData levelData)
     {
         panLimit = new Vector2(levelData.Width, levelData.Height);
         transform.position = levelData.InitialCameraPan;
-        cam.orthographicSize = levelData.InitialCameraZoom;
+        targetZoom = cam.orthographicSize = levelData.InitialCameraZoom;
     }
 
     // Boolean to control if moving the mouse within the borderWidth distance will pan the camera
@@ -105,9 +107,11 @@ public class CameraController : MonoBehaviour
         float scroll = Input.GetAxis ("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
-             cam.orthographicSize -= scroll * zoomSpeed;
-             cam.orthographicSize = Mathf.Clamp (cam.orthographicSize, zoomMin, zoomMax);
+             targetZoom -= scroll * zoomSpeed;
+             targetZoom = Mathf.Clamp (targetZoom, zoomMin, zoomMax);
         }
+
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, 0.2f);
     }
 
 
