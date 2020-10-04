@@ -36,7 +36,7 @@ public class Train
 		this.progressInsideTile = 0.5f;
 		this.direction = trainSpawn.Direction;
 		this.tileEnterDirection = direction.Opposite();
-		this.positionHistory = new PositionStateHistory(200, GetSnapshot());
+		this.positionHistory = new PositionStateHistory(1000, GetSnapshot());
 		this.type = trainSpawn.Type;
 		this.color = trainSpawn.Color;
 		this.cars = trainSpawn.GetInitialCars();
