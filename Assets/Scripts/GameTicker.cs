@@ -5,6 +5,9 @@ public class GameTicker : MonoBehaviour
 {
     [SerializeField]
     private LevelData levelData;
+    [SerializeField]
+    private InGameUIController uiController;
+
     private GameWorld gameWorld;
     private ViewController viewController;
     private InputController inputController;
@@ -22,6 +25,7 @@ public class GameTicker : MonoBehaviour
 
         var background = FindObjectOfType<BackgroundController>();
         background.Init(levelData);
+        uiController.Initialize(gameWorld);
     }
 
     void Update()
@@ -39,9 +43,12 @@ public class GameTicker : MonoBehaviour
             accumulatedTime -= DeterministicTick;
         }
 
+        // update view stuff.
         viewController.Render();
+        uiController.OnUpdate();
         cameraController.CameraUpdate();
 
+        // restars level.
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene("LevelScene");
