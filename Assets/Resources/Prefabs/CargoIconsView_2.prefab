@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3988083f6c5084c47a8017f61793b0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0.6}
   CargoIcons:
   - {fileID: 839742117947413257}
   - {fileID: 2368695699113441985}
