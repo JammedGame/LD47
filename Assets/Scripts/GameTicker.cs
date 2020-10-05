@@ -98,10 +98,12 @@ public class GameTicker : MonoBehaviour
             Game.LoadLevel(levelData);
         }
 
+#if UNITY_EDITOR
         if (Input.GetKey(KeyCode.F12))
         {
             Game.LoadNextLevel(levelData);
         }
+#endif
     }
 
     float accumulatedTime;
