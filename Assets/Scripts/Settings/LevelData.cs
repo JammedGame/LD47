@@ -89,10 +89,10 @@ public static class TrainTypeExtensions
 public enum TrainColor
 {
 	Undefined = 0,
-	Cyan = 1,
+	Red = 1,
 	Magenta = 2,
-	Yellow = 3,
-	BioShockSepiaAesthetic = 4
+	Blue = 3,
+	Orange = 4
 }
 
 public static class TrainColorExtensions
