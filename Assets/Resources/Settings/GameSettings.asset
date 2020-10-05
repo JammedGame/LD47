@@ -501,13 +501,13 @@ MonoBehaviour:
     BottomExit: 3
   SettingsPerTrainType:
   - Type: 1
-    DefaultSpeed: 1
-    DefaultInitialCars: 0
-  - Type: 2
     DefaultSpeed: 2
     DefaultInitialCars: 0
+  - Type: 2
+    DefaultSpeed: 3
+    DefaultInitialCars: 0
   - Type: 3
-    DefaultSpeed: 0.2
+    DefaultSpeed: 0.5
     DefaultInitialCars: 0
   SettingsPerTrainColor:
   - TrainColor: 1
