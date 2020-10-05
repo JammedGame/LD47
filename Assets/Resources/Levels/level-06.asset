@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2c90c8ef9ae41ee9a5ebfd3f8370ef, type: 3}
+  m_Name: level-06
+  m_EditorClassIdentifier: 
+  InitialCameraPan: {x: 5, y: -4.5, z: 0}
+  InitialCameraZoom: 5
+  Width: 10
+  Height: 10
+  VictoryAfterSeconds: 0
+  VictoryAfterCargoCollected: 0
+  DefeatAfterSeconds: 0
+  DefeatAfterCargoOverflow: 0
+  DefaultCargoDespawnAfterSeconds: 0
+  DefeatAfterCargoDespawned: 0
+  TrainSpawns:
+  - X: 4
+    Y: 4
+    Direction: 4
+    Type: 1
+    Color: 3
+    InitialCars: 0
+  - X: 6
+    Y: 4
+    Direction: 3
+    Type: 1
+    Color: 4
+    InitialCars: 0
+  CargoSpawns:
+  - X: 8
+    Y: 3
+    SpawnsAtSeconds: 0
+    DespawnsAfterSeconds: 0
+    Color: 3
+  - X: 8
+    Y: 3
+    SpawnsAtSeconds: 0
+    DespawnsAfterSeconds: 0
+    Color: 3
+  - X: 8
+    Y: 4
+    SpawnsAtSeconds: 0
+    DespawnsAfterSeconds: 0
+    Color: 4
+  - X: 8
+    Y: 4
+    SpawnsAtSeconds: 0
+    DespawnsAfterSeconds: 0
+    Color: 4
+  LevelTexts: []
+  Tiles: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000160000000100000001000000010000000c0000000a000000050000000300000000000000000000000200000000000000160000000300000002000000020000000200000033010000000000000000000002000000000000000200000033010000020000003301000002000000310100000000000000000000020000000000000002000000310100000200000031010000020000003101000000000000000000000200000000000000020000003501000002000000350100000200000035010000000000000000000002000000000000000200000002000000750000006f0000006e0000006400000000000000000000000200000000000000150000006f000000140000000000000000000000020000000000000000000000150000000100000001000000e9000000010000000100000001000000140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
