@@ -33,14 +33,18 @@ public class GameTicker : MonoBehaviour
         if (inputController == null)
             return;
 
-        inputController.ProcessInput();
 
-        // make dTs deterministic
-        accumulatedTime += Time.deltaTime;
-        while (accumulatedTime >= DeterministicTick)
+        if (!gameWorld.IsPaused)
         {
-            gameWorld.Tick(DeterministicTick);
-            accumulatedTime -= DeterministicTick;
+            inputController.ProcessInput();
+
+            // make dTs deterministic
+            accumulatedTime += Time.deltaTime;
+            while (accumulatedTime >= DeterministicTick)
+            {
+                gameWorld.Tick(DeterministicTick);
+                accumulatedTime -= DeterministicTick;
+            }
         }
 
         // update view stuff.

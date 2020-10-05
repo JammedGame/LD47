@@ -5,6 +5,8 @@ using UnityEngine;
 public class InGameUIController : MonoBehaviour
 {
 	[SerializeField] GameObject winnerIsYouControls;
+	[SerializeField] GameObject loserIsYouControls;
+	[SerializeField] GameObject pauseControls;
 
 	GameWorld world;
 	InGameUIObject[] allUIControls;
@@ -12,12 +14,23 @@ public class InGameUIController : MonoBehaviour
 	public void Initialize(GameWorld gameWorld)
 	{
 		this.world = gameWorld;
-		this.world.OnVictory += OnVictory;
 		this.allUIControls = GameObject.FindObjectsOfType<InGameUIObject>();
+
 		this.winnerIsYouControls.SetActive(false);
+		this.loserIsYouControls.SetActive(false);
+		this.pauseControls.SetActive(false);
+
+		this.world.OnVictory += OnVictory;
+		this.world.OnDefeat += OnDefeat;
+		this.world.OnPause += OnPaused;
 
 		foreach(var obj in allUIControls)
 			obj.OnInitialize(world);
+	}
+
+	private void OnDefeat()
+	{
+		loserIsYouControls.SetActive(true);
 	}
 
 	private void OnVictory()
@@ -25,8 +38,17 @@ public class InGameUIController : MonoBehaviour
 		winnerIsYouControls.SetActive(true);
 	}
 
+	private void OnPaused(bool isPaused)
+	{
+		pauseControls.SetActive(isPaused);
+	}
+
 	public void OnUpdate()
 	{
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+		{
+			world.TogglePause();
+		}
 	}
 }
 

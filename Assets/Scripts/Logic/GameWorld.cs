@@ -12,10 +12,12 @@ public class GameWorld
 	public readonly Dictionary<TrainColor, int> CollectedCarsScore = new Dictionary<TrainColor, int>();
 	public bool VictoryDeclared { get; private set; }
 	public bool DefeatDeclared { get; private set; }
+	public bool IsPaused { get; private set; }
 
 	public event Action OnScoreUpdated;
 	public event Action OnVictory;
 	public event Action OnDefeat;
+	public event Action<bool> OnPause;
 
 	public GameWorld(LevelData levelData)
 	{
@@ -69,9 +71,28 @@ public class GameWorld
 		VictoryDeclared = true;
 	}
 
+	public void Pause()
+	{
+		if (!IsPaused)
+			TogglePause();
+	}
+
+	public void Resume()
+	{
+		if (IsPaused)
+			TogglePause();
+	}
+
+	public void TogglePause()
+	{
+		IsPaused = !IsPaused;
+		OnPause?.Invoke(IsPaused);
+	}
+
 	public void CheckDefeat()
 	{
-
+		if (VictoryDeclared || DefeatDeclared)
+			return;
 	}
 
 	public void RegisterSpawner(CargoSpawner cargoSpawner)
