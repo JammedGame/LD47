@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
 {
+	public TextMeshProUGUI LevelName;
 	public Image LevelPreviewImage;
 
 	private int levelIndex;
@@ -13,6 +15,7 @@ public class LevelSelection : MonoBehaviour
 		set
 		{
 			levelIndex = value;
+			LevelName.text = $"Level {value + 1}";
 			LevelPreviewImage.sprite = Resources.Load<Sprite>($"Art/LevelSelection/LevelSelection{value + 1:00}");
 		}
 	}
