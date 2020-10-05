@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("1");
         gameplayAudio = Resources.Load<AudioClip>("Audio/swingTheme");
 
         audioSource = GetComponent<AudioSource>();
@@ -21,6 +22,9 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound()
     {
-        audioSource.PlayOneShot(gameplayAudio);
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(gameplayAudio);
+        }
     }
 }
