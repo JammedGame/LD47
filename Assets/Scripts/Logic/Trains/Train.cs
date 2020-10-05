@@ -21,7 +21,7 @@ public class Train
 	public TrainColor Color => color;
 	public int Cars => cars;
 	public float Speed => speed;
-	public int TicksBetweenCars => (int) (60f / Speed);
+	public int TicksBetweenCars => (int) (1 / (Speed * GameTicker.DeterministicTick));
 
 	public PositionState GetSnapshot() => new PositionState()
 	{

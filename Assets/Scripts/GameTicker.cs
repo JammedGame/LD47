@@ -33,10 +33,10 @@ public class GameTicker : MonoBehaviour
 
         // make dTs deterministic
         accumulatedTime += Time.deltaTime;
-        while (accumulatedTime >= deterministicTick)
+        while (accumulatedTime >= DeterministicTick)
         {
-            gameWorld.Tick(deterministicTick);
-            accumulatedTime -= deterministicTick;
+            gameWorld.Tick(DeterministicTick);
+            accumulatedTime -= DeterministicTick;
         }
 
         viewController.Render();
@@ -49,5 +49,5 @@ public class GameTicker : MonoBehaviour
     }
 
     float accumulatedTime;
-    const float deterministicTick = 1f / 60f;
+    public const float DeterministicTick = 1f / 60f;
 }
