@@ -13,8 +13,6 @@ public class GameWorld
 	{
 		SecondsElapsed = 0f;
 
-		SoundManager.PlaySound();
-
 		LevelData = levelData;
 
 		tiles = new Tile[levelData.Width, levelData.Height];
