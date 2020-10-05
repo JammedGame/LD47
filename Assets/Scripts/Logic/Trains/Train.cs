@@ -82,7 +82,7 @@ public class Train
 			else
 			{
 				progressInsideTile = 1f;
-				return; // skips snapshot 
+				return; // skips snapshot
 			}
 		}
 

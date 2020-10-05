@@ -5,7 +5,6 @@ using UnityEngine;
 public class TrainView : MonoBehaviour
 {
 	[SerializeField] private Transform lokomotiva;
-	[SerializeField] private int vagoniTestOffset = 10;
 	[SerializeField] private MeshRenderer iconRenderer;
 	private readonly List<TrainView> vagoni = new List<TrainView>();
 	private int carsVisible;
@@ -52,8 +51,7 @@ public class TrainView : MonoBehaviour
 		}
 
 		for (var i = 0; i < vagoni.Count; i++)
-			UpdateTransform(vagoni[i].transform,
-				train.GetSnapshotFromHistory((int) ((i + 1) * vagoniTestOffset / train.Speed)));
+			UpdateTransform(vagoni[i].transform, train.GetLocmotiveOrWagonState(i + 1));
 	}
 
 	public static void UpdateTransform(Transform transform, PositionState state)
