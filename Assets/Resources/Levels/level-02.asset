@@ -27,7 +27,7 @@ MonoBehaviour:
     Y: 1
     Direction: 2
     Type: 1
-    Color: 2
+    Color: 4
     InitialCars: 3
   CargoSpawns:
   - X: 9
