@@ -7,6 +7,7 @@ public class Train
 	public const float collisionRadius = 0.75f;
 	private readonly GameWorld world;
 	private Tile tile;
+	private Tile spawnTile;
 	private Direction direction;
 	private Direction tileEnterDirection;
 	private float progressInsideTile;
@@ -35,6 +36,7 @@ public class Train
 	{
 		this.world = world;
 		this.tile = world.GetTile(trainSpawn.X, trainSpawn.Y) ?? throw new Exception($"Train at invalid position: [{trainSpawn.X}, {trainSpawn.Y}]");
+		this.spawnTile = tile;
 		this.progressInsideTile = 0.5f;
 		this.direction = trainSpawn.Direction;
 		this.tileEnterDirection = direction.Opposite();
@@ -148,6 +150,13 @@ public class Train
 			{
 				scheduledCars.Add(1f / Speed);
 			}
+		}
+
+		// collect cars.
+		if (oldTile == spawnTile)
+		{
+			World.CollectCars(color, cars);
+			cars = 0;
 		}
 
 		return true;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class GameWorld
 {
@@ -7,6 +8,16 @@ public class GameWorld
 	private readonly Tile[,] tiles;
 	public List<Train> AllTrains { get; } = new List<Train>();
 	public float SecondsElapsed { get; private set; }
+	public readonly Dictionary<TrainColor, int> CollectedCarsScore = new Dictionary<TrainColor, int>();
+
+	public event Action OnScoreUpdated;
+
+	public void CollectCars(TrainColor color, int cars)
+	{
+		CollectedCarsScore.TryGetValue(color, out int score);
+		CollectedCarsScore[color] = score + cars;
+		OnScoreUpdated?.Invoke();
+	}
 
 	public GameWorld(LevelData levelData)
 	{

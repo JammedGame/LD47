@@ -5,13 +5,16 @@ public class WagonCollectionCounterUI : InGameUIObject
 {
 	public TrainColor TrainColor;
 	TextMeshProUGUI text;
+	GameWorld world;
 
 	private List<CargoSpawn> MySpawns;
 
 	public override void OnInitialize(GameWorld gameWorld)
 	{
+		this.world = gameWorld;
 		text = GetComponentInChildren<TextMeshProUGUI>();
 		MySpawns = gameWorld.LevelData.CargoSpawns.FindAll(x => x.Color == TrainColor);
+		gameWorld.OnScoreUpdated += UpdateText;
 
 		if (MySpawns.Count == 0)
 		{
@@ -24,6 +27,7 @@ public class WagonCollectionCounterUI : InGameUIObject
 
 	public void UpdateText()
 	{
-		text.text = $"0/{MySpawns.Count}";
+		world.CollectedCarsScore.TryGetValue(TrainColor, out int score);
+		text.text = $"{score}/{MySpawns.Count}";
 	}
 }
