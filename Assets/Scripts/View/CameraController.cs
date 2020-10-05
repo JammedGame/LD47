@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
             pos -= right * panSpeed * Time.deltaTime;
         }
 
-        ClampXY(pos);
+        ClampXY(ref pos);
 
         // Setting the camera target's position to the modified pos variable
         transform.position = pos;
@@ -129,17 +129,20 @@ public class CameraController : MonoBehaviour
             pos -= mouseDelta * dragSpeed;
         }
 
-        ClampXY(pos);
+        ClampXY(ref pos);
 
         transform.position = pos;
         lastMousePos = newMousePos;
     }
     Vector3 lastMousePos;
 
-    private void ClampXY(Vector3 pos)
+    private void ClampXY(ref Vector3 pos)
     {
-        pos.x = Mathf.Clamp(pos.x, 0, panLimit.x + Screen.width / 2);
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y - Screen.height / 2, 0);
+        var padding = cam.orthographicSize / 2f;
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y + padding, -padding);
+
+        var paddingHorizontal = padding * Screen.width / Screen.height;
+        pos.x = Mathf.Clamp(pos.x, paddingHorizontal, panLimit.x - paddingHorizontal);
     }
 
     public void CameraUpdate()
