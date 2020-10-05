@@ -157,7 +157,7 @@ public class Train
 		// collect cars.
 		if (oldTile == spawnTile)
 		{
-			var carsToConsume = Math.Min(0, cars - initialCars);
+			var carsToConsume = Math.Max(0, cars - initialCars);
 			World.CollectCars(color, carsToConsume);
 			cars -= carsToConsume;
 		}
