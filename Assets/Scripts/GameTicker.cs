@@ -30,7 +30,15 @@ public class GameTicker : MonoBehaviour
             return;
 
         inputController.ProcessInput();
-        gameWorld.Tick(Time.deltaTime);
+
+        // make dTs deterministic
+        accumulatedTime += Time.deltaTime;
+        while (accumulatedTime >= deterministicTick)
+        {
+            gameWorld.Tick(deterministicTick);
+            accumulatedTime -= deterministicTick;
+        }
+
         viewController.Render();
         cameraController.CameraUpdate();
 
@@ -39,4 +47,7 @@ public class GameTicker : MonoBehaviour
             SceneManager.LoadScene("LevelScene");
         }
     }
+
+    float accumulatedTime;
+    const float deterministicTick = 1f / 60f;
 }
