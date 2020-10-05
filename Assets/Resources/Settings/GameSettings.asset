@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec3d48d03952549b6834e3d8602bb010, type: 3}
   m_Name: GameSettings
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   SettingsPerType:
   - TileType: 0
     NextTileType: 0
@@ -477,9 +477,9 @@ MonoBehaviour:
     BottomExit: 3
   SettingsPerTrainType:
   - Type: 1
-    DefaultSpeed: 2
+    DefaultSpeed: 2.25
   - Type: 2
-    DefaultSpeed: 3
+    DefaultSpeed: 3.33
   - Type: 3
     DefaultSpeed: 0.5
   SettingsPerTrainColor:
