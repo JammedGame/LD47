@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c90c8ef9ae41ee9a5ebfd3f8370ef, type: 3}
   m_Name: level-06
   m_EditorClassIdentifier: 
-  InitialCameraPan: {x: 5, y: -4.5, z: 0}
+  InitialCameraPan: {x: 4.6, y: -4.5, z: 0}
   InitialCameraZoom: 5
   Width: 10
   Height: 10
@@ -57,8 +57,8 @@ MonoBehaviour:
     DespawnsAfterSeconds: 0
     Color: 4
   LevelTexts:
-  - X: -1
-    Y: 4
+  - X: 6
+    Y: 7
     Width: 3
     Height: 4
     Text: Have fun.

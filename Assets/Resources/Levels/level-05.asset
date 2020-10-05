@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c90c8ef9ae41ee9a5ebfd3f8370ef, type: 3}
   m_Name: level-05
   m_EditorClassIdentifier: 
-  InitialCameraPan: {x: 0, y: -4, z: 0}
-  InitialCameraZoom: 5
+  InitialCameraPan: {x: 5, y: -5, z: 0}
+  InitialCameraZoom: 7
   Width: 10
   Height: 10
   VictoryAfterSeconds: 0
@@ -48,9 +48,9 @@ MonoBehaviour:
     DespawnsAfterSeconds: 0
     Color: 3
   LevelTexts:
-  - X: -3
-    Y: 4
-    Width: 3
+  - X: 4
+    Y: 10
+    Width: 4
     Height: 4
     Text: Side collision in not immediate game over, trains will just wait their
       turn to pass through.

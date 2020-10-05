@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c90c8ef9ae41ee9a5ebfd3f8370ef, type: 3}
   m_Name: level-07
   m_EditorClassIdentifier: 
-  InitialCameraPan: {x: 0, y: 0, z: 0}
-  InitialCameraZoom: 5
+  InitialCameraPan: {x: 8.1, y: -3, z: 0}
+  InitialCameraZoom: 5.5
   Width: 18
   Height: 8
   VictoryAfterSeconds: 0
