@@ -32,7 +32,7 @@ public class LevelSelection : MonoBehaviour
 
 	public void Next()
 	{
-		if (LevelIndex < GameSettings.Instance.AllLevels.Count - 1) LevelIndex++;
+		if (LevelIndex < GameSettings.Instance.AllLevels.Count - 2) LevelIndex++;
 	}
 
 	public void PlayLevel()
