@@ -478,13 +478,10 @@ MonoBehaviour:
   SettingsPerTrainType:
   - Type: 1
     DefaultSpeed: 2
-    DefaultInitialCars: 0
   - Type: 2
     DefaultSpeed: 3
-    DefaultInitialCars: 0
   - Type: 3
     DefaultSpeed: 0.5
-    DefaultInitialCars: 0
   SettingsPerTrainColor:
   - TrainColor: 1
     Color: {r: 0.9622642, g: 0, b: 0.25816864, a: 1}
@@ -508,4 +505,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 99895428661a75347b60a091193c95fa, type: 2}
   - {fileID: 11400000, guid: cf72f24b3e1214144bd7b1221ebbb9bd, type: 2}
   - {fileID: 11400000, guid: d234bc0a8d967f84ca64e107118ad7aa, type: 2}
+  - {fileID: 11400000, guid: 5c0670a1844f3c04795374fa67b4d451, type: 2}
+  - {fileID: 11400000, guid: b0206e24ef9303c47afef41bda82805b, type: 2}
   - {fileID: 11400000, guid: 16a4b93ff50a6234c950b2905de6c3d6, type: 2}
