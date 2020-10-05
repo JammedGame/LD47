@@ -56,15 +56,21 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayMusicMainMenu()
 	{
-		MusicSource.Stop();
-		MusicSource.clip = MusicMainMenu;
-		MusicSource.Play();
+        if (MusicMainMenu != MusicGame)
+        {
+            MusicSource.Stop();
+            MusicSource.clip = MusicMainMenu;
+            MusicSource.Play();
+        }
 	}
 
 	public void PlayMusicGame()
 	{
-		MusicSource.Stop();
-		MusicSource.clip = MusicGame;
-		MusicSource.Play();
+        if (MusicMainMenu != MusicGame)
+        {
+            MusicSource.Stop();
+            MusicSource.clip = MusicGame;
+            MusicSource.Play();
+        }
 	}
 }
