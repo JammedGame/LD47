@@ -26,6 +26,11 @@ public static class Game
         var level = nextIndex < allLevels.Count ? allLevels[nextIndex] : allLevels[0];
         LoadLevel(level);
 	}
+
+	internal static void BackToMainMenu()
+	{
+		SceneManager.LoadScene("MainMenu");
+	}
 }
 
 public class GameTicker : MonoBehaviour
