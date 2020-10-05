@@ -7,7 +7,6 @@ public class ViewController
 	private readonly List<TrainView> allTrainViews = new List<TrainView>();
 	private readonly GameWorld gameWorld;
 	private readonly TileView[,] tile2View;
-	private readonly List<TileView> tilesToUpdate = new List<TileView>();
 	private readonly TileView tileViewPrefab;
 
 	public ViewController(GameWorld gameWorld)
@@ -22,7 +21,6 @@ public class ViewController
 			var tile = gameWorld.GetTile(i, j);
 			var tileView = TileView.CreateView(tile, tileViewPrefab);
 			tile2View[i, j] = tileView;
-			if (tile.TileType != TileType.Undefined) tilesToUpdate.Add(tileView);
 		}
 
 		foreach (var train in gameWorld.AllTrains)
@@ -30,6 +28,9 @@ public class ViewController
 
 		foreach(var trainSpawn in levelData.TrainSpawns)
 			HomeIconView.Spawn(trainSpawn);
+
+		foreach(var cargSpawner in gameWorld.AllCargoSpawners)
+			CargoIconsView.Create(cargSpawner);
 
 		var levelTextPrefab = Resources.Load<TextMeshPro>("Prefabs/LevelText");
 		foreach (var levelText in levelData.LevelTexts)
@@ -47,8 +48,6 @@ public class ViewController
 	public void Render()
 	{
 		foreach (var trainView in allTrainViews) trainView.UpdateView();
-
-		foreach (var tileView in tilesToUpdate) tileView.UpdateView();
 	}
 
 	public TileView GetTileView(Vector3 pos)

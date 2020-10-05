@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Tile
 {
-	public readonly List<Cargo> Cargoes = new List<Cargo>();
-	private readonly GameWorld world;
+	public readonly GameWorld World;
 	public readonly int X, Y;
+	public CargoSpawner CargoSpawner { get; private set; }
 
 	public Tile(GameWorld world, int x, int y, TileType type)
 	{
-		this.world = world;
+		this.World = world;
 		TileType = type;
 		X = x;
 		Y = y;
@@ -25,12 +25,20 @@ public class Tile
 	{
 		switch (direction)
 		{
-			case Direction.Left: return world.GetTile(X - 1, Y);
-			case Direction.Right: return world.GetTile(X + 1, Y);
-			case Direction.Top: return world.GetTile(X, Y - 1);
-			case Direction.Bottom: return world.GetTile(X, Y + 1);
+			case Direction.Left: return World.GetTile(X - 1, Y);
+			case Direction.Right: return World.GetTile(X + 1, Y);
+			case Direction.Top: return World.GetTile(X, Y - 1);
+			case Direction.Bottom: return World.GetTile(X, Y + 1);
 			default: throw new Exception($"Undefined direction: {direction}");
 		}
+	}
+
+	public void AddCargoSpawn(CargoSpawn spawn)
+	{
+		if (CargoSpawner == null)
+			CargoSpawner = new CargoSpawner(this);
+
+		CargoSpawner.AddSpawn(spawn);
 	}
 
 	public bool CanChange => tileTypeSettings.NextTileType != TileType.Undefined;
@@ -58,15 +66,5 @@ public class Tile
 	public (Texture texture, Rotation rotation, Texture overlay) LoadTexture()
 	{
 		return GameSettings.Instance.GetTexture(TileType);
-	}
-
-	public void Tick(float dT)
-	{
-		for (var i = Cargoes.Count - 1; i >= 0; i--)
-		{
-			var cargo = Cargoes[i];
-			cargo.Tick(dT);
-			if (cargo.IsDespawned) Cargoes.RemoveAt(i);
-		}
 	}
 }

@@ -133,37 +133,25 @@ public class Train
 
 	private bool EnterNextTile()
 	{
+		var oldTile = tile;
 		var nextTile = tile.GetAdjecentTile(direction);
-		if (!CanEnterTile(nextTile))
-			return false;
 
 		// update state.
 		this.tileEnterDirection = direction.Opposite();
 		this.direction = nextTile.GetExitDirectionFrom(tileEnterDirection);
 		this.tile = nextTile;
 
-		for (var i = nextTile.Cargoes.Count - 1; i >= 0; i--)
+		if (oldTile.CargoSpawner != null)
 		{
-			var cargo = nextTile.Cargoes[i];
-			if (cargo.Color == Color)
+			var carsAdded = oldTile.CargoSpawner.RemoveAllFor(color);
+			for(int i = 0; i < carsAdded; i++)
 			{
-				ScheduleNewCar();
-				nextTile.Cargoes.RemoveAt(i);
+				scheduledCars.Add(1f / Speed);
 			}
 		}
 
 		return true;
 	}
-
-	private void ScheduleNewCar()
-	{
-		scheduledCars.Add(1f / Speed);
-	}
-
-    private bool CanEnterTile(Tile nextTile)
-    {
-		return true;
-    }
 }
 
 public struct PositionState

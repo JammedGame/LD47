@@ -138,11 +138,10 @@ public class CameraController : MonoBehaviour
 
     private void ClampXY(ref Vector3 pos)
     {
-        var padding = cam.orthographicSize / 2f;
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y + padding, -padding);
+        var padding = cam.orthographicSize;
+        pos.y = Mathf.Clamp(pos.y, -panLimit.y + 0.5f, 0.5f);
 
-        var paddingHorizontal = padding * Screen.width / Screen.height;
-        pos.x = Mathf.Clamp(pos.x, paddingHorizontal, panLimit.x - paddingHorizontal);
+        pos.x = Mathf.Clamp(pos.x, 0 - 0.5f, panLimit.x - 0.5f);
     }
 
     public void CameraUpdate()
