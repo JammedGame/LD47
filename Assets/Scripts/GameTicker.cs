@@ -56,5 +56,5 @@ public class GameTicker : MonoBehaviour
     }
 
     float accumulatedTime;
-    public const float DeterministicTick = 1f / 60f;
+    public const float DeterministicTick = 1f / 240f;
 }

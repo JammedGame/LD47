@@ -72,25 +72,25 @@ public class CameraController : MonoBehaviour
         right.Normalize();
 
         // Move the camera (camera_target) Forward relative to current rotation if "W" is pressed or if the mouse moves within the borderWidth distance from the top edge of the screen
-        if (!Input.GetMouseButton(2) && (Input.GetKey("w") || edgeScrolling == true && Input.mousePosition.y >= Screen.height - borderWidth))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             pos += up * panSpeed * Time.deltaTime;
         }
 
         // Move the camera (camera_target) Backward relative to current rotation if "S" is pressed or if the mouse moves within the borderWidth distance from the bottom edge of the screen
-        if (!Input.GetMouseButton(2) && (Input.GetKey("s") || edgeScrolling == true && Input.mousePosition.y <= borderWidth))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             pos -= up * panSpeed * Time.deltaTime;
         }
 
         // Move the camera (camera_target) Right relative to current rotation if "D" is pressed or if the mouse moves within the borderWidth distance from the right edge of the screen
-        if (!Input.GetMouseButton(2) && (Input.GetKey("d") || edgeScrolling == true && Input.mousePosition.x >= Screen.width - borderWidth))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             pos += right * panSpeed * Time.deltaTime;
         }
 
         // Move the camera (camera_target) Left relative to current rotation if "A" is pressed or if the mouse moves within the borderWidth distance from the left edge of the screen
-        if (!Input.GetMouseButton(2) && (Input.GetKey("a") || edgeScrolling == true && Input.mousePosition.x <= borderWidth))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             pos -= right * panSpeed * Time.deltaTime;
         }
