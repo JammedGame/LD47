@@ -1,10 +1,30 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+public static class Game
+{
+    public static LevelData LevelBeingLoaded;
+
+    public static void LoadLevel(LevelData levelData)
+    {
+        LevelBeingLoaded = levelData;
+        SceneManager.LoadScene("LevelScene");
+    }
+
+	public static void LoadNextLevel(LevelData levelData)
+	{
+        var allLevels = GameSettings.Instance.AllLevels;
+        var nextIndex = allLevels.IndexOf(levelData) + 1;
+        var level = nextIndex < allLevels.Count ? allLevels[nextIndex] : allLevels[0];
+        LoadLevel(level);
+	}
+}
 
 public class GameTicker : MonoBehaviour
 {
     [SerializeField]
-    private LevelData levelData = null;
+    public LevelData levelData = null;
     [SerializeField]
     private InGameUIController uiController = null;
 
@@ -17,6 +37,13 @@ public class GameTicker : MonoBehaviour
 
     public void Start()
     {
+        // load from command if needed.
+        if (Game.LevelBeingLoaded != null)
+        {
+            levelData = Game.LevelBeingLoaded;
+            Game.LevelBeingLoaded = null;
+        }
+
         cameraController = FindObjectOfType<CameraController>();
         gameWorld = new GameWorld(levelData);
         viewController = new ViewController(gameWorld);
@@ -55,7 +82,12 @@ public class GameTicker : MonoBehaviour
         // restars level.
         if (Input.GetKey(KeyCode.R))
         {
-            SceneManager.LoadScene("LevelScene");
+            Game.LoadLevel(levelData);
+        }
+
+        if (Input.GetKey(KeyCode.F12))
+        {
+            Game.LoadNextLevel(levelData);
         }
     }
 
