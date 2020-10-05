@@ -67,12 +67,25 @@ public class Train
 
 	public Tile Tile => tile;
 
+	private bool wasStopped;
+
 	public void Tick(float dT)
 	{
 		// check collsion
 		if (GetDistToNearestCollider(GetSnapshot()) < collisionRadius)
 		{
+			if (!wasStopped)
+			{
+				SoundManager.Instance.PlaySoundTrainStop();
+				wasStopped = true;
+			}
 			return;
+		}
+
+		if (wasStopped)
+		{
+			SoundManager.Instance.PlaySoundTrainStart();
+			wasStopped = false;
 		}
 
 		// check if entered a new tile
@@ -160,6 +173,7 @@ public class Train
 			var carsToConsume = Math.Max(0, cars - initialCars);
 			World.CollectCars(color, carsToConsume);
 			cars -= carsToConsume;
+			SoundManager.Instance.PlaySoundCargoDropOff();
 		}
 
 		return true;

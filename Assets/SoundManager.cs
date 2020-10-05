@@ -9,12 +9,12 @@ public class SoundManager : MonoBehaviour
 	public AudioClip MusicGame;
 
 	[Header("Sound")] public AudioClip SoundTrackSwitch;
-	public AudioClip SoundCargoSpawn;
 	public AudioClip SoundCargoPickUp;
+	public AudioClip SoundCargoDropOff;
 	public AudioClip SoundTrainStop;
 	public AudioClip SoundTrainStart;
 	public AudioClip SoundVictory;
-	public AudioClip SoundGameOver;
+	public AudioClip SoundDefeat;
 
 	public static SoundManager Instance { get; private set; }
 
@@ -54,21 +54,68 @@ public class SoundManager : MonoBehaviour
 		if (Instance == this) Instance = null;
 	}
 
-	public void PlayMusicMainMenu()
+	private void PlayMusic(AudioClip clip)
 	{
-		if (MusicSource.clip == MusicMainMenu) return;
+		if (MusicSource.clip == clip && MusicSource.isPlaying) return;
 
 		MusicSource.Stop();
-		MusicSource.clip = MusicMainMenu;
+		MusicSource.loop = true;
+		MusicSource.clip = clip;
 		MusicSource.Play();
+	}
+
+	private void PlaySound(AudioClip clip)
+	{
+		if (SoundSource.isPlaying) return;
+
+		SoundSource.Stop();
+		SoundSource.loop = false;
+		SoundSource.clip = clip;
+		SoundSource.Play();
+	}
+
+	public void PlayMusicMainMenu()
+	{
+		PlayMusic(MusicMainMenu);
 	}
 
 	public void PlayMusicGame()
 	{
-		if (MusicSource.clip == MusicGame) return;
+		PlayMusic(MusicGame);
+	}
 
-		MusicSource.Stop();
-		MusicSource.clip = MusicGame;
-		MusicSource.Play();
+	public void PlaySoundTrackSwitch()
+	{
+		PlaySound(SoundTrackSwitch);
+	}
+
+	public void PlaySoundCargoPickUp()
+	{
+		PlaySound(SoundCargoPickUp);
+	}
+
+	public void PlaySoundCargoDropOff()
+	{
+		PlaySound(SoundCargoDropOff);
+	}
+
+	public void PlaySoundTrainStop()
+	{
+		PlaySound(SoundTrainStop);
+	}
+
+	public void PlaySoundTrainStart()
+	{
+		PlaySound(SoundTrainStart);
+	}
+
+	public void PlaySoundVictory()
+	{
+		PlaySound(SoundVictory);
+	}
+
+	public void PlaySoundDefeat()
+	{
+		PlaySound(SoundDefeat);
 	}
 }

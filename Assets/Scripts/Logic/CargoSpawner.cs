@@ -56,7 +56,10 @@ public class CargoSpawner
 		}
 
 		if (count > 0)
+		{
 			OnUpdate?.Invoke();
+			SoundManager.Instance.PlaySoundCargoPickUp();
+		}
 
 		return count;
 	}

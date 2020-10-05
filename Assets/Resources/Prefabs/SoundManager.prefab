@@ -176,13 +176,13 @@ MonoBehaviour:
   SoundSource: {fileID: 8929070631159880044}
   MusicMainMenu: {fileID: 8300000, guid: 440a9c52c65c54cb3805ebf67726fcf8, type: 3}
   MusicGame: {fileID: 8300000, guid: 440a9c52c65c54cb3805ebf67726fcf8, type: 3}
-  SoundTrackSwitch: {fileID: 0}
-  SoundCargoSpawn: {fileID: 0}
-  SoundCargoPickUp: {fileID: 0}
-  SoundTrainStop: {fileID: 0}
-  SoundTrainStart: {fileID: 0}
-  SoundVictory: {fileID: 0}
-  SoundGameOver: {fileID: 0}
+  SoundTrackSwitch: {fileID: 8300000, guid: e318a861244604746a1c9c866d30b252, type: 3}
+  SoundCargoPickUp: {fileID: 8300000, guid: 4aadbc5c12e1b4b3a96cb01818d2e277, type: 3}
+  SoundCargoDropOff: {fileID: 8300000, guid: ac786085189734a72be4530a03219f66, type: 3}
+  SoundTrainStop: {fileID: 8300000, guid: 0fa75e229a1264b7d8886bf7d1eec927, type: 3}
+  SoundTrainStart: {fileID: 8300000, guid: edd2e5055b06346e798931cb639b8a35, type: 3}
+  SoundVictory: {fileID: 8300000, guid: ad5dce0a5a651428e8807e4dee14d977, type: 3}
+  SoundDefeat: {fileID: 8300000, guid: 59838f2a9cba841c9b2cb72ac40bbafb, type: 3}
 --- !u!1 &8567459729461567975
 GameObject:
   m_ObjectHideFlags: 0

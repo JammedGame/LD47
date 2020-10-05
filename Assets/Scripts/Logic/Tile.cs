@@ -45,7 +45,11 @@ public class Tile
 
 	public void OnClicked()
 	{
-		if (CanChange) TileType = tileTypeSettings.NextTileType;
+		if (CanChange)
+		{
+			TileType = tileTypeSettings.NextTileType;
+			SoundManager.Instance.PlaySoundTrackSwitch();
+		}
 	}
 
 	public Direction GetExitDirectionFrom(Direction enterDirection)

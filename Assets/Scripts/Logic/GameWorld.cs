@@ -68,6 +68,7 @@ public class GameWorld
 		}
 
 		OnVictory?.Invoke();
+		SoundManager.Instance.PlaySoundVictory();
 		VictoryDeclared = true;
 	}
 
@@ -116,5 +117,11 @@ public class GameWorld
 
 		foreach (var cargoSpawner in AllCargoSpawners) cargoSpawner.Tick(dT);
 		foreach (var train in AllTrains) train.Tick(dT);
+	}
+
+	public void RestartLevel()
+	{
+		Game.LoadLevel(LevelData);
+		SoundManager.Instance.PlaySoundDefeat();
 	}
 }

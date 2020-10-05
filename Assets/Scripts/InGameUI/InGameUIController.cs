@@ -32,8 +32,8 @@ public class InGameUIController : MonoBehaviour
 		this.world.OnPause += OnPaused;
 
 		StartNextLevelButton.onClick.AddListener(() => Game.LoadNextLevel(gameWorld.LevelData));
-		RestartButton.onClick.AddListener(() => Game.LoadLevel(gameWorld.LevelData));
-		RestartButton2.onClick.AddListener(() => Game.LoadLevel(gameWorld.LevelData));
+		RestartButton.onClick.AddListener(() => gameWorld.RestartLevel());
+		RestartButton2.onClick.AddListener(() => gameWorld.RestartLevel());
 		ResumeButton.onClick.AddListener(() => gameWorld.Resume());
 		BackToMainMenuButton.onClick.AddListener(() => Game.BackToMainMenu());
 		BackToMainMenuButton2.onClick.AddListener(() => Game.BackToMainMenu());
