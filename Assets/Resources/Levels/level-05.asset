@@ -44,7 +44,7 @@ MonoBehaviour:
   CargoSpawns:
   - X: 7
     Y: 3
-    SpawnsAtSeconds: 2
+    SpawnsAtSeconds: 0
     DespawnsAfterSeconds: 0
     Color: 3
   LevelTexts: []

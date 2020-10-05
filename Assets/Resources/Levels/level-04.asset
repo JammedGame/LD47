@@ -38,12 +38,12 @@ MonoBehaviour:
   CargoSpawns:
   - X: 5
     Y: 6
-    SpawnsAtSeconds: 3
+    SpawnsAtSeconds: 0
     DespawnsAfterSeconds: 0
     Color: 1
   - X: 5
     Y: 6
-    SpawnsAtSeconds: 3
+    SpawnsAtSeconds: 0
     DespawnsAfterSeconds: 0
     Color: 3
   LevelTexts: []

@@ -32,7 +32,7 @@ MonoBehaviour:
   CargoSpawns:
   - X: 9
     Y: 6
-    SpawnsAtSeconds: 5
+    SpawnsAtSeconds: 0
     DespawnsAfterSeconds: 0
     Color: 1
   LevelTexts: []
