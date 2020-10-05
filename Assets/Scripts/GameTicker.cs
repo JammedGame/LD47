@@ -6,6 +6,13 @@ public static class Game
 {
     public static LevelData LevelBeingLoaded;
 
+    public static void LoadLevel(int levelIndex)
+    {
+        var allLevels = GameSettings.Instance.AllLevels;
+        var level = levelIndex < allLevels.Count ? allLevels[levelIndex] : allLevels[0];
+        LoadLevel(level);
+    }
+
     public static void LoadLevel(LevelData levelData)
     {
         LevelBeingLoaded = levelData;
