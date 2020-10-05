@@ -60,14 +60,6 @@ public struct TrainSpawn
 	public TrainType Type;
 	public TrainColor Color;
 	public int InitialCars;
-
-	public int GetInitialCars()
-	{
-		if (InitialCars > 0) return InitialCars;
-
-		var type = Type;
-		return GameSettings.Instance.SettingsPerTrainType.Find(s => s.Type == type)?.DefaultInitialCars ?? 0;
-	}
 }
 
 public enum TrainType

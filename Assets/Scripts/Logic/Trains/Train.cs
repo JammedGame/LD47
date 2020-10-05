@@ -15,6 +15,7 @@ public class Train
 	private TrainType type;
 	private TrainColor color;
 	private int cars;
+	private int initialCars;
 	private float speed;
 	private readonly List<float> scheduledCars = new List<float>();
 
@@ -43,7 +44,8 @@ public class Train
 		this.positionHistory = new PositionStateHistory(1000, GetSnapshot());
 		this.type = trainSpawn.Type;
 		this.color = trainSpawn.Color;
-		this.cars = trainSpawn.GetInitialCars();
+		this.cars = trainSpawn.InitialCars;
+		this.initialCars = this.cars;
 		this.speed = trainSpawn.Type.GetSpeed();
 	}
 
@@ -155,8 +157,9 @@ public class Train
 		// collect cars.
 		if (oldTile == spawnTile)
 		{
-			World.CollectCars(color, cars);
-			cars = 0;
+			var carsToConsume = Math.Min(0, cars - initialCars);
+			World.CollectCars(color, carsToConsume);
+			cars -= carsToConsume;
 		}
 
 		return true;
