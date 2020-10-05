@@ -30,7 +30,7 @@ public class GameTicker : MonoBehaviour
             return;
 
         inputController.ProcessInput();
-        gameWorld.Tick(1f / 60f);
+        gameWorld.Tick(Time.deltaTime);
         viewController.Render();
         cameraController.CameraUpdate();
 
