@@ -217,30 +217,6 @@ MonoBehaviour:
     RightExit: 3
     TopExit: 2
     BottomExit: 2
-  - TileType: 200
-    NextTileType: 0
-    LeftExit: 2
-    RightExit: 1
-    TopExit: 0
-    BottomExit: 0
-  - TileType: 201
-    NextTileType: 0
-    LeftExit: 0
-    RightExit: 0
-    TopExit: 4
-    BottomExit: 3
-  - TileType: 202
-    NextTileType: 0
-    LeftExit: 2
-    RightExit: 1
-    TopExit: 0
-    BottomExit: 0
-  - TileType: 203
-    NextTileType: 0
-    LeftExit: 0
-    RightExit: 0
-    TopExit: 4
-    BottomExit: 3
   - TileType: 204
     NextTileType: 0
     LeftExit: 0
