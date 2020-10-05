@@ -493,6 +493,12 @@ MonoBehaviour:
     RightExit: 0
     TopExit: 4
     BottomExit: 3
+  - TileType: 310
+    NextTileType: 0
+    LeftExit: 2
+    RightExit: 1
+    TopExit: 4
+    BottomExit: 3
   SettingsPerTrainType:
   - Type: 1
     DefaultSpeed: 1
@@ -520,3 +526,4 @@ MonoBehaviour:
     Color: {r: 0.9056604, g: 0.5874395, b: 0.34603062, a: 1}
     LocomotiveIcon: {fileID: 2800000, guid: dc5ef4430fb264f4e8960b5508807169, type: 3}
     CarIcon: {fileID: 2800000, guid: 615ffd55478a6463ea1fcb19b2495f21, type: 3}
+  AllLevels: []

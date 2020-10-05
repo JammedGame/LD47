@@ -82,6 +82,7 @@ public enum TileType
 	StationTunnel_R90,
 	StationTunnel_R180,
 	StationTunnel_R270,
+	FourwayCross
 }
 
 public static class TileTypeExtensions
