@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1011003559969011459}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2254880600069954680
 MeshFilter:
@@ -107,9 +107,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6641956047269945596}
+  - {fileID: 802475499260179552}
   - {fileID: 4939765195966966021}
   - {fileID: 7764169509925956927}
-  - {fileID: 802475499260179552}
   m_Father: {fileID: 7918112659666966235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143,7 +143,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1011003559969011459}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5316341915751827900
 MeshFilter:
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 7918112659666966235}
   - component: {fileID: 791105079834872429}
   m_Layer: 0
-  m_Name: CargoIconsView
+  m_Name: CargoIconsView_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3988083f6c5084c47a8017f61793b0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CargoIcons: []
+  CargoIcons:
+  - {fileID: 839742117947413257}
+  - {fileID: 7390696446756947844}
+  - {fileID: 639493853608479386}
+  - {fileID: 2368695699113441985}
 --- !u!1 &6781131564754950399
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +350,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1011003559969011459}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &281121604879880726
 MeshFilter:

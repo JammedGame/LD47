@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class CargoSpawner
@@ -6,6 +7,8 @@ public class CargoSpawner
 	public readonly Tile Tile;
 	public readonly List<CargoSpawn> CargoToBeSpawned = new List<CargoSpawn>();
 	public readonly List<Cargo> Cargos = new List<Cargo>();
+
+	public event Action OnUpdate;
 
 	public CargoSpawner(Tile tile)
 	{
@@ -17,6 +20,7 @@ public class CargoSpawner
 	public void AddSpawn(CargoSpawn spawn)
 	{
 		CargoToBeSpawned.Add(spawn);
+		OnUpdate?.Invoke();
 	}
 
 	public void Tick(float dT)
@@ -29,6 +33,7 @@ public class CargoSpawner
 			{
 				Cargos.Add(new Cargo(cargoSpawn.Color, cargoSpawn.DespawnsAfterSeconds));
 				CargoToBeSpawned.RemoveAt(i);
+				OnUpdate?.Invoke();
 			}
 		}
 	}
@@ -49,6 +54,9 @@ public class CargoSpawner
 				count++;
 			}
 		}
+
+		if (count > 0)
+			OnUpdate?.Invoke();
 
 		return count;
 	}
