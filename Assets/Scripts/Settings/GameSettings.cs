@@ -8,6 +8,19 @@ public class GameSettings : ScriptableObject
     [Table] public List<TrainColorSettings> SettingsPerTrainColor;
     public List<LevelData> AllLevels;
 
+    public TrainColorSettings GetColorSettings(TrainColor trainColor)
+    {
+        foreach(var type in SettingsPerTrainColor)
+        {
+            if (type.TrainColor == trainColor)
+            {
+                return type;
+            }
+        }
+
+        return default;
+    }
+
     public TileTypeSettings GetSettings(TileType tileType)
     {
         foreach(var type in SettingsPerType)

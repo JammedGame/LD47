@@ -28,6 +28,9 @@ public class ViewController
 		foreach (var train in gameWorld.AllTrains)
 			allTrainViews.Add(TrainView.CreateView(train));
 
+		foreach(var trainSpawn in levelData.TrainSpawns)
+			HomeIconView.Spawn(trainSpawn);
+
 		var levelTextPrefab = Resources.Load<TextMeshPro>("Prefabs/LevelText");
 		foreach (var levelText in levelData.LevelTexts)
 		{
