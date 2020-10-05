@@ -198,13 +198,14 @@ public struct PositionState
 		if (tile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Left || ExitDirection == Direction.Left)) return true;
 		if (tile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Top || ExitDirection == Direction.Top)) return true;
 
-		//if (ProgressInTile < 0.5f)
+		if (ProgressInTile < 0.5f)
 		{
 			var previousTile = Tile.GetAdjecentTile(EnterDirection);
 			if (previousTile.TileType == TileType.FourwayOverpass_R90 && (EnterDirection == Direction.Left || EnterDirection == Direction.Left)) return true;
 			if (previousTile.TileType == TileType.FourwayOverpass && (EnterDirection == Direction.Top || EnterDirection == Direction.Bottom)) return true;
 		}
-		//else
+
+		if (ProgressInTile > 0.5f)
 		{
 			var nextTile = Tile.GetAdjecentTile(ExitDirection);
 			if (nextTile.TileType == TileType.FourwayOverpass_R90 && (ExitDirection == Direction.Left || ExitDirection == Direction.Right)) return true;
