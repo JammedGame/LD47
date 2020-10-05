@@ -174,8 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicSource: {fileID: 7984370207405989889}
   SoundSource: {fileID: 8929070631159880044}
-  MusicMainMenu: {fileID: 8300000, guid: 582cce156b26b2b468a5ff036e0520f7, type: 3}
-  MusicGame: {fileID: 8300000, guid: 582cce156b26b2b468a5ff036e0520f7, type: 3}
+  MusicMainMenu: {fileID: 8300000, guid: 440a9c52c65c54cb3805ebf67726fcf8, type: 3}
+  MusicGame: {fileID: 8300000, guid: 440a9c52c65c54cb3805ebf67726fcf8, type: 3}
   SoundTrackSwitch: {fileID: 0}
   SoundCargoSpawn: {fileID: 0}
   SoundCargoPickUp: {fileID: 0}
