@@ -44,9 +44,6 @@ public class CameraController : MonoBehaviour
     // Floats to hold reference to the mouse position, no values to be assigned yet
     private float mouseX, mouseY;
 
-    private readonly GameWorld gameWorld;
-    private LevelData levelData => gameWorld.LevelData;
-
     public void Movement()
     {
         // Local variable to hold the camera target's position during each frame

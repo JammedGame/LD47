@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TrainView : MonoBehaviour
 {
-	[SerializeField] private Transform lokomotiva;
-	[SerializeField] private MeshRenderer iconRenderer;
+	[SerializeField] private Transform lokomotiva = null;
+	[SerializeField] private MeshRenderer iconRenderer = null;
 	private readonly List<TrainView> vagoni = new List<TrainView>();
 	private int carsVisible;
 	private Train train;

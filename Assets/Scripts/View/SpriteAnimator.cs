@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
 {
-    [SerializeField] float period;
-    [SerializeField] Texture[] sprites;
-    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] float period = 0f;
+    [SerializeField] Texture[] sprites = null;
+    [SerializeField] MeshRenderer meshRenderer = null;
 
     float timer;
     int index;

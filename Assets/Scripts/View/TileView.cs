@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class TileView : MonoBehaviour
 {
-	[SerializeField] private MeshRenderer meshRenderer;
-	[SerializeField] private MeshRenderer overlayMeshRenderer;
-	[SerializeField] private MeshRenderer indicator;
+	[SerializeField] private MeshRenderer meshRenderer = null;
+	[SerializeField] private MeshRenderer overlayMeshRenderer = null;
+	[SerializeField] private MeshRenderer indicator = null;
 
 	public Tile Tile { get; private set; }
 

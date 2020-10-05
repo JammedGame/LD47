@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 public class GameTicker : MonoBehaviour
 {
     [SerializeField]
-    private LevelData levelData;
+    private LevelData levelData = null;
     [SerializeField]
-    private InGameUIController uiController;
+    private InGameUIController uiController = null;
 
     private GameWorld gameWorld;
     private ViewController viewController;
