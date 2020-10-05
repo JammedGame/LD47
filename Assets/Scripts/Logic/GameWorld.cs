@@ -124,4 +124,9 @@ public class GameWorld
 		Game.LoadLevel(LevelData);
 		SoundManager.Instance.PlaySoundDefeat();
 	}
+
+	protected virtual void InvokeOnDefeat()
+	{
+		OnDefeat?.Invoke();
+	}
 }

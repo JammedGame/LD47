@@ -5,15 +5,15 @@ using UnityEngine.UI;
 // main controller
 public class InGameUIController : MonoBehaviour
 {
-	[SerializeField] GameObject winnerIsYouControls;
-	[SerializeField] GameObject loserIsYouControls;
-	[SerializeField] GameObject pauseControls;
-	[SerializeField] Button StartNextLevelButton;
-	[SerializeField] Button ResumeButton;
-	[SerializeField] Button BackToMainMenuButton;
-	[SerializeField] Button BackToMainMenuButton2;
-	[SerializeField] Button RestartButton;
-	[SerializeField] Button RestartButton2;
+	[SerializeField] GameObject winnerIsYouControls = null;
+	[SerializeField] GameObject loserIsYouControls = null;
+	[SerializeField] GameObject pauseControls = null;
+	[SerializeField] Button StartNextLevelButton = null;
+	[SerializeField] Button ResumeButton = null;
+	[SerializeField] Button BackToMainMenuButton = null;
+	[SerializeField] Button BackToMainMenuButton2 = null;
+	[SerializeField] Button RestartButton = null;
+	[SerializeField] Button RestartButton2 = null;
 
 	GameWorld world;
 	InGameUIObject[] allUIControls;
