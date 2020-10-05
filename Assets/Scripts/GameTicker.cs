@@ -53,6 +53,7 @@ public class GameTicker : MonoBehaviour
         var background = FindObjectOfType<BackgroundController>();
         background.Init(levelData);
         uiController.Initialize(gameWorld);
+        SoundManager.Instance.PlayMusicGame();
     }
 
     void Update()

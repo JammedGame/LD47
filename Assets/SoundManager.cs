@@ -2,24 +2,69 @@
 
 public class SoundManager : MonoBehaviour
 {
-    static SoundManager instance;
+	public AudioSource MusicSource;
+	public AudioSource SoundSource;
 
-    public void OnEnable()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-    }
+	[Header("Music")] public AudioClip MusicMainMenu;
+	public AudioClip MusicGame;
 
-    public void OnDestroy()
-    {
-        if (instance == this)
-            instance = null;
-    }
+	[Header("Sound")] public AudioClip SoundTrackSwitch;
+	public AudioClip SoundCargoSpawn;
+	public AudioClip SoundCargoPickUp;
+	public AudioClip SoundTrainStop;
+	public AudioClip SoundTrainStart;
+	public AudioClip SoundVictory;
+	public AudioClip SoundGameOver;
+
+	public static SoundManager Instance { get; private set; }
+
+	public bool SoundEnabled
+	{
+		get => !SoundSource.mute;
+		set => SoundSource.mute = !value;
+	}
+
+	public bool MusicEnabled
+	{
+		get => !MusicSource.mute;
+		set => MusicSource.mute = !value;
+	}
+
+	private void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else if (Instance != this)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+	private void Start()
+	{
+		SoundEnabled = true;
+		MusicEnabled = true;
+	}
+
+	private void OnDestroy()
+	{
+		if (Instance == this) Instance = null;
+	}
+
+	public void PlayMusicMainMenu()
+	{
+		MusicSource.Stop();
+		MusicSource.clip = MusicMainMenu;
+		MusicSource.Play();
+	}
+
+	public void PlayMusicGame()
+	{
+		MusicSource.Stop();
+		MusicSource.clip = MusicGame;
+		MusicSource.Play();
+	}
 }
