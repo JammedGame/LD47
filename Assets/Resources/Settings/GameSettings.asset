@@ -86,7 +86,7 @@ MonoBehaviour:
     TopExit: 4
     BottomExit: 3
   - TileType: 16
-    NextTileType: 0
+    NextTileType: 303
     LeftExit: 4
     RightExit: 3
     TopExit: 2
@@ -428,7 +428,7 @@ MonoBehaviour:
     TopExit: 2
     BottomExit: 2
   - TileType: 303
-    NextTileType: 0
+    NextTileType: 16
     LeftExit: 3
     RightExit: 4
     TopExit: 1
