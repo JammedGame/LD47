@@ -8,7 +8,7 @@ public class BackgroundController : MonoBehaviour
     {
         var meshRenderer = GetComponent<MeshRenderer>();
         transform.position = new Vector3( (level.Width - 1f) / 2, (level.Height - 1f) / -2, 0f);
-        transform.localScale = new Vector3(level.Width, level.Height, 0);
-        transform.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(level.Width, level.Height);
+        transform.localScale = new Vector3(150, 150, 0);
+        transform.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(150, 150);
     }
 }
