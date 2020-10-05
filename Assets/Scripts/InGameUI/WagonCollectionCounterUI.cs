@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 
 public class WagonCollectionCounterUI : InGameUIObject
 {
@@ -23,6 +24,7 @@ public class WagonCollectionCounterUI : InGameUIObject
 		}
 
 		UpdateText();
+		GetComponentInChildren<Image>().color = GameSettings.Instance.GetColorSettings(TrainColor).Color;
 	}
 
 	public void UpdateText()
