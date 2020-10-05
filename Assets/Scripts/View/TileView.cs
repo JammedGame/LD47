@@ -5,6 +5,7 @@ public class TileView : MonoBehaviour
 {
 	[SerializeField] private MeshRenderer meshRenderer;
 	[SerializeField] private MeshRenderer overlayMeshRenderer;
+	[SerializeField] private MeshRenderer indicator;
 	[SerializeField] private TextMeshPro textMesh;
 
 	public Tile Tile { get; private set; }
@@ -33,6 +34,7 @@ public class TileView : MonoBehaviour
 		}
 
 		var (tex, rotation, overlay) = Tile.LoadTexture();
+		indicator.enabled = Tile.CanChange;
 		meshRenderer.enabled = tex;
 		overlayMeshRenderer.enabled = overlay;
 		meshRenderer.material.mainTexture = tex;

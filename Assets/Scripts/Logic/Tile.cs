@@ -33,9 +33,11 @@ public class Tile
 		}
 	}
 
+	public bool CanChange => tileTypeSettings.NextTileType != TileType.Undefined;
+
 	public void OnClicked()
 	{
-		if (tileTypeSettings.NextTileType != TileType.Undefined) TileType = tileTypeSettings.NextTileType;
+		if (CanChange) TileType = tileTypeSettings.NextTileType;
 	}
 
 	public Direction GetExitDirectionFrom(Direction enterDirection)
