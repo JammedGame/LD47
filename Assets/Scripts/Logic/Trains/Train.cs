@@ -67,25 +67,26 @@ public class Train
 
 	public Tile Tile => tile;
 
-	private bool wasStopped;
+	private bool wasRunning;
 
 	public void Tick(float dT)
 	{
 		// check collsion
 		if (GetDistToNearestCollider(GetSnapshot()) < collisionRadius)
 		{
-			if (!wasStopped)
+			if (wasRunning)
 			{
 				SoundManager.Instance.PlaySoundTrainStop();
-				wasStopped = true;
+				wasRunning = false;
 			}
+
 			return;
 		}
 
-		if (wasStopped)
+		if (!wasRunning)
 		{
 			SoundManager.Instance.PlaySoundTrainStart();
-			wasStopped = false;
+			wasRunning = true;
 		}
 
 		// check if entered a new tile
