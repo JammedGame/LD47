@@ -16,7 +16,7 @@ public class LevelSelection : MonoBehaviour
 		{
 			levelIndex = value;
 			LevelName.text = $"Level {value + 1}";
-			LevelPreviewImage.sprite = Resources.Load<Sprite>($"Art/LevelSelection/LevelSelection{value + 1:00}");
+			LevelPreviewImage.sprite = Resources.Load<Sprite>($"LevelSelection/LevelSelection{value + 1:00}");
 		}
 	}
 

@@ -44,7 +44,7 @@ public class LevelEditorWindow : EditorWindow
 		{
 			padding = new RectOffset(3, 3, 3, 3), normal = new GUIStyleState
 			{
-				background = Resources.Load<Texture2D>("Textures/EditorButtonBorder")
+				background = Resources.Load<Texture2D>("LevelEditor/ButtonBorder")
 			}
 		};
 		var tileStyle = new GUIStyle(GUI.skin.box)
@@ -54,7 +54,7 @@ public class LevelEditorWindow : EditorWindow
 		var x = 0;
 		var y = 0;
 
-		var magnifier = GUI.Button(new Rect(x, y, 50, 50), Resources.Load<Texture>("Textures/Magnifier"),
+		var magnifier = GUI.Button(new Rect(x, y, 50, 50), Resources.Load<Texture>("LevelEditor/Magnifier"),
 			magnifierActive ? activeBrushStyle : defaultBrushStyle);
 		if (magnifier)
 		{
@@ -67,7 +67,7 @@ public class LevelEditorWindow : EditorWindow
 
 		x = 0;
 		y += 50;
-		var pipette = GUI.Button(new Rect(x, y, 50, 50), Resources.Load<Texture>("Textures/Pipette"),
+		var pipette = GUI.Button(new Rect(x, y, 50, 50), Resources.Load<Texture>("LevelEditor/Pipette"),
 			pipetteActive || Event.current.alt ? activeBrushStyle : defaultBrushStyle);
 		if (pipette)
 		{
@@ -88,7 +88,7 @@ public class LevelEditorWindow : EditorWindow
 				? activeBrushStyle
 				: defaultBrushStyle;
 			var brushPos = new Rect(x, y, 50, 50);
-			var (tex, rotate, overlay) = brush.TileType.LoadTexture();
+			var (tex, rotate, _) = brush.TileType.LoadTexture();
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), brushPos.center);
 			var brushButton = GUI.Button(brushPos, tex, style);
 			if (brushButton) TileBrush = brush.TileType;
@@ -117,7 +117,7 @@ public class LevelEditorWindow : EditorWindow
 		{
 			var tile = Data.GetTile(i);
 			var buttonPos = new Rect(x + tile.X * 50, y + tile.Y * 50, 50, 50);
-			var (tex, rotate, overlay) = tile.Type.LoadTexture();
+			var (tex, rotate, _) = tile.Type.LoadTexture();
 			GUIUtility.RotateAroundPivot(rotate.ToAngle(), buttonPos.center);
 			var button = GUI.Button(buttonPos, tex, tileStyle);
 			if (button)
