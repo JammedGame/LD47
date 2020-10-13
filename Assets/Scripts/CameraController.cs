@@ -25,6 +25,8 @@ public class CameraController : MonoBehaviour
 	// Floats to hold reference to the mouse position, no values to be assigned yet
 	private float mouseX, mouseY;
 
+	private Vector3 posDelta;
+
 	private float targetZoom;
 
 	// Start is called before the first frame update
@@ -96,7 +98,6 @@ public class CameraController : MonoBehaviour
 		cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, 0.2f);
 	}
 
-
 	private void Drag()
 	{
 		var pos = transform.position;
@@ -106,7 +107,25 @@ public class CameraController : MonoBehaviour
 		var dragSpeed = cam.orthographicSize * 2 / Screen.height;
 
 		if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
-			pos -= mouseDelta * dragSpeed;
+		{
+			if (!Mathf.Approximately(mouseDelta.magnitude, 0f))
+			{
+				// drag
+				posDelta = mouseDelta * dragSpeed;
+				pos -= posDelta;
+			}
+			else
+			{
+				// momentum (holding)
+				posDelta = Vector3.Lerp(posDelta, Vector3.zero, 0.2f);
+			}
+		}
+		else if (!Mathf.Approximately(posDelta.magnitude, 0f))
+		{
+			// momentum (released)
+			posDelta = Vector3.Lerp(posDelta, Vector3.zero, 0.2f);
+			pos -= posDelta;
+		}
 
 		ClampXY(ref pos);
 
