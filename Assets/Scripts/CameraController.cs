@@ -2,155 +2,129 @@
 
 public class CameraController : MonoBehaviour
 {
-    // Public Variables
+	// Maximum distance from the camera to the camera target
+	private const float ZoomMax = 10.0f;
 
-    // How quickly the camera moves
-    public float panSpeed = 20f;
+	// Minimum distance from the camera to the camera target
+	private const float ZoomMin = 1.0f;
 
-    //How far can camera pan
-    public Vector2 panLimit;
+	// How quickly the camera moves
+	public float panSpeed = 20f;
 
-    // How quickly the camera zooms
-    public float zoomSpeed = 2f;
+	//How far can camera pan
+	public Vector2 panLimit;
 
-    // How quickly the camera drags
-    public float dragSpeed = 20f;
+	// How quickly the camera zooms
+	public float zoomSpeed = 2f;
 
-    // The minimum distance of the mouse cursor from the screen edge required to pan the camera
-    public float borderWidth = 10f;
+	// A placeholder for a reference to the camera in the scene
+	public Camera cam;
 
-    private float targetZoom;
+	private Vector3 lastMousePos;
 
-    public void Initialize(LevelData levelData)
-    {
-        panLimit = new Vector2(levelData.Width, levelData.Height);
-        transform.position = levelData.InitialCameraPan;
-        targetZoom = cam.orthographicSize = levelData.InitialCameraZoom;
-    }
+	// Floats to hold reference to the mouse position, no values to be assigned yet
+	private float mouseX, mouseY;
 
-    // Boolean to control if moving the mouse within the borderWidth distance will pan the camera
-    public bool edgeScrolling = true;
+	private float targetZoom;
 
-    // A placeholder for a reference to the camera in the scene
-    public Camera cam;
+	// Start is called before the first frame update
+	private void Start()
+	{
+		cam = Camera.main;
+	}
 
-    // Private Variables
-    // Minimum distance from the camera to the camera target
-    private float zoomMin = 1.0f;
+	public void Initialize(LevelData levelData)
+	{
+		panLimit = new Vector2(levelData.Width, levelData.Height);
+		transform.position = levelData.InitialCameraPan;
+		targetZoom = cam.orthographicSize = levelData.InitialCameraZoom;
+	}
 
-    // Maximum distance from the camera to the camera target
-    private float zoomMax = 10.0f;
+	private void Movement()
+	{
+		// Local variable to hold the camera target's position during each frame
+		var t = transform;
+		var pos = t.position;
 
-    // Floats to hold reference to the mouse position, no values to be assigned yet
-    private float mouseX, mouseY;
+		// Local variable to reference the direction the camera is facing (Which is driven by the Camera target's rotation)
+		var up = t.up;
 
-    public void Movement()
-    {
-        // Local variable to hold the camera target's position during each frame
-        Vector3 pos = transform.position;
+		// Ensure the camera target doesn't move up and down
+		up.z = 0;
 
-        // Local variable to reference the direction the camera is facing (Which is driven by the Camera target's rotation)
-        Vector3 up = transform.up;
+		// Normalize the X, Y & Z properties of the forward vector to ensure they are between 0 & 1
+		up.Normalize();
 
-        // Ensure the camera target doesn't move up and down
-        up.z = 0;
+		// Local variable to reference the direction the camera is facing + 90 clockwise degrees (Which is driven by the Camera target's rotation)
+		var right = transform.right;
 
-        // Normalize the X, Y & Z properties of the forward vector to ensure they are between 0 & 1
-        up.Normalize();
+		// Ensure the camera target doesn't move up and down
+		right.z = 0;
 
+		// Normalize the X, Y & Z properties of the right vector to ensure they are between 0 & 1
+		right.Normalize();
 
-        // Local variable to reference the direction the camera is facing + 90 clockwise degrees (Which is driven by the Camera target's rotation)
-        Vector3 right = transform.right;
+		// Move the camera (camera_target) Forward relative to current rotation if "W" is pressed or if the mouse moves within the borderWidth distance from the top edge of the screen
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) pos += up * (panSpeed * Time.deltaTime);
 
-        // Ensure the camera target doesn't move up and down
-        right.z = 0;
+		// Move the camera (camera_target) Backward relative to current rotation if "S" is pressed or if the mouse moves within the borderWidth distance from the bottom edge of the screen
+		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) pos -= up * (panSpeed * Time.deltaTime);
 
-        // Normalize the X, Y & Z properties of the right vector to ensure they are between 0 & 1
-        right.Normalize();
+		// Move the camera (camera_target) Right relative to current rotation if "D" is pressed or if the mouse moves within the borderWidth distance from the right edge of the screen
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) pos += right * (panSpeed * Time.deltaTime);
 
-        // Move the camera (camera_target) Forward relative to current rotation if "W" is pressed or if the mouse moves within the borderWidth distance from the top edge of the screen
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            pos += up * panSpeed * Time.deltaTime;
-        }
+		// Move the camera (camera_target) Left relative to current rotation if "A" is pressed or if the mouse moves within the borderWidth distance from the left edge of the screen
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) pos -= right * (panSpeed * Time.deltaTime);
 
-        // Move the camera (camera_target) Backward relative to current rotation if "S" is pressed or if the mouse moves within the borderWidth distance from the bottom edge of the screen
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            pos -= up * panSpeed * Time.deltaTime;
-        }
+		ClampXY(ref pos);
 
-        // Move the camera (camera_target) Right relative to current rotation if "D" is pressed or if the mouse moves within the borderWidth distance from the right edge of the screen
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            pos += right * panSpeed * Time.deltaTime;
-        }
+		// Setting the camera target's position to the modified pos variable
+		transform.position = pos;
+	}
 
-        // Move the camera (camera_target) Left relative to current rotation if "A" is pressed or if the mouse moves within the borderWidth distance from the left edge of the screen
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            pos -= right * panSpeed * Time.deltaTime;
-        }
+	private void Zoom()
+	{
+		// When we scroll our mouse wheel up, zoom in if the camera is not within the minimum distance (set by our zoomMin variable)
+		var scroll = Input.GetAxis("Mouse ScrollWheel");
+		if (scroll != 0.0f)
+		{
+			targetZoom -= scroll * zoomSpeed;
+			targetZoom = Mathf.Clamp(targetZoom, ZoomMin, ZoomMax);
+		}
 
-        ClampXY(ref pos);
-
-        // Setting the camera target's position to the modified pos variable
-        transform.position = pos;
-    }
-
-    public void Zoom()
-    {
-        // When we scroll our mouse wheel up, zoom in if the camera is not within the minimum distance (set by our zoomMin variable)
-        float scroll = Input.GetAxis ("Mouse ScrollWheel");
-        if (scroll != 0.0f)
-        {
-             targetZoom -= scroll * zoomSpeed;
-             targetZoom = Mathf.Clamp (targetZoom, zoomMin, zoomMax);
-        }
-
-        // smoooooooth scroll like jazz
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, 0.2f);
-    }
+		// smoooooooth scroll like jazz
+		cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, 0.2f);
+	}
 
 
-    public void Drag()
-    {
-        Vector3 pos = transform.position;
-        var newMousePos = Input.mousePosition;
-        var mouseDelta = newMousePos - lastMousePos;
+	private void Drag()
+	{
+		var pos = transform.position;
+		var newMousePos = Input.mousePosition;
+		var mouseDelta = newMousePos - lastMousePos;
 
-        var dragSpeed = cam.orthographicSize * 2 / Screen.height;
+		var dragSpeed = cam.orthographicSize * 2 / Screen.height;
 
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
-        {
-            pos -= mouseDelta * dragSpeed;
-        }
+		if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
+			pos -= mouseDelta * dragSpeed;
 
-        ClampXY(ref pos);
+		ClampXY(ref pos);
 
-        transform.position = pos;
-        lastMousePos = newMousePos;
-    }
-    Vector3 lastMousePos;
+		transform.position = pos;
+		lastMousePos = newMousePos;
+	}
 
-    private void ClampXY(ref Vector3 pos)
-    {
-        var padding = cam.orthographicSize;
-        pos.y = Mathf.Clamp(pos.y, -panLimit.y + 0.5f, 0.5f);
+	private void ClampXY(ref Vector3 pos)
+	{
+		pos.y = Mathf.Clamp(pos.y, -panLimit.y + 0.5f, 0.5f);
 
-        pos.x = Mathf.Clamp(pos.x, 0 - 0.5f, panLimit.x - 0.5f);
-    }
+		pos.x = Mathf.Clamp(pos.x, 0 - 0.5f, panLimit.x - 0.5f);
+	}
 
-    public void CameraUpdate()
-    {
-        Movement();
-        Drag();
-        Zoom();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.cam = Camera.main;
-    }
+	public void CameraUpdate()
+	{
+		Movement();
+		Drag();
+		Zoom();
+	}
 }
