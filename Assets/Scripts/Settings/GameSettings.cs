@@ -40,6 +40,7 @@ public class GameSettings : ScriptableObject
         {
             var (src, rotation) = tileType.GetRotation();
             result = (Resources.Load<Texture>($"Tiles/{src}"), rotation, Resources.Load<Texture>($"Tiles/{src}Overlay"));
+            cache[(int) tileType] = result;
         }
         return result;
     }
