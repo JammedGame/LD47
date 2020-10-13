@@ -172,16 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d97ecaa8ceb77408b0e67fe5469470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicSource: {fileID: 7984370207405989889}
-  SoundSource: {fileID: 8929070631159880044}
+  musicSource: {fileID: 7984370207405989889}
+  soundSource: {fileID: 8929070631159880044}
   MusicMainMenu: {fileID: 8300000, guid: 440a9c52c65c54cb3805ebf67726fcf8, type: 3}
   MusicGame: {fileID: 8300000, guid: 440a9c52c65c54cb3805ebf67726fcf8, type: 3}
   SoundTrackSwitch: {fileID: 8300000, guid: e318a861244604746a1c9c866d30b252, type: 3}
   SoundCargoPickUp: {fileID: 8300000, guid: 4aadbc5c12e1b4b3a96cb01818d2e277, type: 3}
   SoundCargoDropOff: {fileID: 8300000, guid: ac786085189734a72be4530a03219f66, type: 3}
-  SoundTrainStop: {fileID: 8300000, guid: 0fa75e229a1264b7d8886bf7d1eec927, type: 3}
+  SoundTrainStop: {fileID: 0}
   SoundTrainStart: {fileID: 8300000, guid: edd2e5055b06346e798931cb639b8a35, type: 3}
-  SoundVictory: {fileID: 8300000, guid: ad5dce0a5a651428e8807e4dee14d977, type: 3}
+  SoundVictory: {fileID: 8300000, guid: edd2e5055b06346e798931cb639b8a35, type: 3}
   SoundDefeat: {fileID: 8300000, guid: 59838f2a9cba841c9b2cb72ac40bbafb, type: 3}
 --- !u!1 &8567459729461567975
 GameObject:
